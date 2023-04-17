@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>第一章习题 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>第一章习题</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><ol>
+<li>设计现代OS的主要目标是什么?</li>
+</ol>
+<p>方便用户的使用？</p>
+<ol start="2">
+<li><p>OS的作用可表现在哪几个方面?<br />表现在提高硬件的利用率，提高程序的执行效率，方便用户的使用。</p>
+</li>
+<li><p>为什么说操作系统实现了对计算机资源的抽象?<br />操作系统在硬件上面进行了一层封装，形成了一层虚机器，通过这个虚机器，可以直接管理计算机的资源，包括文件、输入输出、处理机、程序等，而且用户无须了解底层实现，只需要调用操作系统（这个虚机器）提供的控制方法。</p>
+</li>
+<li><p>试说明推动多道批处理系统形成和发展的主要动力是什么。<br />单道批处理系统对于用户的控制方面的实现并不好，用户无法控制批处理作业的执行情况等问题显著。</p>
+</li>
+<li><p>何谓脱机I/O和联机I/O?<br />脱机I/O就是输入输出不在主机内完成的，联机I/O就是由主机来控制输入输出的。</p>
+</li>
+<li><p>试说明推动分时系统形成和发展的主要动力是什么。<br />用户的人机交互体验？</p>
+</li>
+<li><p>实现分时系统的关键问题是什么? 应如何解决?<br />及时接收、及时处理<br />一个是灵敏地接收用户的终端输入。<br />一个是尽快接收请求并做出响应。</p>
+</li>
+<li><p>为什么要引入实时操作系统?</p>
+</li>
+<li><p> 什么是硬实时任务和软实时任务? 试举例说明。 </p>
+</li>
+<li><p> 试从交互性、及时性以及可靠性方面将分时系统与实时系统进行比较。 </p>
+</li>
+<li><p> OS有哪几大特征? 其最基本的特征是什么? </p>
+</li>
+<li><p> 在多道程序技术的OS环境下的资源共享与一般情况下的资源共享有何不同? 对独占资源应采取何种共享方式? </p>
+</li>
+<li><p> 什么是时分复用技术? 举例说明它能提高资源利用率的根本原因是什么。 </p>
+</li>
+<li><p> 是什么原因使操作系统具有异步性特征? </p>
+</li>
+<li><p> 处理机管理有哪些主要功能? 其主要任务是什么? </p>
+</li>
+<li><p> 内存管理有哪些主要功能? 其主要任务是什么? </p>
+</li>
+<li><p>设备管理有哪些主要功能? 其主要任务是什么?</p>
+</li>
+<li><p> 文件管理有哪些主要功能? 其主要任务是什么? </p>
+</li>
+<li><p> 试说明推动传统OS演变为现代OS的主要因素是什么? </p>
+</li>
+<li><p> 什么是微内核OS? </p>
+</li>
+<li><p> 微内核操作系统具有哪些优点? 它为何能有这些优点? </p>
+</li>
+<li><p> 现代操作系统较之传统操作系统又增加了哪些功能和特征? </p>
+</li>
+<li><p> 在微内核OS中，为什么要采用客户/服务器模式? </p>
+</li>
+<li><p> 在基于微内核结构的OS中，应用了哪些新技术? </p>
+</li>
+<li><p> 何谓微内核技术? 在微内核中通常提供了哪些功能? </p>
+</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%A3%85%E5%85%A5%E5%92%8C%E9%93%BE%E6%8E%A5/">← Next 程序的装入和链接</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%AC%AC%E4%B8%83%E7%AB%A0%E4%B9%A0%E9%A2%98/">第七章习题 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>用户接口 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>用户接口</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="用户接口"><a href="#用户接口" class="headerlink" title="用户接口"></a>用户接口</h2><h3 id="字符显示式联机用户接口"><a href="#字符显示式联机用户接口" class="headerlink" title="字符显示式联机用户接口"></a>字符显示式联机用户接口</h3><p>不同的OS，其联机用户接口是不同的，即它们的命令形式和用法各不相同，甚至在同一系统中，命令的不同形式构成了不同的用户界面，一般可分为<strong>字符显示式</strong>联机用户接口和<strong>图形化联机</strong>用户接口两类。</p>
+<ol>
+<li>命令行方式</li>
+</ol>
+<p>该方式是以行为单位，输入和显示不同的命令。每行长度一般不超过256个字符，一般情况下，以回车符作为一个命令的结束标记。通常，命令的执行采用的是间断式的串行执行方式，即后一个命令的输入一般需等到前一个命令执行结束，如用户键入的一条命令处理完成后系统发出新的命令输入提示符，用户才可以继续输入下一条命令。</p>
+<ol start="2">
+<li>批命令方式</li>
+</ol>
+<p>在操作命令的实际使用过程中，经常遇到需要对多条命令的连续使用、或对若干条命令的重复使用、或对不同命令进行选择性使用的情况，如果用户每次都采用命令行方式将命令一条条由键盘输入，既浪费时间，又容易出错。因此，操作系统都支持一种称为批命令的特别命令方式，允许用户预先把一系列命令组织在一种称为批命令文件的文件中，一次建立，多次执行。使用这种方式可减少用户输入命令的次数，既节省了时间，减少了出错概率，又方便了用户。</p>
+<h3 id="图形化联机用户接口"><a href="#图形化联机用户接口" class="headerlink" title="图形化联机用户接口"></a>图形化联机用户接口</h3><ol>
+<li>图形用户接口GUI(Graphics User Interface)的引入</li>
+</ol>
+<p>虽然用户可以通过命令行方式和批命令方式，取得操作系统的服务，并控制自己的作业运行，但却要牢记各种命令的动词和参数，必须严格按规定的格式输入命令，而且不同操作系统所提供的命令语言的词法、语法、语义及表达形式是不一样的，这样既不方便又花费时间。于是，图形化用户接口GUI(Graphics User Interface)便应运而生。</p>
+<ol start="2">
+<li>使用WIMP技术</li>
+</ol>
+<p>GUI采用了图形化的操作界面，使用WIMP 技术，该技术将窗口(Window)、图标(Icon)、菜单(Menu)、鼠标(Pointing device)和面向对象技术等集成在一起，引入形象的各种图标，将系统的各项功能、各种应用程序和文件直观、逼真地表示出来，形成一个图文并茂的视窗操作环境。 </p>
+<ol start="3">
+<li>Windows的GUI简介</li>
+</ol>
+<p>以Microsoft公司的Windows 操作系统为例，在系统初始化后，OS为终端用户生成了一个运行explorer.exe的进程，它运行一个具有窗口界面的命令解释程序，该窗口是一个特殊的窗口，即桌面。 </p>
+<h3 id="联机命令的类型"><a href="#联机命令的类型" class="headerlink" title="联机命令的类型"></a>联机命令的类型</h3><ol>
+<li>系统访问类</li>
+</ol>
+<p>在多用户系统中，为了保证系统的安全性，都毫无例外地设置注册命令Login。凡要在多用户系统的终端上上机的用户，都必须先在系统管理员处获得一合法的注册名和口令。以后，每当用户在接通其所用终端的电源后，便由系统直接调用，并在屏幕上显示出以下的注册命令：<br />Login:                 //提示用户键入自己的注册名<br />当用户键入正确的注册名并按下回车键后，屏幕上又会出现：<br />Password:    //提示用户键入自己的口令</p>
+<ol start="2">
+<li>文件操作命令</li>
+</ol>
+<p>(1) 显示文件命令type，用于将指定文件内容显示在屏幕上。<br />(2) 拷贝文件命令copy，用于实现文件的拷贝。<br />(3) 文件比较命令comp，该命令用于对两个指定文件进行比较，两文件可以在同一个或不同的驱动器上。<br />(4) 重新命名命令Rename，该命令用于将以第一参数命名的文件改成用第二参数给定的名字。<br />(5) 删除文件命令erase，该命令用于删除一个或一组文件，例如，当参数路径名为*.BAK时，表示删除指定目录下的所有其扩展名为 .Bak的文件。</p>
+<ol start="3">
+<li>目录操作命令</li>
+</ol>
+<p>(1) 建立子目录命令mkdir，用于建立指定名字的新目录。<br />(2) 显示目录命令dir，显示指定磁盘中的目录项。<br />(3) 删除子目录命令rmdir，用于删除指定的子目录文件，但不能删除普通文件，而且一次只能删除一个空目录(其中仅含“.”和“..”两个文件)，不能删除根及当前目录。<br />(4) 显示目录结构命令tree，显示指定盘上的所有目录路径及其层次关系。<br />(5) 改变当前目录命令chdir，将当前目录改变为由路径名参数给定的目录。用“..”作参数时，表示应返回到上一级目录下。</p>
+<ol start="4">
+<li>其他命令</li>
+</ol>
+<p>(1) 输入输出重定向命令。<br />(2) 管道连接。 <br />(3) 过滤命令。<br />(4) 批命令。 </p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%94%A8%E6%88%B7%E5%B1%82%E7%9A%84%E8%BD%AF%E4%BB%B6/">← Next 用户层的软件</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E6%80%A7%E8%83%BD%E5%92%8C%E8%B0%83%E5%BA%A6/">磁盘存储器的性能和调度 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3"><span class="toc-text">用户接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E5%BC%8F%E8%81%94%E6%9C%BA%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3"><span class="toc-text">字符显示式联机用户接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E8%81%94%E6%9C%BA%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3"><span class="toc-text">图形化联机用户接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E6%9C%BA%E5%91%BD%E4%BB%A4%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">联机命令的类型</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

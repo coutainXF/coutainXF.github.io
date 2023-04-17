@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>分页存储管理方式 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>分页存储管理方式</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><p><strong>一、分页存储管理方式。</strong><br /><strong>二、分段存储管理方式。</strong><br /><strong>三、段页式存储管理方式。</strong></p>
+<h1 id="分页存储管理方式"><a href="#分页存储管理方式" class="headerlink" title="分页存储管理方式"></a>分页存储管理方式</h1><ol>
+<li>页面和物理块</li>
+</ol>
+<p>(1) 页面。将一个进程的逻辑地址空间分成若干个大小相等的片，称为页面或页，并为各页加以编号，从0开始，如第0页、第1页等。页/块。<br />(2) 页面大小。<br />太小：减少内存碎片，页表占用大量内存，页面置换效率降低。<br />太大：减少页表的长度，提高页面换进换出的速度，但却又会使页内碎片增大。</p>
+<ol start="2">
+<li>地址结构</li>
+</ol>
+<p>分页地址中的地址结构如下：<br><img src="/imgs/OperationSystemAssets/1679627009533-3de7f4ec-8c6d-41f4-a852-5ab1a064ffd2.png" alt="image.png"><br>若给定一个逻辑地址空间中的地址为A，页面的大小为L，则页号P和页内地址d可按下式求得：<br><img src="/imgs/OperationSystemAssets/1679627009584-e87b0105-cb6c-4038-9659-6828c3ccdcbd.png" alt="image.png"></p>
+<ol start="3">
+<li>页表</li>
+</ol>
+<p>在<strong>分页系统中，允许将进程的各个页离散地存储在内存的任一物理块中</strong>，为保证进程仍然能够正确地运行，即<strong>能在内存中找到每个页面所对应的物理块</strong>，系统又为每个进程建立了一张页面映像表，简称页表。<br><img src="/imgs/OperationSystemAssets/1679627009664-03e1dce3-4367-4e80-a584-d6f6ccea7f4d.png" alt="image.png"></p>
+<h2 id="地址变换机构"><a href="#地址变换机构" class="headerlink" title="地址变换机构"></a>地址变换机构</h2><ol>
+<li>基本的地址变换机构</li>
+</ol>
+<p>进程在运行期间，需要对程序和数据的地址进行变换，即将用户地址空间中的逻辑地址变换为内存空间中的物理地址，由于它执行的频率非常高，每条指令的地址都需要进行变换，因此需要采用硬件来实现。<br />页表功能是由一组专门的寄存器来实现的。一个页表项用一个寄存器。<br><img src="/imgs/OperationSystemAssets/1679627009669-2ae11429-dcc9-4486-8c02-507e66690a62.png" alt="image.png"></p>
+<ol start="2">
+<li>具有<strong>快表</strong>的地址变换机构</li>
+</ol>
+<p>由于页表是存放在内存中的，这使CPU在每存取一个数据时，都要两次访问内存。第一次是访问内存中的页表，从中找到指定页的物理块号，再将块号与页内偏移量W拼接，以形成物理地址。第二次访问内存时，才是<strong>从第一次所得地址中获得所需数据</strong>(或向此地址中写入数据)。<br />因此，采用这种方式将使计算机的处理速度降低近1/2。<br /><strong>快表具有并行查询能力的特殊高速缓冲寄存器，又称联想寄存器</strong>（Associative memory）。<br><img src="/imgs/OperationSystemAssets/1679627009705-4a9b482b-6514-41b1-add9-4720785b07af.png" alt="image.png"></p>
+<h2 id="访问内存的有效时间"><a href="#访问内存的有效时间" class="headerlink" title="访问内存的有效时间"></a>访问内存的有效时间</h2><p>定义：从进程发出指定逻辑地址的访问请求，经过地址变换，到在内存中找到对应的实际物理地址单元并取出数据，所需要花费的总时间，称为内存的有效访问时间(Effective Access Time，EAT)。<br />计算：假设访问一次内存的时间为t，有效访问时间分为第一次访问内存时间(即查找页表对应的页表项所耗费的时间t)与第二次访问内存时间(即将页表项中的物理块号与页内地址拼接成实际物理地址所耗费的时间t)之和：<br />EAT = t + t = 2t</p>
+<p>通过快表查询，可以直接得到逻辑页所对应的物理块号，由此拼接形成实际物理地址，减少了一次内存访问，缩短了进程访问内存的有效时间。但是，由于快表的容量限制，不可能将一个进程的整个页表全部装入快表，所以在快表中查找到所需表项存在着<strong>命中率</strong>的问题。<br />所谓<strong>命中率</strong>，是指使用快表并在其中成功查找到所需页面的表项的比率。<br />设λ表示查找快表所需要的时间，а表示命中率，t表示访问一次内存所需要的时间。在引入快表的分页存储管理方式中，有效访问时间的计算公式即为： <br />EAT=а×λ+(t+λ)(1- а)+t = 2t+λ-t×а<br /> <br />可见，引入快表后的内存有效访问时间分为查找到逻辑页对应的页表项的平均时间а × λ + (t + λ)(1 - а)，以及对应实际物理地址的内存访问时间t。假设对快表的访问时间λ为20 ns(纳秒)，对内存的访问时间t为100 ns，则下表中列出了不同的命中率а与有效访问时间的关系：<br><img src="/imgs/OperationSystemAssets/1679627010174-fa96d691-6913-4163-a23a-cea05fc824ea.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%88%86%E6%AE%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F/">← Next 分段存储管理方式</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%89%8D%E8%B6%8B%E5%9B%BE%E5%92%8C%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C/">前趋图和程序执行 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-text">分页存储管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2%E6%9C%BA%E6%9E%84"><span class="toc-text">地址变换机构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%86%85%E5%AD%98%E7%9A%84%E6%9C%89%E6%95%88%E6%97%B6%E9%97%B4"><span class="toc-text">访问内存的有效时间</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

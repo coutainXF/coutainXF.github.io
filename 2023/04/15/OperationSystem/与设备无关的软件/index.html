@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>与设备无关的软件 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>与设备无关的软件</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="与设备无关的I-O软件"><a href="#与设备无关的I-O软件" class="headerlink" title="与设备无关的I/O软件"></a>与设备无关的I/O软件</h1><p>为了方便用户和提高OS的可适应性与可扩展性，在现代OS的I/O系统中，都无一例外地增加了与设备无关的I/O软件，以实现设备独立性，也称为设备无关性。<br />其基本含义是：应用程序中所用的设备，不局限于使用某个具体的物理设备。为每个设备所配置的设备驱动程序是与硬件紧密相关的软件。 </p>
+<p>基本含义是： 应用程序独立于具体使用的物理设备。为了实现设备独立性而引入了<strong>逻辑设备和物理设备</strong>这两个概念。在应用程序中， 使用逻辑设备名称来请求使用某类设备；而系统在实际执行时， 还必须使用物理设备名称。</p>
+<h2 id="与设备无关-Device-Independence-软件的基本概念"><a href="#与设备无关-Device-Independence-软件的基本概念" class="headerlink" title="与设备无关(Device Independence)软件的基本概念"></a>与设备无关(Device Independence)软件的基本概念</h2><ol>
+<li>以物理设备名使用设备</li>
+</ol>
+<p>在早期OS中，应用程序在使用I/O设备时，都使用设备的物理名称，这使应用程序与系统中的物理设备直接相关。</p>
+<ol start="2">
+<li>引入了逻辑设备名</li>
+</ol>
+<p>为了实现与设备的无关性而引入了逻辑设备和物理设备两个概念。逻辑设备是抽象的设备名。  </p>
+<ol start="3">
+<li>逻辑设备名称到物理设备名称的转换</li>
+</ol>
+<p>在应用程序中，用逻辑设备名称使用设备虽然方便了用户，但系统却只识别物理设备名称，因此在实际执行时，还必须使用物理名称。为此，在系统中，必须具有将逻辑设备名称转换为某物理设备名称的功能。 </p>
+<h2 id="与设备无关的软件"><a href="#与设备无关的软件" class="headerlink" title="与设备无关的软件"></a>与设备无关的软件</h2><ol>
+<li>设备驱动程序的统一接口</li>
+</ol>
+<p>为了使所有的设备驱动程序有着统一的接口<br />（1）一方面，要求每个设备驱动程序与OS之间都有着相同的接口，或者相近的接口，使得添加一个新的设备驱动程序变得很容易，同时在很大程度上方便了开发人员对设备驱动程序的编制。<br />（2）另一方面，要将抽象的设备名映射到适当的驱动程序上，或者说，将抽象的设备名转换为具体的物理设备名，并进一步可以找到相应物理设备的驱动程序入口。<br />（3）此外，还应对设备进行保护，禁止用户直接访问设备，以防止无权访问的用户使用。</p>
+<ol start="2">
+<li>缓冲管理</li>
+</ol>
+<p>（WHY）无论是字符设备还是块设备，它们的运行速度都远低于CPU的速度。为了缓和CPU和I/O设备之间的矛盾、提高CPU的利用率，在现代OS中都无一例外地分别为字符设备和块设备配置了相应的缓冲区。<br />（HOW）缓冲区有着多种形式，如单缓冲区、双缓冲区、循环缓冲区、公用缓冲池等，以满足不同情况的需要。 </p>
+<ol start="3">
+<li>差错控制</li>
+</ol>
+<p>由于设备中有着许多的机械和电气部分，因此，它们比主机更容易出现故障，这就导致I/O操作中的绝大多数错误都与设备有关。错误可分为如下两类：<br />(1) 暂时性错误。暂时性事件（电源波动）引起的错误。<br />(2) 持久性错误。持久性故障（磁盘划痕）引起的错误。</p>
+<ol start="4">
+<li>对独立设备的分配与回收</li>
+</ol>
+<p>在系统中有两类设备：独占设备和共享设备。<br />独占设备，必须由系统来统一分配，不允许进程自行使用。<br><img src="/imgs/OperationSystemAssets/1679719623666-f0c92a3b-e015-4456-9805-bcce1b3061db.png" alt="image.png"></p>
+<ol start="5">
+<li>独立于设备的逻辑数据块</li>
+</ol>
+<p>不同类型的设备，其数据交换单位是不同的，读取和传输速率也各不相同，如字符型设备以单个字符(字)为单位，块设备是以一个数据块为单位。即使同一类型的设备，其数据交换单位的大小也是有差异的，如不同磁盘由于扇区大小的不同，可能造成数据块大小的不一致。<br />设备独立性软件应能够隐藏这些差异而被逻辑设备使用，并向高层软件提供大小统一的逻辑数据块。与设备无关软件的功能如图所示。<br><img src="/imgs/OperationSystemAssets/1679719623837-6f8ec4be-41e1-4143-8138-a16f0781e6db.png" alt="image.png"></p>
+<h2 id="设备分配"><a href="#设备分配" class="headerlink" title="设备分配"></a>设备分配</h2><p>系统为实现对独占设备的分配，必须在系统中配置相应的数据结构。<br />1. 设备分配中的数据结构<br />在用于设备分配的数据结构中，记录了对设备或控制器进行控制所需的信息。在进行设备分配时需要如下的数据结构。</p>
+<ol>
+<li><p>设备控制表DCT<br />系统为每一个设备都配置了一张设备控制表，用于记录设备的情况，如图所示。<br><img src="/imgs/OperationSystemAssets/1679719624088-f0da94aa-e386-440c-a506-91b062a6bbf8.png" alt="image.png"></p>
+</li>
+<li><p>控制器控制表、通道控制表和系统设备表<br />(1) 控制器控制表(COCT)。系统为每一个控制器都设置了用于记录控制器情况的控制器控制表，如图6-18(a)所示。<br />(2) 通道控制表(CHCT)。每个通道都有一张通道控制表，如图6-18(b)所示。<br />(3) 系统设备表(SDT)。这是系统范围的数据结构，记录了系统中全部设备的情况，每个设备占一个表目，其中包括有设备类型、设备标识符、设备控制表及设备驱动程序的入口等项，如图6-18(c)所示。<br><img src="/imgs/OperationSystemAssets/1679719624190-14d3ca5a-fc7b-4d6e-99f1-8cd31f81be20.png" alt="image.png"></p>
+</li>
+</ol>
+<ol start="2">
+<li>设备分配时应考虑的因素</li>
+</ol>
+<p>系统在分配设备时，应考虑如下几个因素：</p>
+<ol>
+<li><p>设备的固有属性<br />设备的固有属性可分成三种，对它们应采取不同的分配策略：<br />(1) 独占设备的分配策略。<br />(2) 共享设备的分配策略。<br />(3) 虚拟设备的分配策略，虚拟设备属于可共享的设备，可以将它同时分配给多个进程使用。</p>
+</li>
+<li><p>设备分配算法<br />对设备分配的算法，通常只采用以下两种分配算法：<br />(1) 先来先服务。<br />(2) 优先级高者优先。</p>
+</li>
+<li><p>设备分配中的安全性<br />从进程运行的安全性上考虑，设备分配有以下两种方式：<br />(1) 安全分配方式。<br />(2) 不安全分配方式。</p>
+</li>
+</ol>
+<ol start="3">
+<li>独占设备的分配程序</li>
+</ol>
+<ol>
+<li><p>基本的设备分配程序<br />我们通过一个例子来介绍设备分配过程。当某进程提出I/O请求后，系统的设备分配程序可按下述步骤进行设备分配：<br />(1) 分配设备。<br />(2) 分配控制器。<br />(3) 分配通道。 </p>
+</li>
+<li><p>设备分配程序的改进<br />在上面的例子中，进程是以物理设备名提出I/O请求的。如果所指定的设备已分配给其它进程，则分配失败。或者说上面的设备分配程序不具有与设备无关性。为获得设备的独立性，进程应使用逻辑设备名请求I/O。 </p>
+</li>
+</ol>
+<h2 id="逻辑设备名到物理设备名映射的实现"><a href="#逻辑设备名到物理设备名映射的实现" class="headerlink" title="逻辑设备名到物理设备名映射的实现"></a>逻辑设备名到物理设备名映射的实现</h2><ol>
+<li>逻辑设备表LUT(Logical Unit Table)</li>
+</ol>
+<p>在逻辑设备表的每个表目中包含了三项：逻辑设备名、物理设备名和设备驱动程序的入口地址，如图（a）所示。<br><img src="/imgs/OperationSystemAssets/1679719624049-6a3b6771-bc1c-4bea-8614-cfd86782a769.png" alt="image.png"></p>
+<ol start="2">
+<li>逻辑设备表的设置问题</li>
+</ol>
+<p>在系统中可采取两种方式设置逻辑设备表： <br />第一种方式，是在整个系统中只设置一张LUT。<br />第二种方式，是为每个用户设置一张LUT。 </p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/Unix%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/">← Next Unix系统调用</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E4%B8%AD%E6%96%AD%E6%9C%BA%E6%9E%84%E5%92%8C%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/">中断机构和中断处理程序 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%97%A0%E5%85%B3%E7%9A%84I-O%E8%BD%AF%E4%BB%B6"><span class="toc-text">与设备无关的I&#x2F;O软件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%97%A0%E5%85%B3-Device-Independence-%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">与设备无关(Device Independence)软件的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%97%A0%E5%85%B3%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="toc-text">与设备无关的软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D"><span class="toc-text">设备分配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E5%A4%87%E5%90%8D%E5%88%B0%E7%89%A9%E7%90%86%E8%AE%BE%E5%A4%87%E5%90%8D%E6%98%A0%E5%B0%84%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">逻辑设备名到物理设备名映射的实现</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

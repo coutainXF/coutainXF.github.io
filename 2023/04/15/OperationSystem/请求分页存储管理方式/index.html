@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>请求分页存储管理方式 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>请求分页存储管理方式</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.086Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="请求分页存储管理方式"><a href="#请求分页存储管理方式" class="headerlink" title="请求分页存储管理方式"></a>请求分页存储管理方式</h1><h2 id="请求分页中的硬件支持"><a href="#请求分页中的硬件支持" class="headerlink" title="请求分页中的硬件支持"></a>请求分页中的硬件支持</h2><p>为了实现请求分页，系统必须提供一定的硬件支持。计算机系统除了要求一定容量的内存和外存外，还需要有请求页表机制、缺页中断机构以及地址变换机构。</p>
+<ol>
+<li>请求页表机制</li>
+</ol>
+<p>在请求分页系统中需要的主要数据结构是请求页表，其基本作用仍然是<strong>将用户地址空间中的逻辑地址映射为内存空间中的物理地址</strong>。为了满足页面换进换出的需要，在请求页表中又增加了四个字段。这样，在请求分页系统中的每个页表应含以下诸项：<br><img src="/imgs/OperationSystemAssets/1679717165161-19b99fdd-3785-4e49-821d-122c06913dd5.png" alt="image.png"></p>
+<ol start="2">
+<li>缺页中断机构</li>
+</ol>
+<p>(1) 在指令执行期间产生和处理中断信号。<br />(2) 一条指令在执行期间可能产生多次缺页中断。</p>
+<p><img src="/imgs/OperationSystemAssets/1679717165459-fec6542e-5231-4550-8105-d781970f9c3a.png" alt="image.png"></p>
+<ol start="3">
+<li>地址变换机构</li>
+</ol>
+<p>请求分页系统中的地址变换机构是在分页系统地址变换机构的基础上，为实现虚拟存储器，再增加了某些功能所形成的，如产生和处理缺页中断，以及从内存中换出一页的功能等等。图示出了请求分页系统中的地址变换过程。</p>
+<p><img src="/imgs/OperationSystemAssets/1679717165663-40d29acf-7537-43c2-86d4-4dfb0ace89a1.png" alt="image.png"></p>
+<h2 id="请求分页中的内存分配"><a href="#请求分页中的内存分配" class="headerlink" title="请求分页中的内存分配"></a>请求分页中的内存分配</h2><p>最小物理块数的确定？<br />内存分配策略？-&gt;物理块分配算法？<br /> </p>
+<ol>
+<li>最小物理块数的确定</li>
+</ol>
+<p>一个显而易见的事实是，<strong>随着为每个进程所分配的物理块的减少，将使进程在执行中的缺页率上升，从而会降低进程的执行速度</strong>。为使进程能有效地工作，应为它分配一定数目的物理块，但这并不是最小物理块数的概念。</p>
+<ol start="2">
+<li>内存分配策略</li>
+</ol>
+<p>内存分配策略，即固定和可变分配策略。<br />内存置换策略，即全局置换和局部置换。<br />1) 固定分配局部置换(Fixed Allocation，Local Replacement)<br>2) 可变分配全局置换(Variable Allocation，Global Replacement)<br>3) 可变分配局部置换(Variable Allocation，Local Replacement)</p>
+<ol start="3">
+<li>物理块分配算法</li>
+</ol>
+<p>在采用固定分配策略时，如何将系统中可供分配的所有物理块分配给各个进程，可采用下述几种算法：<br />(1) 平均分配算法，即将系统中所有可供分配的物理块平均分配给各个进程。 </p>
+<p>(2) 按比例分配算法，即根据进程的大小按比例分配物理块。如果系统中共有n个进程，每个进程的页面数为Si，<br />则<strong>系统中各进程页面数的总和</strong>为：<br><img src="/imgs/OperationSystemAssets/1679717165328-ba0d11cc-00cc-4665-af5f-277c6d2ac4d4.png" alt="image.png"><br>又假定系统中可用的物理块总数为m，则<strong>每个进程所能分到的物理块数为bi</strong>可由下式计算：<br><img src="/imgs/OperationSystemAssets/1679717165330-4a0a670e-d451-426b-b8cf-78ed56821294.png" alt="image.png"><br>这里，bi应该取整，它必须大于最小物理块数。</p>
+<p>(3) 考虑优先权的分配算法。在实际应用中，<strong>为了照顾到重要的、紧迫的作业能尽快地完成，应为它分配较多的内存空间</strong>。通常采取的方法是把内存中可供分配的所有物理块分成两部分：</p>
+<ul>
+<li>一部分按比例地分配给各进程；</li>
+<li>另一部分则根据各进程的优先权进行分配，为高优先进程适当地增加其相应份额。</li>
+</ul>
+<h2 id="页面调入策略"><a href="#页面调入策略" class="headerlink" title="页面调入策略"></a>页面调入策略</h2><p>为使进程能够正常运行，必须事先将要执行的那部分程序和数据所在的页面调入内存。现在的问题是：<br />(1) 系统应在<strong>何时</strong>调入所需页面；<br />(2) 系统应从<strong>何处</strong>调入这些页面；<br />(3) 是如何进行调入的。</p>
+<ol>
+<li><strong>何时调入页面</strong></li>
+</ol>
+<p>(1) 预调页策略。<br />(2) 请求调页策略。 </p>
+<p><img src="/imgs/OperationSystemAssets/1679717166105-6f9e4ef5-d417-486d-8981-995f3532dbea.png" alt="image.png"></p>
+<ol start="2">
+<li><strong>从何处调入页面</strong></li>
+</ol>
+<p>(1) 系统拥有足够的对换区空间，这时可以全部从对换区调入所需页面，以提高调页速度。</p>
+<p>(2) 系统缺少足够的对换区空间，这时凡是不会被修改的文件，都直接从文件区调入；而当换出这些页面时，由于它们未被修改，则不必再将它们重写到磁盘(换出)，以后再调入时，仍从文件区直接调入。但对于那些可能被修改的部分，在将它们换出时便须调到对换区，以后需要时再从对换区调入。</p>
+<p>(3) UNIX方式。 </p>
+<ol start="3">
+<li><strong>页面调入过程</strong></li>
+</ol>
+<p><strong>每当程序所要访问的页面未在内存时(存在位为“0”)<strong>，</strong>便向CPU发出一缺页中断</strong>，<strong>中断处理程序首先保留CPU环境，分析中断原因后转入缺页中断处理程序</strong>。</p>
+<ol start="4">
+<li>缺页率和计算缺页中断处理时间</li>
+</ol>
+<p>定义：假设一个进程的逻辑空间为n页，系统为其分配的内存物理块数为m(m≤n)。如果在进程的运行过程中，<strong>访问页面成功(即所访问页面在内存中)的次数为S</strong>，<strong>访问页面失败(即所访问页面不在内存中，需要从外存调入)的次数为F</strong>，则该进程总的页面访问次数为A = S + F，那么该进程在其运行过程中的缺页率即为<br><img src="/imgs/OperationSystemAssets/1679717166201-99926732-7252-4453-8d16-e9ba41cd2936.png" alt="image.png"><br>事实上，在缺页中断处理时，当由于空间不足，需要置换部分页面到外存时，选择被置换页面还需要考虑到置换的代价，如页面是否被修改过。没有修改过的页面可以直接放弃，而修改过的页面则必须进行保存，所以处理这两种情况时的时间也是不同的。假设<strong>被置换的页面被修改的概率是β，其缺页中断处理时间为ta，被置换页面没有被修改的缺页中断时间为tb</strong>，那么，缺页中断处理时间的计算公式为<br />t=β×ta+(1—β)×tb</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%AF%B7%E6%B1%82%E5%88%86%E6%AE%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F/">← Next 请求分段存储管理方式</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%B3%BB%E7%BB%9F/">输入输出系统 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-text">请求分页存储管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%88%86%E9%A1%B5%E4%B8%AD%E7%9A%84%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81"><span class="toc-text">请求分页中的硬件支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%88%86%E9%A1%B5%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="toc-text">请求分页中的内存分配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%85%A5%E7%AD%96%E7%95%A5"><span class="toc-text">页面调入策略</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

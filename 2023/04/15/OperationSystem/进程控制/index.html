@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>进程控制 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>进程控制</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.086Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h1><p>进程控制是进程管理中最基本的功能，主要包括<br />（1）创建新进程<br />（2）终止已完成的进程<br />（3）状态转换<br />进程控制一般是由OS的内核中的原语来实现的。</p>
+<h2 id="操作系统内核"><a href="#操作系统内核" class="headerlink" title="操作系统内核"></a>操作系统内核</h2><ol>
+<li>支撑功能<br />(1) 中断处理。是内核最基本的功能，是着操作系统赖以活动的基础。<br />(2) 时钟管理。<br />(3) 原语操作。原语是由若干条指令组成的，用于完成一定功能的一个过程。</li>
+</ol>
+<p>它们是原子操作，这个动作要么全做要么不做。</p>
+<ol start="2">
+<li>资源管理功能</li>
+</ol>
+<p>(1) 进程管理。<br />(2) 存储器管理。<br />(3) 设备管理。 </p>
+<h2 id="进程的创建"><a href="#进程的创建" class="headerlink" title="进程的创建"></a>进程的创建</h2><ol>
+<li>进程的层次结构<br /> 在OS中，允许一个进程创建另一个进程，通常把创建进程的进程称为父进程，而把被创建的进程称为子进程。</li>
+</ol>
+<p>子进程可继续创建更多的孙进程，由此便形成了一个进程的层次结构。</p>
+<ol start="2">
+<li>进程图</li>
+</ol>
+<p>描述一个进程的家族关系而引入了进程图(Process Graph)。所谓进程图就是用于描述进程间关系的一棵有向树<br><img src="/imgs/OperationSystemAssets/1679477562326-4eec0d92-c1af-4a94-b40d-2efd3dec8e4c.png" alt="image.png"></p>
+<p>windows系统是不存在进程层次结构的概念的。所有的进程都具有相同的地位。<br />如果一个进程创建另外的进程时获得了一个句柄，其作用相当于一个令牌，可以控制被创建的进程。该句柄可传递，<strong>获得了句柄的进程就拥有控制其他进程的权力</strong>。</p>
+<ol start="3">
+<li>引起创建进程的事件</li>
+</ol>
+<p>为使程序之间能并发运行，应先为它们分别创建进程。导致一个进程去创建另一个进程的典型事件有四类：<br />(1) 用户登录。<br />(2) 作业调度。<br />(3) 提供服务。<br />(4) 应用请求。</p>
+<ol start="4">
+<li>进程的创建(Creation of Process)</li>
+</ol>
+<p>在系统中每当出现了创建新进程的请求后，OS便调用进程创建原语Creat按下述步骤创建一个新进程：<br />(1) 申请空白PCB，为新进程申请获得唯一的数字标识符ID，并从PCB集合中索取一个空白PCB。<br />(2) 为新进程分配其运行所需的资源，包括各种物理和逻辑资源，如内存、文件、I/O设备和CPU时间等。<br />(3) 初始化进程控制块(PCB)。<br />(4) 如果进程就绪队列能够接纳新进程，便将新进程插入就绪队列。</p>
+<h2 id="进程的终止"><a href="#进程的终止" class="headerlink" title="进程的终止"></a>进程的终止</h2><ol>
+<li><p> 引起进程终止(Termination of Process)的事件<br />(1) 正常结束<br />(2) 异常结束<br />(3) 外界干预</p>
+</li>
+<li><p>进程的终止过程</p>
+</li>
+</ol>
+<p>如果系统中发生了要求终止进程的某事件，OS便<strong>调用进程终止原语</strong>，按下述过程去终止指定的进程：<br />(1) 根据被终止进程的标识符，从PCB集合中<strong>检索出该进程的PCB</strong>，从中读出该进程的状态；<br />(2) 若<strong>被终止进程正处于执行状态</strong>，应立即终止该进程的执行，并置调度标志为真，用于指示该进程被终止后应重新进行调度；<br><img src="/imgs/OperationSystemAssets/1679477562368-43ed24eb-a958-4d82-969f-e66ff26aaaa3.png" alt="image.png"><br>(3) 若<strong>该进程还有子孙进程</strong>，还应将其所有子孙进程也都予以终止，以防它们成为不可控的进程；<br />(4) 将被终止进程所拥有的全部资源或者<strong>归还</strong>给其父进程，或者归还给系统；<br />(5) 将被终止进程(PCB)从所在队列(或链表)中<strong>移出</strong>，等待其它程序来搜集信息。</p>
+<h2 id="进程的阻塞和唤醒"><a href="#进程的阻塞和唤醒" class="headerlink" title="进程的阻塞和唤醒"></a>进程的阻塞和唤醒</h2><ol>
+<li><p>引起进程阻塞和唤醒的事件<br /> 有下述几类事件会引起进程阻塞或被唤醒：<br />(1) 向系统请求共享资源失败。<br />(2) 等待某种操作的完成。<br />(3) 新数据尚未到达。<br />(4) 等待新任务的到达。 </p>
+</li>
+<li><p>进程阻塞过程</p>
+</li>
+</ol>
+<p>（1）正在执行的进程，如果发生了某事件，进程便通过调用阻塞原语block将自己阻塞。可见，阻塞是进程自身的一种主动行为。<br />（2）如果系统中设置了因不同事件而阻塞的多个阻塞队列，则应将本进程插入到具有相同事件的阻塞队列。<br />（3）最后，转调度程序进行重新调度，将处理机分配给另一就绪进程，并进行切换，亦即，保留被阻塞进程的处理机状态，按新进程的PCB中的处理机状态设置CPU的环境。 </p>
+<ol start="3">
+<li>进程唤醒过程</li>
+</ol>
+<p>当被阻塞进程所期待的事件发生时，则由有关进程(比如提供数据的进程)调用唤醒原语wakeup，将等待该事件的进程唤醒。<br />wakeup执行的过程是：<br />（1）首先把被阻塞的进程从等待该事件的阻塞队列中移出，将其PCB中的现行状态由阻塞改为就绪<br />（2）然后再将该PCB插入到就绪队列中。</p>
+<p>进程唤醒过程是一个被动的过程。</p>
+<h2 id="进程的挂起和激活"><a href="#进程的挂起和激活" class="headerlink" title="进程的挂起和激活"></a>进程的挂起和激活</h2><ol>
+<li>进程的挂起</li>
+</ol>
+<p>挂起条件：出现了引起进程挂起的事件，比如，用户进程请求将自己挂起，或父进程请求将自己的某个子进程挂起；<br />挂起原语：suspend( ) ；<br />挂起过程：<br />    1）首先检查被挂起进程的状态，若处于活动就绪状态，便将其改为静止就绪；对于活动阻塞状态的进程，则将之改为静止阻塞。 <br />    2）最后，若被挂起的进程正在执行，则转向调度程序重新调度。</p>
+<ol start="2">
+<li>进程的激活过程</li>
+</ol>
+<p>激活条件：当发生激活进程的事件时，例如，父进程或用户进程请求激活指定进程，若该进程驻留在外存而内存中已有足够的空间时，则可将在外存上处于静止就绪状态的进程换入内存。<br />激活原语：active( )；<br />激活过程：<br />1）激活原语先将进程从外存调入内存，<br />2）检查该进程的现行(改)状态，若是静止就绪，便将之改为活动就绪；若为静止阻塞便将之改为活动阻塞。<br />3）调度：假如采用的是抢占调度策略，<br /> </p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/">← Next 进程同步</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8F%8F%E8%BF%B0/">进程的描述 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-text">进程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8"><span class="toc-text">操作系统内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-text">进程的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%88%E6%AD%A2"><span class="toc-text">进程的终止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%98%BB%E5%A1%9E%E5%92%8C%E5%94%A4%E9%86%92"><span class="toc-text">进程的阻塞和唤醒</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8C%82%E8%B5%B7%E5%92%8C%E6%BF%80%E6%B4%BB"><span class="toc-text">进程的挂起和激活</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

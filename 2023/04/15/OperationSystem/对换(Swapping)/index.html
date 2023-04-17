@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>对换(Swapping) | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>对换(Swapping)</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="对换-Swapping"><a href="#对换-Swapping" class="headerlink" title="对换(Swapping)"></a>对换(Swapping)</h1><p>对换技术也称为交换技术，最早用于麻省理工学院的单用户分时系统CTSS中。由于当时计算机的内存都非常小，为了使该系统能分时运行多个用户程序而引入了对换技术。</p>
+<h2 id="最早出现的分时系统中所用的对换技术"><a href="#最早出现的分时系统中所用的对换技术" class="headerlink" title="最早出现的分时系统中所用的对换技术"></a>最早出现的分时系统中所用的对换技术</h2><p>系统把所有的用户作业存放在磁盘上，每次只能调入一个作业进入内存，当该作业的一个时间片用完时，将它调至外存的后备队列上等待，再从后备队列上将另一个作业调入内存。现在已经很少使用。</p>
+<h2 id="多道程序环境下的对换技术"><a href="#多道程序环境下的对换技术" class="headerlink" title="多道程序环境下的对换技术"></a>多道程序环境下的对换技术</h2><ol>
+<li>对换的引入</li>
+</ol>
+<p>在多道程序环境下，一方面，在内存中的某些进程由于某事件<strong>尚未发生而被阻塞运行</strong>，但它却占用了大量的内存空间，甚至有时可能出现在内存中所有进程都被阻塞，而无可运行之进程，迫使CPU停止下来等待的情况；<br />另一方面，却又<strong>有着许多作业，因内存空间不足，一直驻留在外存上，而不能进入内存运行</strong>。显然这对系统资源是一种严重的浪费，且使系统吞吐量下降。 </p>
+<ol start="2">
+<li>对换的类型</li>
+</ol>
+<p>在每次对换时，都是将一定数量的程序或数据换入或换出内存。根据每次对换时所对换的数量，可将对换分为如下两类：<br />(1) 整体对换。<br />(2) 页面(分段)对换。</p>
+<h2 id="对换空间的管理"><a href="#对换空间的管理" class="headerlink" title="对换空间的管理"></a>对换空间的管理</h2><ol>
+<li>对换空间管理的主要目标</li>
+</ol>
+<p>在具有对换功能的OS中，通常把磁盘空间分为<strong>文件区</strong>和<strong>对换区</strong>两部分。<br />1) 对文件区管理的主要目标<br />2) 对对换空间管理的主要目标<br /> </p>
+<ol start="2">
+<li>对换区空闲盘块管理中的数据结构</li>
+</ol>
+<p>为了实现对对换区中的空闲盘块的管理，在系统中应配置相应的数据结构，用于记录外存对换区中的空闲盘块的使用情况。其数据结构的形式与内存在动态分区分配方式中所用数据结构相似，即同样可以用<strong>空闲分区表</strong>或<strong>空闲分区链</strong>。<br />在空闲分区表的每个表目中，应包含两项：对换区的首址及其大小，分别用盘块号和盘块数表示。</p>
+<ol start="3">
+<li>对换空间的分配与回收</li>
+</ol>
+<p>由于对换分区的分配采用的是连续分配方式，因而对换空间的分配与回收与动态分区方式时的内存分配与回收方法雷同。其分配算法可以是首次适应算法、循环首次适应算法或最佳适应算法等。具体的分配操作也与图中内存的分配过程相同。<br><img src="/imgs/OperationSystemAssets/1679626724175-806939e5-93a8-41e3-b50c-376c9a955e1c.png" alt="image.png"></p>
+<h2 id="进程的换出与换入"><a href="#进程的换出与换入" class="headerlink" title="进程的换出与换入"></a>进程的换出与换入</h2><ol>
+<li>进程的换出</li>
+</ol>
+<p>对换进程在实现进程换出时，是将内存中的某些进程调出至对换区，以便腾出内存空间。换出过程可分为以下两步：<br />(1) 选择被换出的进程。<br />(2) 进程换出过程。</p>
+<ol start="2">
+<li>进程的换入</li>
+</ol>
+<p>对换进程将定时执行换入操作，它<strong>首先查看PCB集合中所有进程的状态</strong>，从中找出“就绪”状态但已换出的进程。当有许多这样的进程时，它将选择其中已换出到磁盘上时间最久(必须大于规定时间，如2s)的进程作为换入进程，为它申请内存。如果<strong>申请成功</strong>，可直接将进程从外存调入内存；如果<strong>失败</strong>，则需先将内存中的某些进程换出，腾出足够的内存空间后，再将进程调入。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6/">← Next 实时调度</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%8F%90%E9%AB%98%E7%A3%81%E7%9B%98%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E6%8A%80%E6%9C%AF/">提高磁盘可靠性的技术 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E6%8D%A2-Swapping"><span class="toc-text">对换(Swapping)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E6%97%A9%E5%87%BA%E7%8E%B0%E7%9A%84%E5%88%86%E6%97%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%89%80%E7%94%A8%E7%9A%84%E5%AF%B9%E6%8D%A2%E6%8A%80%E6%9C%AF"><span class="toc-text">最早出现的分时系统中所用的对换技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AF%B9%E6%8D%A2%E6%8A%80%E6%9C%AF"><span class="toc-text">多道程序环境下的对换技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%8D%A2%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">对换空间的管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8D%A2%E5%87%BA%E4%B8%8E%E6%8D%A2%E5%85%A5"><span class="toc-text">进程的换出与换入</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>外存的组织方式 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>外存的组织方式</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="外存的组织方式"><a href="#外存的组织方式" class="headerlink" title="外存的组织方式"></a>外存的组织方式</h2><p>如前所述，文件的物理结构直接与外存的组织方式有关。对于不同的外存组织方式，将形成不同的文件物理结构。目前常用的外存组织方式有：<br />(1) 连续组织方式。<br />(2) 链接组织方式。<br />(3) 索引组织方式。 </p>
+<h3 id="连续组织方式"><a href="#连续组织方式" class="headerlink" title="连续组织方式"></a>连续组织方式</h3><p><strong>定义:  <strong>连续组织方式又称连续分配方式，要求为每一个文件分配一组相邻接的盘块。例如，第一个盘块的地址为b，则第二个盘块的地址为b+1，第三个盘块的地址为b+2，…。通常，它们都位于一条磁道上，在进行读/写时，不必移动磁头。<br />在采用连续组织方式时，可把逻辑文件中的记录顺序地存储到邻接的各物理盘块中，这样所形成的文件结构称为</strong>顺序文件结构</strong>，此时的物理文件称为<strong>顺序文件</strong>。<br />磁盘空间的连续组织方式<br />连续组织方式的<strong>主要优点</strong>有：<br />(1) 顺序访问容易。<br />(2) 顺序访问速度快。 <br />连续组织方式的主要缺点如下：<br />(1) 要求为一个文件分配连续的存储空间。<br />(2) 必须事先知道文件的长度。<br />(3) 不能灵活地删除和插入记录。<br />(4) 对于那些动态增长的文件。</p>
+<h3 id="链接组织方式"><a href="#链接组织方式" class="headerlink" title="链接组织方式"></a>链接组织方式</h3><p>解决连续组织方式存在问题的<strong>思路</strong>：如果可以将文件装到多个离散的盘块中，就可消除连续组织方式的上述缺点。<br /><strong>定义</strong>：在采用链接组织方式时，可为文件分配多个不连续的盘块，再通过每个盘块上的链接指针，将同属于一个文件的多个离散的盘块链接成一个链表，由此所形成的物理文件称为<strong>链接文件</strong>。<br />链接组织方式的<strong>主要优点</strong>是：<br />(1) 消除了磁盘的外部碎片，提高了外存的利用率。<br />(2) 对插入、删除和修改记录都非常容易。<br />(3) 能适应文件的动态增长，无需事先知道文件的大小。</p>
+<ol>
+<li>隐式链接（在当前磁盘块中找下一磁盘块地址）</li>
+</ol>
+<p>在采用隐式链接组织方式时，在文件目录的每个目录项中，都须含有指向链接文件第一个盘块和最后一个盘块的指针。 </p>
+<ol start="2">
+<li>显式链接</li>
+</ol>
+<p>这是指把用于链接文件各物理块的指针显式地存放在内存的一张链接表中。该表在整个磁盘中仅设置一张，如图所示。 </p>
+<h3 id="FAT技术"><a href="#FAT技术" class="headerlink" title="FAT技术"></a>FAT技术</h3><h3 id="NTFS的文件组织方式"><a href="#NTFS的文件组织方式" class="headerlink" title="NTFS的文件组织方式"></a>NTFS的文件组织方式</h3><ol>
+<li>NTFS新特征</li>
+</ol>
+<p>NTFS(New Technology File System)是一个专门为Windows NT开发的、全新的文件系统，并适用于Windows 2000/XP及后续的Windows OS。<br /><strong>(1)64位磁盘地址。<br />(2)支持长文件名。<br />(3)具有系统容错功能。<br />(4)保证数据的一致性。<br />(5)文件加密和文件压缩功能。</strong></p>
+<ol start="2">
+<li><strong>磁盘组织</strong></li>
+</ol>
+<p>NTFS是以簇作为磁盘空间分配和回收的基本单位的。一个文件占用若干个簇，一个簇只属于一个文件。这样，在为文件分配磁盘空间时，就无须知道盘块的大小，只要根据不同的磁盘容量，选择相应大小的簇，即使NTFS具有了与磁盘物理块大小无关的独立性。<br /><strong>磁盘块（扇区）-&gt;簇（几个块）</strong><br /><strong>卷因子</strong>：在磁盘格式化时确定，大小为物理磁盘扇区的整数倍。<br />        <strong>LCN</strong>(Logical Cluster Number): 每个卷对簇按顺序进行编号。<br />        <strong>物理地址编号 =  卷因子 * LCN</strong><br />       <strong>VCN</strong>(Virtual Cluster Number))：以文件为单位，将文件的簇按顺序编号</p>
+<ol start="3">
+<li>文件的组织</li>
+</ol>
+<p>思路：在NTFS中，以卷为单位，将一个卷中的所有文件信息、目录信息以及可用的未分配空间信息，都以文件记录的方式记录在一张<strong>主控文件表MFT(Master File Table)<strong>中。<br /><strong>方法：</strong>该表是NTFS卷结构的中心，从逻辑上讲，卷中的</strong>每个文件作为一条记录，在MFT表中占有一行</strong>，其中还包括MFT自己的这一行。每行大小固定为1 KB，每行称为该行所对应文件的**元数据(metadata)**，也称为文件控制字。</p>
+<h3 id="索引组织方式"><a href="#索引组织方式" class="headerlink" title="索引组织方式"></a>索引组织方式</h3><ol>
+<li>单级索引组织方式</li>
+</ol>
+<p><strong>问题</strong>：链接组织方式虽然解决了连续组织方式所存在的问题(即不便于随机访问)，但又出现了另外两个问题，即：<br />① 不能支持高效的直接存取，要对一个较大的文件进行存取，须在FAT中顺序地查找许多盘块号；<br />② FAT需占用较大的内存空间，由于一个文件所占用盘块的盘块号是随机地分布在FAT中的，因而只有将整个FAT调入内存，才能保证在FAT中找到一个文件的所有盘块号。 </p>
+<ol start="2">
+<li>多级索引组织方式</li>
+</ol>
+<p>在为一个大文件分配磁盘空间时，如果所分配出去的盘块的盘块号已经装满一个索引块时，OS须再为该文件分配另一个索引块，用于将以后继续为之分配的盘块号记录于其中。依此类推，再通过链指针将各索引块按序链接起来。</p>
+<ol start="3">
+<li>增量式索引组织方式</li>
+</ol>
+<ul>
+<li>基本思路：</li>
+</ul>
+<p><strong>目标</strong>：为了能较全面地照顾到小、中、大及特大型作业，可以采取多种组织方式来构成文件的物理结构。如果盘块的大小为1 KB或4 KB，对于小文件(如1 KB～10 KB或4 KB～40 KB)而言，最多只会占用10个盘块。<br /><strong>方法： <strong>为了能提高对数量众多的小型作业的访问速度，最好能</strong>将它们的每一个盘块地址都直接放入文件控制块FCB(或索引结点)中</strong>，这样就可以直接从FCB中获得该文件的盘块地址。 </p>
+<ul>
+<li>UNIX System V的组织方式</li>
+</ul>
+<p>在UNIX System V的索引结点中设有13个地址项，即i.addr(0)～i.addr(12)，如图所示。<br />(1) 直接地址。<br />(2) 一次间接地址。<br />(3) 多次间接地址。<br><img src="/imgs/OperationSystemAssets/1681550359518-a75bc3f5-639c-445a-acae-27d8748ab20a.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E7%9A%84%E5%B1%82%E6%AC%A1%E5%92%8C%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E7%9B%AE%E6%A0%87/">← Next 处理机调度的层次和调度算法的目标</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%A4%9A%E5%A4%84%E7%90%86%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">多处理机操作系统 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E5%AD%98%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="toc-text">外存的组织方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="toc-text">连续组织方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="toc-text">链接组织方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FAT%E6%8A%80%E6%9C%AF"><span class="toc-text">FAT技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS%E7%9A%84%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="toc-text">NTFS的文件组织方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="toc-text">索引组织方式</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

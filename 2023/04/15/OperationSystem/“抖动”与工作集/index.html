@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>“抖动”与工作集 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>“抖动”与工作集</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:29.410Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="“抖动”与工作集"><a href="#“抖动”与工作集" class="headerlink" title="“抖动”与工作集"></a>“抖动”与工作集</h1><p>由于请求分页式虚拟存储器系统的性能优越，在正常运行情况下，它能有效地减少内存碎片，提高处理机的利用率和吞吐量，故是目前最常用的一种系统。但如果在系统中运行的进程太多，进程在运行中会频繁地发生缺页情况，这又会对系统的性能产生很大的影响，故还须对请求分页系统的性能做简单的分析。</p>
+<ol>
+<li>多道程序度与处理机的利用率  </li>
+</ol>
+<p>由于虚拟存储器系统能从逻辑上扩大内存，这时，只需装入一个进程的部分程序和数据便可开始运行，故人们希望在系统中能运行更多的进程，即增加多道程序度，以提高处理机的利用率。但处理机的实际利用率却如图中的实线所示。<br><img src="/imgs/OperationSystemAssets/1679717731616-3d6ce6dc-aa23-426f-b05c-bd54b4c34885.png" alt="image.png"></p>
+<ol start="2">
+<li>产生“抖动”的原因</li>
+</ol>
+<p>发生“抖动”的根本原因是：<br />同时在系统中运行的进程太多，由此分配给每一个进程的物理块太少，不能满足进程正常运行的基本要求，致使每个进程在运行时，频繁地出现缺页，必须请求系统将所缺之页调入内存。这会使得在系统中排队等待页面调进/调出的进程数目增加。<strong>造成每个进程的大部分时间都用于页面的换进/换出，而几乎不能再去做任何有效的工作，从而导致发生处理机的利用率急剧下降并趋于0的情况</strong>。我们称此时的进程是处于“抖动”状态。</p>
+<h2 id="工作集"><a href="#工作集" class="headerlink" title="工作集"></a>工作集</h2><ol>
+<li>工作集的基本概念</li>
+</ol>
+<p>进程发生缺页率的时间间隔与进程所获得的物理块数有关。<br />图示出了缺页率与物理块数之间的关系。<br><img src="/imgs/OperationSystemAssets/1679717731647-a1ec040a-ca74-4055-9410-6b6b26ba2250.png" alt="image.png"></p>
+<ol start="2">
+<li>工作集的定义</li>
+</ol>
+<p>所谓工作集，是指在某段时间间隔Δ里，进程实际所要访问页面的集合。<br />Denning指出，虽然程序只需要少量的几页在内存便可运行，但为了较少地产生缺页，应将程序的全部工作集装入内存中。然而我们无法事先预知程序在不同时刻将访问哪些页面，故仍只有像置换算法那样，用程序的过去某段时间内的行为作为程序在将来某段时间内行为的近似。 <br />图示是一个窗口为3、4、5时进程的工作集：<br><img src="/imgs/OperationSystemAssets/1679717731666-97682e18-055d-4503-a952-5573e4f79ca2.png" alt="image.png"></p>
+<h2 id="“抖动”的预防方法"><a href="#“抖动”的预防方法" class="headerlink" title="“抖动”的预防方法"></a>“抖动”的预防方法</h2><ol>
+<li>采取局部置换策略</li>
+</ol>
+<p>在页面分配和置换策略中，如果采取的是可变分配方式，则为了预防发生“抖动”，可采取局部置换策略。 </p>
+<ol start="2">
+<li>把工作集算法融入到处理机调度中</li>
+</ol>
+<p>当调度程序发现处理机利用率低下时，它将试图从外存调入一个新作业进入内存，来改善处理机的利用率。 </p>
+<ol start="3">
+<li>利用“L=S”准则调节缺页率</li>
+</ol>
+<p>Denning于1980年提出了“L=S”的准则来调节多道程序度，其中L是缺页之间的平均时间，S是平均缺页服务时间，即用于置换一个页面所需的时间。<br>:::info</p>
+<ul>
+<li><p>如果是L远比S大，说明很少发生缺页，磁盘的能力尚未得到充分的利用；</p>
+</li>
+<li><p>反之，如果是L比S小，则说明频繁发生缺页，缺页的速度已超过磁盘的处理能力。</p>
+</li>
+<li><p>只有当L与S接近时，磁盘和处理机都可达到它们的最大利用率。<br>:::<br>理论和实践都已证明，利用“L=S”准则，对于调节缺页率是十分有效的。</p>
+</li>
+</ul>
+<ol start="4">
+<li>选择暂停的进程</li>
+</ol>
+<p>当多道程序度偏高时，已影响到处理机的利用率，为了防止发生“抖动”，系统必须<strong>减少多道程序的数目</strong>。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/OS%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/">← Next OS结构设计</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/Shell%E5%91%BD%E4%BB%A4%E8%AF%AD%E8%A8%80/">Shell命令语言 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%80%9C%E6%8A%96%E5%8A%A8%E2%80%9D%E4%B8%8E%E5%B7%A5%E4%BD%9C%E9%9B%86"><span class="toc-text">“抖动”与工作集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E9%9B%86"><span class="toc-text">工作集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E6%8A%96%E5%8A%A8%E2%80%9D%E7%9A%84%E9%A2%84%E9%98%B2%E6%96%B9%E6%B3%95"><span class="toc-text">“抖动”的预防方法</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

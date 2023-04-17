@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>进程的描述 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>进程的描述</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.086Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="进程的描述"><a href="#进程的描述" class="headerlink" title="进程的描述"></a>进程的描述</h1><h2 id="进程的定义和特征"><a href="#进程的定义和特征" class="headerlink" title="进程的定义和特征"></a>进程的定义和特征</h2><ol>
+<li>进程的定义    </li>
+</ol>
+<p>在多道程序环境下，程序的执行属于并发执行，此时它们将失去其封闭性，并具有间断性，以及其运行结果不可再现性的特征。<br />为了能使程序并发执行，并且可以对并发执行的程序加以描述和控制，引入“进程”的概念。</p>
+<p>对于进程的定义，从不同的角度可以有不同的定义，其中较典型的定义有：<br />(1) 进程是程序的一次执行。<br />(2) 进程是一个程序及其数据在处理机上顺序执行时所发生的活动。<br />(3) 进程是具有独立功能的程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。</p>
+<ol start="2">
+<li>进程的特征</li>
+</ol>
+<p>进程和程序是两个截然不同的概念，除了进程具有程序所没有的PCB结构外，<br />还具有下面一些特征：<br />(1) 动态性。进程是程序的一次执行过程，是临时的，有生命期的。 <br />(2) 并发性。进程是系统进行资源分配和调度的一个独立单位。 <br />(3) 独立性。多个进程可在处理机上交替执行。 <br />(4) 异步性。系统为每个进程建立一个进程控制块。</p>
+<h2 id="进程的基本状态及转换"><a href="#进程的基本状态及转换" class="headerlink" title="进程的基本状态及转换"></a>进程的基本状态及转换</h2><ol>
+<li>进程的三种基本状态<br />由于多个进程在并发执行时共享系统资源，致使它们在运行过程中呈现间断性的运行规律，所以进程在其生命周期内可能具有多种状态。</li>
+</ol>
+<p>一般而言，每一个进程至少应处于以下三种基本状态之一：<br />(1) 就绪(Ready)状态。<br />(2) 执行(Running)状态。<br />(3) 阻塞(Block)状态。 </p>
+<p><strong>进程在运行过程中会经常发生状态的转换。</strong></p>
+<p>处于就绪状态的进程，在调度程序为之分配了处理机之后便可执行，相应地，其状态就由就绪态转变为执行态；<br />正在执行的进程(当前进程)如果因分配给它的时间片用完而被剥夺处理机暂停执行时，其状态便由执行转为就绪；<br />如果因发生某事件，致使当前进程的执行受阻(例如进程访问某临界资源，而该资源正被其它进程访问时)，使之无法继续执行，则该进程状态将由执行转变为阻塞。<br><img src="/imgs/OperationSystemAssets/1679477343544-bfba2c4a-5415-4560-ba94-b947efb30083.png" alt="image.png"></p>
+<ol>
+<li>创建状态和终止状态</li>
+</ol>
+<ol>
+<li>创建状态<br />步骤：<br />（1）申请一个空白PCB，并向PCB中填写控制和管理信息；<br />（2）为该进程分配运行时所必须的资源；<br />（3）最后，把该进程转入就绪状态并插入就绪队列之中。</li>
+</ol>
+<p>但如果进程所需的资源尚不能得到满足，比如系统尚无足够的内存使进程无法装入其中，此时创建工作尚未完成，进程不能被调度运行，于是把此时进程所处的状态称为创建状态。</p>
+<p>2)终止状态<br />进程的终止也要通过两个步骤：<br />（1）首先，是等待操作系统进行善后处理，<br />（2）最后将其PCB清零，并将PCB空间返还系统。<br />当一个进程到达了自然结束点，或是出现了无法克服的错误，或是被操作系统所终结，或是被其他有终止权的进程所终结，它将进入终止状态。</p>
+<p><img src="/imgs/OperationSystemAssets/1679477343582-7f609dd6-dd0f-4444-aa98-35077df00ae8.png" alt="image.png"></p>
+<h2 id="挂起操作和进程状态的转换"><a href="#挂起操作和进程状态的转换" class="headerlink" title="挂起操作和进程状态的转换"></a>挂起操作和进程状态的转换</h2><ol>
+<li>挂起操作的引入<br /> 引入挂起操作的原因，是基于系统和用户的如下需要：</li>
+</ol>
+<ul>
+<li>终端用户的需要。</li>
+<li>父进程请求。</li>
+<li>负荷调节的需要。</li>
+<li> 操作系统的需要。  </li>
+</ul>
+<ol start="2">
+<li>引入挂起原语操作后三个进程状态的转换</li>
+</ol>
+<p>在引入挂起原语Suspend和激活原语Active后，在它们的作用下，进程将可能发生以下几种状态的转换：<br />(1) 活动就绪→静止就绪。<br />(2) 活动阻塞→静止阻塞。<br />(3) 静止就绪→活动就绪。<br />(4) 静止阻塞→活动阻塞。</p>
+<ol start="3">
+<li>引入挂起操作后五个进程状态的转换</li>
+</ol>
+<p>(1) NULL→创建：<br />(2) 创建→活动就绪：<br />(3) 创建→静止就绪：<br />(4) 执行→终止：</p>
+<p><img src="/imgs/OperationSystemAssets/1679477343653-a5cb4f9a-8536-4059-bca8-ec626ddc5fd2.png" alt="image.png"></p>
+<p><img src="/imgs/OperationSystemAssets/1679477343616-598fb904-de6a-4096-83d3-5cf2d2b75207.png" alt="image.png"></p>
+<h2 id="进程管理中的数据结构"><a href="#进程管理中的数据结构" class="headerlink" title="进程管理中的数据结构"></a>进程管理中的数据结构</h2><ol>
+<li>操作系统中用于管理控制的数据结构</li>
+</ol>
+<p>OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。 </p>
+<p>对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为资源信息表或进程信息表。<br />资源à资源信息表à内存表\设备表\文件表<br />进程à进程信息表à进程表</p>
+<p>内存/设备/文件/进程  -&gt;   资源或进程的标识、描述、状态等信息以及一批指针。<br><img src="/imgs/OperationSystemAssets/1679477343576-431bead1-a2d9-423a-9a02-e1dd8a9327f2.png" alt="image.png"></p>
+<ol start="2">
+<li>进程控制块PCB的作用</li>
+</ol>
+<p>(1) 作为独立运行基本单位的标志。<br />(2) 能实现间断性运行方式。 <br />(3) 提供进程管理所需要的信息。<br />(4) 提供进程调度所需要的信息。<br />(5) 实现与其它进程的同步与通信。</p>
+<ol start="3">
+<li>进程控制块中的信息</li>
+</ol>
+<p>在进程控制块中，主要包括下述四个方面的信息。<br /><strong>1) 进程标识符</strong><br />进程标识符用于唯一地标识一个进程。一个进程通常有两种标识符：<br />(1) 外部标识符。 <br />(2) 内部标识符。</p>
+<p><strong>2) 处理机状态</strong><br /> 处理机状态信息也称为处理机的上下文，主要是由处理机的各种寄存器中的内容组成的。 </p>
+<p><strong>3) 进程调度信息</strong><br />在OS进行调度时，必须了解进程的状态及有关进程调度的信息，这些信息包括：<br />① 进程状态，指明进程的当前状态<br />② 进程优先级，是用于描述进程使用处理机的优先级别的一个整数，优先级高的进程应优先获得处理机；<br />③ 进程调度所需的其它信息，它们与所采用的进程调度算法有关，比如，进程已等待CPU的时间总和、进程已执行的时间总和等；<br />④ 事件，是指进程由执行状态转变为阻塞状态所等待发生的事件，即阻塞原因。</p>
+<p><strong>4) 进程控制信息</strong><br />是指用于进程控制所必须的信息，它包括：<br />① 程序和数据的地址，进程实体中的程序和数据的内存或外存地(首)址，以便再调度到该进程执行时，能从PCB中找到其程序和数据；<br />② 进程同步和通信机制，如消息队列指针、信号量等，它们可能全部或部分地放在PCB中；<br />③ 资源清单，在该清单中列出了进程在运行期间所需的全部资源(除CPU以外)，另外还有一张已分配到该进程的资源的清单；<br />④ 链接指针，它给出了本进程(PCB)所在队列中的下一个进程的PCB的首地址。</p>
+<ol start="4">
+<li>进程控制块的组织方式</li>
+</ol>
+<p>在一个系统中，通常可拥有数十个、数百个乃至数千个PCB。为了能对它们加以有效的管理，应该用适当的方式将这些PCB组织起来。<br />目前常用的组织方式有以下三种。<br />(1) 线性方式<br />(2) 链接方式<br />(3) 索引方式</p>
+<h2 id="PCB组织方式"><a href="#PCB组织方式" class="headerlink" title="PCB组织方式"></a>PCB组织方式</h2><p><strong>PCB线性组织方式</strong><br><img src="/imgs/OperationSystemAssets/1679477344503-db77a041-553e-48b5-8554-c30971f98f1a.png" alt="image.png"></p>
+<p>特点：<br />实现简单、开销小，查找困难，适合进程数目不多的系统。</p>
+<p><strong>PCB连接队列组织方式</strong><br><img src="/imgs/OperationSystemAssets/1679477344677-20464064-b436-42ad-942e-d00bf164d4cc.png" alt="image.png"><br>思路：把具有相同状态进程的PCB分别通过PCB中的链接字链接成一个队列。<br /> <br /><strong>PCB索引表组织方式</strong><br><img src="/imgs/OperationSystemAssets/1679477344674-e0bad776-b231-4a24-a972-fd69d745213e.png" alt="image.png"><br>思路：系统根据所有进程状态的不同，建立几张索引表，例如，就绪索引表、阻塞索引表等，并把各索引表在内存的首地址记录在内存的一些专用单元中。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6/">← Next 进程控制</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8F%8F%E8%BF%B0%E4%B8%8E%E6%8E%A7%E5%88%B6/">进程的描述与控制 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="toc-text">进程的描述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%89%B9%E5%BE%81"><span class="toc-text">进程的定义和特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%8A%B6%E6%80%81%E5%8F%8A%E8%BD%AC%E6%8D%A2"><span class="toc-text">进程的基本状态及转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%82%E8%B5%B7%E6%93%8D%E4%BD%9C%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-text">挂起操作和进程状态的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">进程管理中的数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCB%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="toc-text">PCB组织方式</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

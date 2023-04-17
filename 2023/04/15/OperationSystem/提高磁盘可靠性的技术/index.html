@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>提高磁盘可靠性的技术 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>提高磁盘可靠性的技术</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="提高磁盘可靠性的技术"><a href="#提高磁盘可靠性的技术" class="headerlink" title="提高磁盘可靠性的技术"></a>提高磁盘可靠性的技术</h2><h3 id="第一级容错技术SFT-I"><a href="#第一级容错技术SFT-I" class="headerlink" title="第一级容错技术SFT-I"></a>第一级容错技术SFT-I</h3><p><strong>第一级容错技术(SFT-Ⅰ)<strong>是最基本的一种磁盘容错技术，主要用于</strong>防止因磁盘表面缺陷所造成的数据丢失</strong>。它包含<strong>双份目录、双份文件分配表</strong>及<strong>写后读校验</strong>等措施。</p>
+<ol>
+<li>双份目录和双份文件分配表</li>
+</ol>
+<p><strong>目的：</strong>在磁盘上存放的文件目录和文件分配表FAT，是文件管理所用的重要数据结构。为了防止这些表格被破坏。<br /><strong>方法：</strong>可在不同的磁盘上或在磁盘的不同区域中分别建立(双份)目录表和FAT。其中一份为主目录及主FAT，另一份为备份目录及备份FAT。一旦由于磁盘表面缺陷而造成主文件目录或主FAT的损坏时，系统便自动启用备份文件目录及备份FAT，从而可以保证磁盘上的数据仍是可访问的。</p>
+<ol start="2">
+<li>热修复重定向和写后读校验</li>
+</ol>
+<p>由于磁盘价格昂贵，在磁盘表面有少量缺陷的情况下，则可采取某种补救措施后继续使用。一般主要采取以下两个补救措施：<br />(1**) 热修复重定向**。系统将磁盘容量的很小一部分作为热修复重定向，用于存放当发现磁盘有缺陷时的代写数据，并对写入该区的所有数据进行登记。<br />(2) <strong>写后读校验方式</strong>。写入数据-&gt;马上读出(另一缓冲区)-&gt;比较：成功或者缺陷。</p>
+<h3 id="第一级容错技术SFT-II"><a href="#第一级容错技术SFT-II" class="headerlink" title="第一级容错技术SFT-II"></a>第一级容错技术SFT-II</h3><ol>
+<li>磁盘镜像（Disk Mirroring）</li>
+</ol>
+<p>为了避免磁盘驱动器发生故障而丢失数据，便增设了磁盘镜像功能。为实现该功能，须在同一磁盘控制器下，再增设一个完全相同的磁盘驱动器，如图所示。<br><img src="/imgs/OperationSystemAssets/1681551719915-2edaf4dd-5399-4117-a72f-bd9048e08c1e.png" alt="image.png"></p>
+<ol start="2">
+<li>磁盘双工（Disk Duplexing）</li>
+</ol>
+<p>如果控制这两台磁盘驱动器的磁盘控制器发生故障，或主机到磁盘控制器之间的通道发生故障，磁盘镜像功能便起不到数据保护的作用。因此，在第二级容错技术中，又增加了磁盘双工功能，即将两台磁盘驱动器分别接到两个磁盘控制器上，同样使这两台磁盘机镜像成对，如图所示。<br><img src="/imgs/OperationSystemAssets/1681551855664-60572df7-03f6-40ef-84a8-79c70aaa4220.png" alt="image.png"></p>
+<h3 id="基于集群技术的容错功能"><a href="#基于集群技术的容错功能" class="headerlink" title="基于集群技术的容错功能"></a>基于集群技术的容错功能</h3><ol>
+<li>双机热备份模式</li>
+</ol>
+<p>如图所示，在这种模式的系统中，备有两台服务器，两者的处理能力通常是完全相同的，一台作为主服务器，另一台作为备份服务器。<br><img src="/imgs/OperationSystemAssets/1681551917655-f1b8b8f2-c4ab-47eb-a5f8-766e1884d972.png" alt="image.png"></p>
+<ol start="2">
+<li>双机互为备份模式</li>
+</ol>
+<p>主机（功能一样）-&gt;主机（功能不一样，各自备份）<br />在双机互为备份模式中，平时，两台服务器均为在线服务器，它们各自完成自己的任务，例如，一台作为数据库服务器，另一台作为电子邮件服务器。为了实现两者互为备份的功能，在两台服务器之间，应通过某种专线将其连接起来。如果希望两台服务器之间能相距较远，最好利用FDDI单模光纤来连接两台服务器。在此情况下，最好再通过路由器将两台服务器互连起来，作为备份通信线路。图示出了双机互为备份系统的情况。<br><img src="/imgs/OperationSystemAssets/1681552015557-148c3247-4300-48ad-9786-ee390810ea98.png" alt="image.png"></p>
+<ol start="3">
+<li>公用磁盘模式</li>
+</ol>
+<p>目的：为了减少信息复制的开销，可以将多台计算机连接到一台公共的磁盘系统上去。<br />方法：该公共磁盘被划分为若干个卷。<strong>每台计算机使用一个卷</strong>。如果某台计算机发生故障，此时系统将重新进行配置，根据某种<strong>调度策略来选择另一台替代机器</strong>，后者对发生故障的机器的卷拥有所有权，从而可接替故障计算机所承担的任务。<br />优点：这种模式的优点是消除了信息的复制时间，因而减少了网络和服务器的开销。</p>
+<h3 id="后备系统"><a href="#后备系统" class="headerlink" title="后备系统"></a>后备系统</h3><ol>
+<li>磁带机</li>
+</ol>
+<p>它是最早作为计算机系统的外存储器。但由于它<strong>只适合存储顺序文件</strong>，故现在主要把它作为后备设备。<br /><strong>优点</strong>：磁盘机的主要优点是<strong>容量大</strong>，一般可达数GB至数十GB，且<strong>价格便宜</strong>，故在许多大、中型系统中都配置了磁带机。<br /><strong>缺点</strong>：其缺点是只能顺序存取且速度也较慢，为数百KB到数MB，为了将一个大容量磁盘上的数据拷贝到磁带上，需要花费很多时间。</p>
+<ol start="2">
+<li>硬盘</li>
+</ol>
+<p>(1) 移动磁盘。<br />(2) 固定硬盘驱动器。<br><img src="/imgs/OperationSystemAssets/1681552155788-ea5ef1d8-5edd-439b-8be0-61aeda742669.png" alt="image.png"></p>
+<ol start="3">
+<li>光盘驱动器</li>
+</ol>
+<p>光盘驱动器是现在最流行的多媒体设备，可将它们分为如下两类：<br />(1) 只读光盘驱动器CD-ROM和DVD-ROM。<br />(2) 可读写光盘驱动器。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%AF%B9%E6%8D%A2(Swapping)/">← Next 对换(Swapping)</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%8F%90%E9%AB%98%E7%A3%81%E7%9B%98%E9%80%9F%E5%BA%A6%E7%9A%84%E9%80%94%E5%BE%84/">提高磁盘速度的途径 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E7%A3%81%E7%9B%98%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E6%8A%80%E6%9C%AF"><span class="toc-text">提高磁盘可靠性的技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%BA%A7%E5%AE%B9%E9%94%99%E6%8A%80%E6%9C%AFSFT-I"><span class="toc-text">第一级容错技术SFT-I</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%BA%A7%E5%AE%B9%E9%94%99%E6%8A%80%E6%9C%AFSFT-II"><span class="toc-text">第一级容错技术SFT-II</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E9%9B%86%E7%BE%A4%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AE%B9%E9%94%99%E5%8A%9F%E8%83%BD"><span class="toc-text">基于集群技术的容错功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E5%A4%87%E7%B3%BB%E7%BB%9F"><span class="toc-text">后备系统</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

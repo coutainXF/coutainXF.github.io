@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>实时调度 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>实时调度</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="实时调度"><a href="#实时调度" class="headerlink" title="实时调度"></a>实时调度</h1><p>两类不同性质的实时任务，即<br />HRT（Hard Real-time Task）任务:必须满足最后期限的限制，否则会给系统带来不可接受的破坏或者致命错误；<br />SRT（Soft Real-time Task) 任务:有一个与之关联的最后期限，并希望能满足这个期限的要求，但这并不是强制的，即使超过了最后期限，调度和完成这个任务仍然是有意义的。<br />HRT任务和SRT任务，它们都联系着一个截止时间。</p>
+<h2 id="实现实时调度的基本条件"><a href="#实现实时调度的基本条件" class="headerlink" title="实现实时调度的基本条件"></a>实现实时调度的基本条件</h2><ol>
+<li>提供必要的信息</li>
+</ol>
+<p>为了实现实时调度，系统应向调度程序提供有关任务的信息：<br />(1) 就绪时间，是指某任务<strong>成为就绪状态的起始时间</strong>，在周期任务的情况下，它是事先预知的一串时间序列。<br />(2) 开始截止时间和完成截止时间，对于典型的实时应用，只须知道开始截止时间，或者完成截止时间。<br />(3) 处理时间，一个任务从开始执行，直至完成时所需的时间。<br />(4) 资源要求，任务执行时所需的一组资源。<br />(5) 优先级，如果某任务的开始截止时间错过，势必引起故障，则应为该任务赋予“绝对”优先级；如果其开始截止时间的错过，对任务的继续运行无重大影响，则可为其赋予“相对”优先级，供调度程序参考。</p>
+<ol start="2">
+<li>系统处理能力强</li>
+</ol>
+<p>在实时系统中，若处理机的处理能力不够强，则有可能因处理机忙不过，而致使某些实时任务不能得到及时处理，从而导致发生难以预料的后果。<br />假定系统中有m个周期性的硬实时任务HRT，它们的处理时间可表示为Ci，周期时间表示为Pi，则在单处理机情况下，必须满足下面的限制条件系统才是可调度的：<br><img src="/imgs/OperationSystemAssets/1679501125605-14d73b00-1b84-430b-991f-c482f0ab9b13.png" alt="image.png"><br>解决途径有二：<br />一是采用单处理机系统，但须<strong>增强其处理能力</strong>，以显著地<strong>减少对每一个任务的处理时间</strong>；<br />二是采用多处理机系统。假定系统中的处理机数为N，则应将上述的限制条件改为：<br><img src="/imgs/OperationSystemAssets/1679501125599-0e30c311-9196-4091-8949-8b830602ece4.png" alt="image.png"></p>
+<ol start="3">
+<li>采用抢占式调度机制</li>
+</ol>
+<p>在含有HRT任务的实时系统中，广泛采用抢占机制。这样便可满足HRT任务对截止时间的要求。但这种调度机制比较复杂。 </p>
+<ol start="4">
+<li>具有快速切换机制</li>
+</ol>
+<p>为保证硬实时任务能及时运行，在系统中还应具有快速切换机制，使之能进行任务的快速切换。该机制应具有如下两方面的能力：<br />(1) 对中断的快速响应能力。对紧迫的外部事件请求中断能及时响应，要求系统具有快速硬件中断机构，还应使禁止中断的时间间隔尽量短，以免耽误时机(其它紧迫任务)。<br />(2) 快速的任务分派能力。为了提高分派程序进行任务切换时的速度，应使系统中的每个运行功能单位适当的小，以减少任务切换的时间开销。</p>
+<h2 id="实时调度算法的分类"><a href="#实时调度算法的分类" class="headerlink" title="实时调度算法的分类"></a>实时调度算法的分类</h2><p>可以按不同方式对实时调度算法加以分类：<br />① 根据实时任务性质，可将实时调度的算法分为：<br />硬实时调度算法<br />软实时调度算法<br />② 按调度方式，则可分为：<br />非抢占调度算法<br />抢占调度算法</p>
+<ol>
+<li>非抢占式调度算法</li>
+</ol>
+<p>(1) 非抢占式轮转调度算法。<br />(2) 非抢占式优先调度算法。</p>
+<ol start="2">
+<li>抢占式调度算法</li>
+</ol>
+<p>可根据抢占发生时间的不同而进一步分成以下两种调度算法：<br />(1) 基于时钟中断的抢占式优先级调度算法。<br />(2) 立即抢占(Immediate Preemption)的优先级调度算法。 <br /> 图中的(a)、(b)、(c)、(d)分别示出了四种情况的调度时间。  </p>
+<p><img src="/imgs/OperationSystemAssets/1679501125698-b707d0e0-39b4-42fb-b485-ac9a3060c1c2.png" alt="image.png"></p>
+<h2 id="最早截止时间优先EDF-Earliest-Deadline-First-算法"><a href="#最早截止时间优先EDF-Earliest-Deadline-First-算法" class="headerlink" title="最早截止时间优先EDF(Earliest Deadline First)算法"></a>最早截止时间优先EDF(Earliest Deadline First)算法</h2><p>该算法根据任务的截止时间确定任务的优先级，任务的截止时间越早，其优先级越高，具有<strong>最早截止时间</strong>的任务排在队列的队首。调度程序在选择任务时，总是选择就绪队列的第一个任务，为之分配处理机。</p>
+<ol>
+<li>非抢占式调度方式用于非周期实时任务</li>
+</ol>
+<p>图示出了将该算法用于非抢占调度方式的例子。<br><img src="/imgs/OperationSystemAssets/1679501125619-be5fd0fa-2b93-42d2-93d5-2af118c2dbd7.png" alt="image.png"></p>
+<ol start="2">
+<li>抢占式调度方式用于周期实时任务</li>
+</ol>
+<p>图示出了将该算法用于抢占调度方式之例。在该例中有两个周期任务，任务A和任务B的周期时间分别为20 ms和50 ms，每个周期的处理时间分别为10 ms和25 ms。<br><img src="/imgs/OperationSystemAssets/1679501125820-54e47128-7210-455f-a97f-883f20a170b4.png" alt="image.png"><br>第二行和第三行是通常的优先级调度算法，A任务优先/B任务优先，显然不满足情况。<br />第四行是采用最早截止时间优先算法的时间图。</p>
+<h2 id="最低松弛度优先LLF-Least-Laxity-First-算法"><a href="#最低松弛度优先LLF-Least-Laxity-First-算法" class="headerlink" title="最低松弛度优先LLF(Least Laxity First)算法"></a>最低松弛度优先LLF(Least Laxity First)算法</h2><p>该算法在确定任务的优先级时，根据的是<strong>任务的紧急(或松弛)程度</strong>。任务紧急程度愈高，赋予该任务的优先级就愈高，以使之优先执行。 <br /> 该算法主要用于可抢占调度方式中。假如在一个实时系统中有两个周期性实时任务A和B，任务A要求每20 ms执行一次，执行时间为10 ms，任务B要求每50 ms执行一次，执行时间为25 ms。由此可知，任务A和B每次必须完成的时间分别为：A1、A2、A3、…和B1、B2、B3、…，见图。<br><img src="/imgs/OperationSystemAssets/1679501126617-17f98e40-8885-4f71-bc81-a9dea0ae93f9.png" alt="image.png"></p>
+<p>:::info<br>松弛度的计算：必须完成时间-本身运行时间-当前时间。<br />松弛度与作业必须完成的时间、该作业执行所需时间和当前时间有关。<br>:::</p>
+<p>t=0时，任务A1的松弛度为20 - 10 - 0=10，任务B1的松弛度为50-25-0 = 25<br />故调度A1运行。t=10时，任务A1运行完毕。<br />t=10时，任务A2的松弛度为20*2 - 10 - 10 = 20，任务B1的松弛度为50-25-10=15<br />故调度程序应选择B1运行。<br />t=30时，任务A2的松弛度已经减到0，而此时任务b1的松弛度为50-（25-20）-30=15<br />故任务A2抢占B1占用的处理机运行。<br />t=40时，任务B1的松弛度为50-5-40=5，此时任务A3的松弛度为60-10-40=10，<br />故调度B1继续执行。</p>
+<p><img src="/imgs/OperationSystemAssets/1679501126638-e93eac55-dc2f-4901-b6ec-308904891418.png" alt="image.png"><br>图示出了具有两个周期性实时任务的调度情况。 </p>
+<h2 id="优先级倒置-priority-inversion-problem"><a href="#优先级倒置-priority-inversion-problem" class="headerlink" title="优先级倒置(priority inversion problem)"></a>优先级倒置(priority inversion problem)</h2><ol>
+<li>优先级倒置的形成</li>
+</ol>
+<p>当前OS广泛采用优先级调度算法和抢占方式，然而在系统中存在着影响进程运行的资源而可能产生“优先级倒置”的现象，即高优先级进程(或线程)被低优先级进程(或线程)延迟或阻塞。我们通过一个例子来说明该问题。</p>
+<p>假如P3最先执行，在执行了P(mutex)操作后，进入到临界区CS-3。在时刻a，P2就绪，因为它比P3的优先级高，P2抢占了P3的处理机而运行，如图所示。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">P1:… P(mutex); CS-1; V(mutex);…<br>P2:… program2;…<br>P3:… P(mutex); CS-3; V(mutex);…<br></code></pre></td></tr></table></figure>
+<p><img src="/imgs/OperationSystemAssets/1679501126751-9f62b1bc-10b8-49d5-b0a1-3f568ffd6c1f.png" alt="image.png"></p>
+<ol start="2">
+<li>优先级倒置的解决方法</li>
+</ol>
+<p>一种简单的解决方法是规定：假如进程P3在进入临界区后P3所占用的处理机就不允许被抢占。<br />规定方法如果在系统的临界区都较短且不多的情况下可行，但是如果P3的临界区非常长，那么高优先级的进程P1仍然会等待很长的时间。</p>
+<p>另一种方法是采用动态优先级继承，图示出了采用动态优先级继承方法后，P1、P2、P3三个进程的运行情况。 </p>
+<p><img src="/imgs/OperationSystemAssets/1679501126906-cd526fa0-6337-4021-879e-6396439f37f3.png" alt="image.png"></p>
+<h3 id="动态优先级继承"><a href="#动态优先级继承" class="headerlink" title="动态优先级继承"></a>动态优先级继承</h3><p>该方法规定，当高优先级进程P1要进入临界区，去使用临界资源R，如果已经有一个低优先级进程P3正在使用该资源。此时一方面P1被阻塞，另一方面由P3继承P1的优先级，并一直保持到P3推出临界区。这样做的目的时为了不让比P1优先级低，但是比P3优先级高的进程P2插进来，导致延缓P3退出临界区。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%AD%98%E5%82%A8%E5%99%A8%E7%AE%A1%E7%90%86/">← Next 存储器管理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%AF%B9%E6%8D%A2(Swapping)/">对换(Swapping) Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6"><span class="toc-text">实时调度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9D%A1%E4%BB%B6"><span class="toc-text">实现实时调度的基本条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">实时调度算法的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E6%97%A9%E6%88%AA%E6%AD%A2%E6%97%B6%E9%97%B4%E4%BC%98%E5%85%88EDF-Earliest-Deadline-First-%E7%AE%97%E6%B3%95"><span class="toc-text">最早截止时间优先EDF(Earliest Deadline First)算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%8E%E6%9D%BE%E5%BC%9B%E5%BA%A6%E4%BC%98%E5%85%88LLF-Least-Laxity-First-%E7%AE%97%E6%B3%95"><span class="toc-text">最低松弛度优先LLF(Least Laxity First)算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E5%80%92%E7%BD%AE-priority-inversion-problem"><span class="toc-text">优先级倒置(priority inversion problem)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%A7%E6%89%BF"><span class="toc-text">动态优先级继承</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

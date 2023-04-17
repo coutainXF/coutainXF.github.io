@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>死锁 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>死锁</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>双方都希望对方能够释放出自己所需要的资源，但它们谁都不能因获得自己所需的资源去继续运行，从而无法释放出自己占有的资源，并且一直处于这样的僵持状态而导致死锁。</p>
+<h2 id="资源问题"><a href="#资源问题" class="headerlink" title="资源问题"></a>资源问题</h2><p>在系统中有许多不同类型的资源，其中可以引起死锁的主要是，需要采用互斥访问方法的、不可以被抢占的资源，即在前面介绍的临界资源。系统中这类资源有很多，如打印机、数据文件、队列、信号量等。</p>
+<ol>
+<li>可重用性资源和消耗性资源</li>
+</ol>
+<ol>
+<li><p>可重用性资源 （e.g. 打印设备）<br /> 可重用性资源是一种可供用户重复使用多次的资源，它具有如下性质：<br />(1) 每一个可重用性资源中的单元只能分配给一个进程使用，不允许多个进程共享。<br />(2) 进程在使用可重用性资源时，须按照这样的顺序：① 请求资源；② 使用资源；③ 释放资源。<br />(3) 系统中每一类可重用性资源中的单元数目是相对固定的，进程在运行期间既不能创建也不能删除它。 <br />对于资源的请求和释放通常都是利用系统调用来实现的。<br />对于设备——request/release<br />对于文件——open/close<br />对于需要互斥访问的资源可以用信号量的——wait/signal操作来完成</p>
+</li>
+<li><p>可消耗性资源（进程消息）<br />可消耗性资源又称为临时性资源，它是在进程运行期间，由进程动态地创建和消耗的。<br />性质：<br />① 每一类可消耗性资源的单元数目在进程运行期间是可以不断变化的，有时它可以有许多，有时可能为0；<br />② 进程在运行过程中，可以不断地创造可消耗性资源的单元，将它们放入该资源类的缓冲区中，以增加该资源类的单元数目。<br />③ 进程在运行过程中，可以请求若干个可消耗性资源单元，用于进程自己的消耗，不再将它们返回给该资源类中。 </p>
+</li>
+</ol>
+<p>可消耗性资源通常是由生产者进程创建，由消费者进程消耗。<br />最典型的就是进程间通信的消息等。</p>
+<ol start="2">
+<li>可抢占性资源与不可抢占性资源</li>
+</ol>
+<ol>
+<li>可抢占性资源<br /> 是指某进程在获得这类资源后，该资源可以再被其它进程或系统抢占。<br />2) 不可抢占性资源<br /> 另一类资源是不可抢占性资源，即一旦系统把某资源分配给该进程后，就不能将它强行收回，只能在进程用完后自行释放。 </li>
+</ol>
+<h2 id="计算机系统中的死锁"><a href="#计算机系统中的死锁" class="headerlink" title="计算机系统中的死锁"></a>计算机系统中的死锁</h2><ol>
+<li>竞争不可抢占性资源引起死锁</li>
+</ol>
+<p>通常系统中所拥有的不可抢占性资源其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。 </p>
+<p><img src="/imgs/OperationSystemAssets/1679501177642-db1c6137-ff38-4f6f-a9e8-f1fbe6d9e8e7.png" alt="image.png"><br>共享文件时的死锁状态</p>
+<ol start="2">
+<li>竞争可消耗资源引起死锁</li>
+</ol>
+<p>现在进一步介绍竞争可消耗资源所引起的死锁。图示出了在三个进程之间，在利用消息通信机制进行通信时所形成的死锁情况。 </p>
+<p><img src="/imgs/OperationSystemAssets/1679501177653-f9c982f1-04ce-41d4-a3fa-89daac6fd764.png" alt="image.png"></p>
+<ol start="3">
+<li>进程推进顺序不当引起死锁</li>
+</ol>
+<p>除了系统中多个进程对资源的竞争会引发死锁外，进程在运行过程中，对资源进行申请和释放的顺序是否合法，也是在系统中是否会产生死锁的一个重要因素。</p>
+<p><img src="/imgs/OperationSystemAssets/1679501177692-de7b311d-21b7-4222-96a5-fc072412983c.png" alt="image.png"></p>
+<ol>
+<li><p>进程推进顺序合法<br />在进程P1和P2并发执行时，如果按图3-14中的曲线①所示的顺序推进：P1：Request(R1)→P1：Request(R2)→P1：Releast(R1)→P1：Release(R2)→P2：Request(R2)→P2：Request(R1)→P2：Release(R2)→P2：Release(R1)，两个进程可顺利完成。类似地，若按图中曲线②和③所示的顺序推进，两进程也可以顺利完成。我们称这种不会引起进程死锁的推进顺序是合法的。</p>
+</li>
+<li><p>进程推进顺序非法<br />若并发进程P1和P2按图3-14中曲线④所示的顺序推进，它们将进入不安全区D内。此时P1保持了资源R1，P2保持了资源R2，系统处于不安全状态。此刻，如果两个进程继续向前推进，就可能发生死锁。例如，当P1运行到P1：Request(R2)时，将因R2已被P2占用而阻塞；当P2运行到P2：Request(R1)时，也将因R1已被P1占用而阻塞，于是发生了进程死锁，这样的进程推进顺序就是非法的。</p>
+</li>
+</ol>
+<h2 id="死锁（DeadLock）"><a href="#死锁（DeadLock）" class="headerlink" title="死锁（DeadLock）"></a>死锁（DeadLock）</h2><ol>
+<li><p>死锁的定义<br /> 在一组进程发生死锁的情况下，这组死锁进程中的每一个进程，都在等待另一个死锁进程所占有的资源。</p>
+</li>
+<li><p> 死锁的必要条件</p>
+</li>
+</ol>
+<p>虽然进程在运行过程中可能会发生死锁，但产生进程死锁是必须具备一定条件的。综上所述不难看出，产生死锁必须同时具备下面四个必要条件，只要其中任一个条件不成立，死锁就不会发生：<br />(1) 互斥条件。<br />(2) 请求和保持条件。<br />(3) 不可抢占条件。<br />(4) 循环等待条件。</p>
+<ol start="3">
+<li>如何应对死锁</li>
+</ol>
+<p>目前处理死锁的方法可归结为四种：<br />(1) 预防死锁。去破坏死锁四个必要条件的任意一个。<br />(2) 避免死锁。在资源的动态分配过程中，使用某种方法防止系统进入不安全状态。<br />(3) 检测死锁。通过检测及时检测出死锁的发生，采取适当措施将进程从死锁中解脱出来。<br />(4) 解除死锁。常用的操作是撤销一些进程，回收它们的资源，将它们分配给阻塞的进程，使其继续运行。</p>
+<h2 id="如何应对死锁"><a href="#如何应对死锁" class="headerlink" title="如何应对死锁"></a>如何应对死锁</h2><h3 id="预防死锁"><a href="#预防死锁" class="headerlink" title="预防死锁"></a>预防死锁</h3><p>预防死锁的方法是通过破坏产生死锁的四个必要条件中的一个或几个，以避免发生死锁。<br />由于<strong>互斥条件是非共享设备所必须的，不仅不能改变，还应加以保证</strong>，因此主要是破坏产生死锁的后三个条件。</p>
+<h4 id="破坏请求和保持条件"><a href="#破坏请求和保持条件" class="headerlink" title="破坏请求和保持条件"></a>破坏请求和保持条件</h4><p>为了能破坏“请求和保持”条件，系统必须保证做到：当一个进程在请求资源时，它不能持有不可抢占资源。该保证可通过如下两个不同的协议实现：</p>
+<ol>
+<li>第一种协议</li>
+</ol>
+<p>该协议规定，所有进程在开始运行之前，必须一次性地申请其在整个运行过程中所需的全部资源。 <br />第一种协议的优点是简单易行安全，但是缺点明显：<br />一方面资源被严重浪费，严重的恶化了资源的利用率。<br />另一方面使得进程经常发生饥饿状态。因为只有获取全部资源才能运行。</p>
+<ol start="2">
+<li>第二种协议</li>
+</ol>
+<p>该协议是对第一种协议的改进，它允许一个进程只获得运行初期所需的资源后，便开始运行。 </p>
+<h4 id="破坏不可抢占条件"><a href="#破坏不可抢占条件" class="headerlink" title="破坏不可抢占条件"></a>破坏不可抢占条件</h4><p>为了能破坏“不可抢占”条件，协议中规定，当一个已经保持了某些不可被抢占资源的进程，提出新的资源请求而不能得到满足时，它必须释放已经保持的所有资源，待以后需要时再重新申请。这意味着进程已占有的资源会被暂时地释放，或者说是被抢占了，从而破坏了“不可抢占”条件。</p>
+<h4 id="破坏“循环等待”条件"><a href="#破坏“循环等待”条件" class="headerlink" title="破坏“循环等待”条件"></a>破坏“循环等待”条件</h4><p>一个能保证“循环等待”条件不成立的方法是，对系统所有资源类型进行线性排序，并赋予不同的序号。规定每个进程必须按序号递增的顺序请求进程。</p>
+<h3 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h3><p>避免死锁同样是属于事先预防的策略，但并不是事先采取某种限制措施，破坏产生死锁的必要条件，而是在资源动态分配过程中，防止系统进入<strong>不安全状态</strong>，以避免发生死锁。<br />优点：所施加的限制条件较弱，可能获得较好的系统性能，目前常用此方法来避免发生死锁。</p>
+<h4 id="定义系统安全状态"><a href="#定义系统安全状态" class="headerlink" title="定义系统安全状态"></a>定义系统安全状态</h4><p>在死锁避免方法中，把系统的状态分为安全状态和不安全状态。当系统处于安全状态时，可避免发生死锁。反之，当系统处于不安全状态时，则可能进入到死锁状态。</p>
+<ol>
+<li>安全状态</li>
+</ol>
+<p>在该方法中，允许进程动态地申请资源，但系统在进行资源分配之前，应先计算此次资源分配的安全性。</p>
+<ol start="2">
+<li>安全状态示例：</li>
+</ol>
+<p>假定系统中有三个进程P1、P2和P3，共有12台磁带机。进程P1总共要求10台磁带机，P2和P3分别要求4台和9台。假设在T0时刻，进程P1、P2和P3已分别获得5台、2台和2台磁带机，尚有3台空闲未分配，如下表所示：<br><img src="/imgs/OperationSystemAssets/1679501177641-2d9c9a35-3e45-40dc-8873-4d210c57b9f2.png" alt="image.png"><br>存在安全序列{P2、P1、P3}使得系统按照如此顺序分配资源使得每个进程顺利完成。<br />那么称T0时刻系统是安全的。</p>
+<ol start="3">
+<li>由安全状态向不安全状态的转换</li>
+</ol>
+<p>如果不按照安全序列分配资源，则系统可能会由安全状态进入不安全状态。 </p>
+<h4 id="避免死锁的基本思想如下："><a href="#避免死锁的基本思想如下：" class="headerlink" title="避免死锁的基本思想如下："></a>避免死锁的基本思想如下：</h4><p>确保每时刻系统都处于安全状态。一开始系统是处于安全状态的。当有进程请求一个可用资源的时候，系统需对该进程的请求进行计算，若将资源分配给进程后系统仍处于安全状态，才将该资源分配给进程。</p>
+<h2 id="使用银行家算法避免死锁"><a href="#使用银行家算法避免死锁" class="headerlink" title="使用银行家算法避免死锁"></a>使用银行家算法避免死锁</h2><p>最有代表性的避免死锁的算法是Dijkstra的银行家算法。起这样的名字是由于该算法原本是为银行系统设计的，以确保银行在发放现金贷款时，不会发生不能满足所有客户需要的情况。在OS中也可用它来实现避免死锁。</p>
+<ol>
+<li>银行家算法中的数据结构</li>
+</ol>
+<p>为了实现银行家算法，在系统中必须设置这样四个数据结构，分别用来描述系统中可利用的资源、所有进程对资源的最大需求、系统中的资源分配，以及所有进程还需要多少资源的情况。<br />(1) 可利用资源向量Available。<br />(2) 最大需求矩阵Max。<br />(3) 分配矩阵Allocation。<br />(4) 需求矩阵Need。</p>
+<ol start="2">
+<li>银行家算法</li>
+</ol>
+<p>设Requesti是进程Pi的请求向量，如果Requesti[j]=K，表示进程Pi需要K个Rj类型的资源。当Pi发出资源请求后，系统按下述步骤进行检查：<br />(1) 如果Requesti[j]≤Need[i, j]，便转向步骤(2)；否则认为出错，因为它所需要的资源数已超过它所宣布的最大值。<br />(2) 如果Requesti[j]≤Available[j]，便转向步骤(3)；否则，表示尚无足够资源，Pi须等待。<br />(3) 系统试探着把资源分配给进程Pi，并修改下面数据结构中的数值：<br />      Available[j] = Available[j] - Request i[j];<br />  Allocation[i, j] = Allocation[i, j] + Request i[j];<br />  Need[i, j] = Need[i, j] - Request i[j];<br />(4) 系统执行安全性算法，检查此次资源分配后系统是否处于安全状态。若安全，才正式将资源分配给进程Pi，以完成本次分配；否则，将本次的试探分配作废，恢复原来的资源分配状态，让进程Pi等待。</p>
+<ol start="3">
+<li>安全性算法</li>
+</ol>
+<p>系统所执行的安全性算法可描述如下：<br />(1) 设置两个向量：① 工作向量Work，它表示系统可提供给进程继续运行所需的各类资源数目，它含有m个元素，在执行安全算法开始时，Work := Available；② Finish：它表示系统是否有足够的资源分配给进程，使之运行完成。开始时先做Finish[i] := false；当有足够资源分配给进程时，再令Finish[i] := true。</p>
+<p>(2) 从进程集合中找到一个能满足下述条件的进程： <br />① Finish[i]=false;<br />② Need[i, j]≤Work[j];<br /> 若找到，执行步骤(3)，否则，执行步骤(4)。</p>
+<p>(3) 当进程Pi获得资源后，可顺利执行，直至完成，并释放出分配给它的资源，故应执行：<br />Work[j] = Work[j]+Allocation[i, j];<br />Finish[i] =true;<br />go to step 2;</p>
+<p>(4) 如果所有进程的Finish[i]=true都满足，则表示系统处于安全状态；否则，系统处于不安全状态。</p>
+<h2 id="应用银行家算法的示例"><a href="#应用银行家算法的示例" class="headerlink" title="应用银行家算法的示例"></a>应用银行家算法的示例</h2><p>假定系统中有五个进程{P0, P1, P2, P3, P4}和三类资源{A, B, C}，各种资源的数量分别为10、5、7，在T0时刻的资源分配情况如图所示。<br><img src="/imgs/OperationSystemAssets/1679501177642-47d5cad9-a4c4-4993-b1ef-5d96dd673655.png" alt="image.png"><br>(1) T0时刻的安全性：利用安全性算法对T0时刻的资源分配情况进行分析(如图2所示)可知，在T0时刻存在着一个安全序列{P1, P3, P4, P2, P0}，故系统是安全的。<br><img src="/imgs/OperationSystemAssets/1679501178439-0dd28a53-4daf-4639-bb1d-2fb44036b045.png" alt="image.png"><br>(2) P1请求资源：P1发出请求向量Request1(1, 0, 2)，系统按银行家算法进行检查：<br />① Request1(1, 0, 2)≤Need1(1, 2, 2)；<br />② Request1(1, 0, 2)≤Available1(3, 3, 2)；<br />③ 系统先假定可为P1分配资源，并修改Available，Allocation1和Need1向量，由此形成的资源变化情况如图1中的圆括号所示；<br />④ 再利用安全性算法检查此时系统是否安全，如图3所示。<br><img src="/imgs/OperationSystemAssets/1679501178833-1f20155e-a1cc-4c2d-9b60-67db72a1082f.png" alt="image.png"><br>(3) P4请求资源：P4发出请求向量Request4(3，3，0)，系统按银行家算法进行检查：<br />① Request4(3，3，0)≤Need4(4，3，1)；<br />② Request4(3，3，0)＞Available(2，3，0)，让P4等待。</p>
+<p>(4) P0请求资源：P0发出请求向量Request0(0，2，0)，系统按银行家算法进行检查：<br />① Request0(0，2，0)≤Need0(7，4，3)；<br />② Request0(0，2，0)≤Available(2，3，0)；<br />③ 系统暂时先假定可为P0分配资源，并修改有关数据，如图4所示。<br><img src="/imgs/OperationSystemAssets/1679501178835-92daf010-f5f4-44a8-a1db-06f793b20541.png" alt="image.png"><br>(5) 进行安全性检查：可用资源Available(2，1，0)已不能满足任何进程的需要，故系统进入不安全状态，此时系统不分配资源。</p>
+<h2 id="死锁的检测与解除"><a href="#死锁的检测与解除" class="headerlink" title="死锁的检测与解除"></a>死锁的检测与解除</h2><p>如果在系统中，既不采取死锁预防措施，也未配有死锁避免算法，系统很可能会发生死锁。在这种情况下，系统应当提供两个算法：<br />①死锁检测算法。该方法用于检测系统状态，以确定系统中是否发生了死锁。<br />②死锁解除算法。当认定系统中已发生了死锁，利用该算法可将系统从死锁状态中解脱出来。</p>
+<h3 id="死锁的检测"><a href="#死锁的检测" class="headerlink" title="死锁的检测"></a>死锁的检测</h3><p>为了能对系统中是否已发生了死锁进行检测，在系统中必须：①保存有关资源的请求和分配信息；②提供一种算法，它利用这些信息来检测系统是否已进入死锁状态。</p>
+<ol>
+<li>资源分配图(Resource Allocation Graph)</li>
+</ol>
+<p>系统死锁，可利用资源分配图来描述。<br><img src="/imgs/OperationSystemAssets/1679501179055-6512f759-9984-4801-a29d-3da186763753.png" alt="image.png"></p>
+<ol start="2">
+<li>死锁定理</li>
+</ol>
+<p>我们可以利用把资源分配图加以简化的方法(图3-19)，来检测当系统处于S状态时，是否为死锁状态。简化方法如下：</p>
+<p>(1) 在资源分配图中，找出一个既不阻塞又非独立的进程结点Pi。在顺利的情况下，Pi可获得所需资源而继续运行，直至运行完毕，再释放其所占有的全部资源，这相当于消去Pi的请求边和分配边，使之成为孤立的结点。在图(a)中，将P1的两个分配边和一个请求边消去，便形成图(b)所示的情况。</p>
+<p><img src="/imgs/OperationSystemAssets/1679501179064-6e508b57-8d95-48b6-96f3-73c1b26a27cb.png" alt="image.png"></p>
+<p>(2) P1释放资源后，便可使P2获得资源而继续运行，直至P2完成后又释放出它所占有的全部资源，形成图(c)所示的情况，即将P2的两条分配边和一条请求边消去。</p>
+<p>(3) 在进行一系列的简化后，若能消去图中所有的边，使所有的进程结点都成为孤立结点，则称该图是可完全简化的；若不能通过任何过程使该图完全简化，则称该图是不可完全简化的。<br />S为死锁状态的充分条件是：当且仅当S状态的资源分配图是不可完全简化的。该充分条件被称为死锁定理。</p>
+<ol start="3">
+<li>死锁检测</li>
+</ol>
+<p>死锁检测中的数据结构类似于银行家算法中的数据结构：<br />(1) 可利用资源向量Available，它表示了m类资源中每一类资源的可用数目。<br />(2) 把不占用资源的进程(向量Allocation=0)记入L表中，即Li∪L。<br />(3) 从进程集合中找到一个Requesti≤Work的进程，做如下处理：① 将其资源分配图简化，释放出资源，增加工作向量Work =Work + Allocation i。② 将它记入L表中。<br />(4) 若不能把所有进程都记入L表中，便表明系统状态S的资源分配图是不可完全简化的。因此，该系统状态将发生死锁。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">Work =  Available;<br>L = &#123;Li|AllocationI=0∩RequestI =0&#125;<br>for(all Li不属于L)<br>&#123;<br>  for(all Requesti &lt;= Work)&#123;<br>    Work = Work + Allocationi;<br>    Li ∪ L;<br>  &#125;<br>&#125;<br>deadlock = 非 (L=&#123;P1,P2,…,Pn&#125;);<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="死锁的解除"><a href="#死锁的解除" class="headerlink" title="死锁的解除"></a>死锁的解除</h3><ol>
+<li>终止进程的方法</li>
+</ol>
+<ol>
+<li>终止所有死锁进程（简单粗暴）<br />这是一种最简单的方法，即是终止所有的死锁进程，死锁自然也就解除了，但所付出的代价可能会很大。因为其中有些进程可能已经运行了很长时间，已接近结束，一旦被终止真可谓“功亏一篑”。</li>
+</ol>
+<ol start="2">
+<li>逐个终止进程</li>
+</ol>
+<p>稍微温和的方法是，按照某种顺序，逐个地终止进程，直至有足够的资源，以打破循环等待，把系统从死锁状态解脱出来为止。<br />特点：该方法所付出的代价也可能很大。<br />（1）每终止一个进程，都需要用死锁检测算法确定系统死锁是否已经被解除，若未解除还需再终止另一个进程。<br />（2）在采取逐个终止进程策略时，还涉及到应采用什么策略选择一个要终止的进程。选择策略最主要的依据是，为死锁解除所付出的“代价最小”。但怎么样才算是“代价最小”，很难有一个精确的度量。 </p>
+<p>代价最小的？死锁解除算法<br><img src="/imgs/OperationSystemAssets/1679501179936-95818fbb-18ae-45a4-a0f9-b98a784a2b2a.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">← Next 文件管理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%94%A8%E6%88%B7%E5%B1%82%E7%9A%84%E8%BD%AF%E4%BB%B6/">用户层的软件 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%97%AE%E9%A2%98"><span class="toc-text">资源问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%AD%BB%E9%94%81"><span class="toc-text">计算机系统中的死锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%EF%BC%88DeadLock%EF%BC%89"><span class="toc-text">死锁（DeadLock）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E6%AD%BB%E9%94%81"><span class="toc-text">如何应对死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81"><span class="toc-text">预防死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A0%B4%E5%9D%8F%E8%AF%B7%E6%B1%82%E5%92%8C%E4%BF%9D%E6%8C%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">破坏请求和保持条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A0%B4%E5%9D%8F%E4%B8%8D%E5%8F%AF%E6%8A%A2%E5%8D%A0%E6%9D%A1%E4%BB%B6"><span class="toc-text">破坏不可抢占条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A0%B4%E5%9D%8F%E2%80%9C%E5%BE%AA%E7%8E%AF%E7%AD%89%E5%BE%85%E2%80%9D%E6%9D%A1%E4%BB%B6"><span class="toc-text">破坏“循环等待”条件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81"><span class="toc-text">避免死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%8A%B6%E6%80%81"><span class="toc-text">定义系统安全状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">避免死锁的基本思想如下：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81"><span class="toc-text">使用银行家算法避免死锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="toc-text">应用银行家算法的示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E8%A7%A3%E9%99%A4"><span class="toc-text">死锁的检测与解除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="toc-text">死锁的检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E8%A7%A3%E9%99%A4"><span class="toc-text">死锁的解除</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

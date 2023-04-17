@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>文件保护 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>文件保护</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="文件保护"><a href="#文件保护" class="headerlink" title="文件保护"></a>文件保护</h2><p>在现代计算机系统中，存放了越来越多的宝贵信息供用户使用，给人们带来了极大的好处和方便，但同时也有着潜在的不安全性。影响文件安全性的主要因素有：<br />(1) 人为因素。<br />(2) 系统因素。<br />(3) 自然因素。<br />为了确保文件系统的安全性，可针对上述原因而采取三方面的措施：<br />(1) 通过存取控制机制，防止由人为因素所造成的文件不安全性。<br />(2) 采取系统容错技术，防止系统部分的故障所造成的文件的不安全性。<br />(3) 建立后备系统，防止由自然因素所造成的不安全性。</p>
+<h3 id="保护域-Protection-Domain"><a href="#保护域-Protection-Domain" class="headerlink" title="保护域(Protection Domain)"></a>保护域(Protection Domain)</h3><ol>
+<li>访问权</li>
+</ol>
+<p>为了对系统中的对象加以保护，应由系统来控制进程对对象的访问。对象可以是硬件对象，如磁盘驱动器、打印机；也可以是软件对象，如文件、程序。<br />对对象所施加的操作也有所不同，如对文件可以是读，也可以是写或执行操作。我们**把一个进程能对某对象执行操作的权力，称为访问权(Access right)**。</p>
+<ol start="2">
+<li>保护域</li>
+</ol>
+<p>为了对系统中的资源进行保护而引入了保护域的概念，保护域简称为“域”。“域”是进程对一组对象访问权的集合，进程只能在指定域内执行操作。这样，“域”也就规定了进程所能访问的对象和能执行的操作。<br><img src="/imgs/OperationSystemAssets/1681538576606-0b7409c7-8ed1-45db-8cfb-de44b3e7bff4.png" alt="image.png"></p>
+<ol start="3">
+<li>进程和域间的静态联系</li>
+</ol>
+<p>在进程和域之间可以一一对应，即一个进程只联系着一个域。这意味着，在进程的整个生命期中，其可用资源是固定的，我们把这种域称为“静态域”。在这种情况下，进程运行的全过程都是受限于同一个域，这将会使赋予进程的访问权超过了实际需要。</p>
+<ol start="4">
+<li>进程和域间的动态联系方式</li>
+</ol>
+<p>在进程和域之间，也可以是一对多的关系，即一个进程可以联系着多个域。在此情况下，可将进程的运行分为若干个阶段，其每个阶段联系着一个域，这样便可根据运行的实际需要来规定在进程运行的每个阶段中所能访问的对象。 </p>
+<h3 id="访问矩阵"><a href="#访问矩阵" class="headerlink" title="访问矩阵"></a>访问矩阵</h3><ol>
+<li>基本的访问矩阵</li>
+</ol>
+<p>访问矩阵(Access Matrix)。每一项访问权access(i, j)定义了在域Di中执行的进程能对对象Qj所施加的操作集。<br><img src="/imgs/OperationSystemAssets/1681538757272-c8d7add0-88bb-483e-abd2-e9a1e4f5b6aa.png" alt="image.png"></p>
+<ol start="2">
+<li>具有域切换权的访问矩阵</li>
+</ol>
+<p><strong>目的</strong>：为了实现在进程和域之间的动态联系，应能够将进程从一个保护域切换到另一个保护域。<br /><strong>方法</strong>：在访问矩阵中又增加了几个对象，分别把它们作为访问矩阵中的几个域；当且仅当switch∈access(i, j)时，才允许进程从域i切换到域j。<br><img src="/imgs/OperationSystemAssets/1681538824345-8806b9e7-26cc-4f82-8e39-bf1c8f9e28a1.png" alt="image.png"></p>
+<h3 id="访问矩阵的修改"><a href="#访问矩阵的修改" class="headerlink" title="访问矩阵的修改"></a>访问矩阵的修改</h3><ol>
+<li>拷贝权(Copy Right)</li>
+</ol>
+<p>我们可利用拷贝权将在某个域中所拥有的访问权(access(i, j))扩展到同一列的其它域中，亦即，为进程在其它的域中也赋予对同一对象的访问权(access(k, j))，如图所示。<br><img src="/imgs/OperationSystemAssets/1681538934860-a514d3af-13d8-405e-80e7-e7573d962138.png" alt="image.png"></p>
+<ol start="2">
+<li>所有权（Owner Right）</li>
+</ol>
+<p>人们不仅要求能将已有的访问权进行有控制的扩散，而且同样需要能增加某种访问权，或者能删除某种访问权。此时，可利用所有权(O)来实现这些操作。<br><img src="/imgs/OperationSystemAssets/1681539000361-1d17c0b9-06be-406d-ad5f-c434f469ad00.png" alt="image.png"></p>
+<ol start="3">
+<li>控制权（Control Right）</li>
+</ol>
+<p>拷贝权和所有权都是用于<strong>改变矩阵内同一列的各项访问权的</strong>，或者说，是用于改变在不同域中运行的进程对同一对象的访问权的。<br />控制权则可用于<strong>改变矩阵内同一行中(域中)的各项访问权</strong>，亦即，用于改变在某个域中运行的进程对不同对象的访问权的。如果在access(i，j)中包含了控制权，则在域Di中运行的进程可以删除在域Dj中运行的进程对各对象的任何访问权。<br><img src="/imgs/OperationSystemAssets/1681539052361-e1e297f7-6b23-4ea8-8b7e-9bbc385886a1.png" alt="image.png"></p>
+<h3 id="访问矩阵的实现"><a href="#访问矩阵的实现" class="headerlink" title="访问矩阵的实现"></a>访问矩阵的实现</h3><ol>
+<li>访问控制表(Access Control List)</li>
+</ol>
+<p>这是指对访问矩阵按列(对象)划分，为每一列建立一张访问控制表ACL。在该表中，已把矩阵中属于该列的所有空项删除，此时的访问控制表是由一有序对(域，权集)所组成的。由于在大多数情况下，矩阵中的空项远多于非空项，因而使用访问控制表可以显著地减少所占用的存储空间，并能提高查找速度。 </p>
+<ol start="2">
+<li>访问权限(Capabilities)表</li>
+</ol>
+<p>如果把访问矩阵按行(即域)划分，便可由每一行构成一张访问权限表。换言之，这是由一个域对每一个对象可以执行的一组操作所构成的表。表中的每一项即为该域对某对象的访问权限。当域为用户(进程)、对象为文件时，访问权限表便可用来描述一个用户(进程)对每一个文件所能执行的一组操作。<br><img src="/imgs/OperationSystemAssets/1681539109823-c73cce03-391a-4ea0-8b86-490e9893c224.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%8E%A7%E5%88%B6/">← Next 数据一致性控制</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/">文件共享 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4"><span class="toc-text">文件保护</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E5%9F%9F-Protection-Domain"><span class="toc-text">保护域(Protection Domain)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E7%9F%A9%E9%98%B5"><span class="toc-text">访问矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E7%9F%A9%E9%98%B5%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-text">访问矩阵的修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">访问矩阵的实现</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

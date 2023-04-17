@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>磁盘存储器的性能和调度 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>磁盘存储器的性能和调度</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="磁盘存储器的性能和调度"><a href="#磁盘存储器的性能和调度" class="headerlink" title="磁盘存储器的性能和调度"></a>磁盘存储器的性能和调度</h2><h3 id="磁盘性能简述"><a href="#磁盘性能简述" class="headerlink" title="磁盘性能简述"></a>磁盘性能简述</h3><p>磁盘设备是一种相当复杂的机电设备，在此仅对磁盘的某些性能，如数据的组织、磁盘的类型和访问时间等方面做扼要的阐述。</p>
+<ol>
+<li>数据的组织和格式</li>
+</ol>
+<p>磁盘设备可包括一个或多个物理盘片，每个磁盘片分一个或两个存储面(Surface)(见图6-28(a))，每个盘面上有若干个磁道(Track)，磁道之间留有必要的间隙(Gap)。为使处理简单起见，在每条磁道上可存储相同数目的二进制位。<br><img src="/imgs/OperationSystemAssets/1681539490578-fd4e761a-9432-4d2d-aa52-3b7ec1d2e176.png" alt="image.png"><br><img src="/imgs/OperationSystemAssets/1681539521758-04692326-3ba6-49ac-a59d-416d92fddd8e.png" alt="image.png"></p>
+<ol start="2">
+<li>磁盘的类型</li>
+</ol>
+<p>对于磁盘，可以从不同的角度进行分类。最常见的有：将磁盘分成硬盘和软盘、单片盘和多片盘、固定头磁盘和活动头(移动头)磁盘等。下面仅对固定头磁盘和移动头磁盘做些介绍。<br />(1) 固定头磁盘。每一个磁道配置一个磁头。<br />(2) 移动头磁盘。每一个盘面配置一个磁头。</p>
+<ol start="3">
+<li>磁盘访问时间</li>
+</ol>
+<p>磁盘设备在工作时以恒定速率旋转。为了读或写，磁头必须能移动到所指定的磁道上，并等待所指定的扇区的开始位置旋转到磁头下，然后再开始读或写数据。 <br />(1) 寻道时间Ts：磁臂(磁头)移动到指定磁道上所经历的时间。<br />      Ts = m * n + s.<br />(2) 旋转延迟时间Tr：指定扇区移动到磁头下面所经历的时间。<br />    如：15000 r/minà4ms/r<br />(3) 传输时间Tt:指把数据从磁盘读出或向磁盘写入数据所经历的时间。_T_t的大小与每次所读/写的字节数_b_和旋转速度有关,其中，_r_为磁盘每秒钟的转数；_N_为一条磁道上的字节数<br />Tt = b/(rN)<br>    Ta = Ts +1/(2r) + b/(rN)<br><img src="/imgs/OperationSystemAssets/1681539580224-1f3caeca-3056-402c-bc16-90c8044eb404.png" alt="image.png"></p>
+<h3 id="早期的磁盘调度算法"><a href="#早期的磁盘调度算法" class="headerlink" title="早期的磁盘调度算法"></a>早期的磁盘调度算法</h3><ol>
+<li>先来先服务（FCFS）</li>
+</ol>
+<p>这是最简单的磁盘调度算法。它根据进程请求访问磁盘的先后次序进行调度。<br><img src="/imgs/OperationSystemAssets/1681539624612-cd144899-36a2-4434-b9b1-d52dc321b5cc.png" alt="image.png"></p>
+<ol start="2">
+<li>最短寻道时间优先(SSTF)</li>
+</ol>
+<p>该算法选择这样的进程，其要求访问的磁道与当前磁头所在的磁道距离最近，以使每次的寻道时间最短，但这种算法不能保证平均寻道时间最短。<br><img src="/imgs/OperationSystemAssets/1681539658406-20c5b10f-b0b5-45d7-b002-a828a1ee06cf.png" alt="image.png"></p>
+<h3 id="基于扫描的磁盘调度算法"><a href="#基于扫描的磁盘调度算法" class="headerlink" title="基于扫描的磁盘调度算法"></a>基于扫描的磁盘调度算法</h3><ol>
+<li>扫描（SCAN）算法</li>
+</ol>
+<p>**问题： **SSTF算法的实质是基于优先级的调度算法，因此就可能导致优先级低的进程发生“饥饿”(Starvation)现象。因为只要不断有新进程的请求到达，且其所要访问的磁道与磁头当前所在磁道的距离较近，这种新进程的I/O请求必然优先满足。<br /><strong>策略：</strong>在对SSTF算法略加修改后，则可防止低优先级进程出现“饥饿”现象。<br><img src="/imgs/OperationSystemAssets/1681539727876-42f88d1c-c6ed-4f59-bc22-25ab1bdc9669.png" alt="image.png"><br><img src="/imgs/OperationSystemAssets/1681539733432-bffdce7b-c248-41b4-a3d6-ce60300514f9.png" alt="image.png"></p>
+<ol start="2">
+<li>循环扫描（CSCAN）算法</li>
+</ol>
+<p><strong>SCAN存在的问题：</strong>当磁头刚从里向外移动而越过了某一磁道时，恰好又有一进程请求访问此磁道，这时，该进程必须等待，待磁头继续从里向外，然后再从外向里扫描完处于外面的所有要访问的磁道后，才处理该进程的请求，致使该进程的请求被大大地推迟。<br><img src="/imgs/OperationSystemAssets/1681539820113-33235212-f934-4f6f-a6cd-7f6243addf45.png" alt="image.png"><br><img src="/imgs/OperationSystemAssets/1681539824458-a8b06305-6214-4d4e-b53d-704bd704c641.png" alt="image.png"></p>
+<ol start="3">
+<li>NStepSCAN和FSCAN调度算法</li>
+</ol>
+<ol>
+<li>NStepSCAN算法<br /><strong>问题：</strong>在SSTF、SCAN及CSCAN几种调度算法中，都可能出现磁臂停留在某处不动的情况，例如，有一个或几个进程对某一磁道有较高的访问频率，即这个(些)进程反复请求对某一磁道的I/O操作，从而垄断了整个磁盘设备。我们把这一现象称为“<strong>磁臂粘着</strong>”(Arm stickiness)。在高密度磁盘上容易出现此情况。 <br />2) FSCAN算法<br />FSCAN算法实质上是N步SCAN算法的简化，即FSCAN只将磁盘请求队列分成两个子队列。<br />（1）一个是由当前所有请求磁盘I/O的进程形成的队列，由磁盘调度按SCAN算法进行处理。<br />（2）另一个是在扫描期间，将新出现的所有请求磁盘I/O的进程放入等待处理的请求队列。这样，所有的新请求都将被推迟到下一次扫描时处理。</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3/">← Next 用户接口</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%AE%A1%E7%90%86/">磁盘存储器的管理 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E6%80%A7%E8%83%BD%E5%92%8C%E8%B0%83%E5%BA%A6"><span class="toc-text">磁盘存储器的性能和调度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E6%80%A7%E8%83%BD%E7%AE%80%E8%BF%B0"><span class="toc-text">磁盘性能简述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F%E7%9A%84%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-text">早期的磁盘调度算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%89%AB%E6%8F%8F%E7%9A%84%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-text">基于扫描的磁盘调度算法</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

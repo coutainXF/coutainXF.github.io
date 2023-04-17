@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>文件和文件系统 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>文件和文件系统</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="文件和文件系统"><a href="#文件和文件系统" class="headerlink" title="文件和文件系统"></a>文件和文件系统</h2><p>**文件系统的管理功能:  **将其管理的程序和数据通过组织为一系列文件的方式实现的。<br /><strong>文件</strong>是指具有文件名的若干相关元素的集合。元素通常是记录，而记录又是一组有意义的数据项的集合。<br />基于文件系统的概念，可以把数据组成分为数据项、记录和文件三级。</p>
+<h3 id="数据项、记录和文件"><a href="#数据项、记录和文件" class="headerlink" title="数据项、记录和文件"></a>数据项、记录和文件</h3><ol>
+<li>数据项</li>
+</ol>
+<p>在文件系统中，数据项是最低级的数据组织形式，可把它分成以下两种类型：<br />(1) 基本数据项。字段，比如学号。<br />(2) 组合数据项。工资包括基本工资和奖励工资。</p>
+<ol start="2">
+<li>记录</li>
+</ol>
+<p>记录：是一组相关数据项的集合，用于描述一个对象在某方面的属性。<br />一个记录应包含哪些数据项，取决于需要描述对象的哪个方面。由于对象所处的环境不同可把他作为不同的对象。<br /><strong>关键字（key）</strong>：唯一标示一条记录的字段。 </p>
+<ol start="3">
+<li>文件</li>
+</ol>
+<p><strong>文件：</strong>是指由创建者所定义的、具有文件名的一组相关元素的集合，可分为有结构文件和无结构文件两种。<br /><strong>属性：</strong>文件类型、文件长度、物理位置、建立时间<br><img src="/imgs/OperationSystemAssets/1681533336036-d93bf739-19b9-40c6-8427-792b836d2bf6.png" alt="image.png"></p>
+<h3 id="文件名和类型"><a href="#文件名和类型" class="headerlink" title="文件名和类型"></a>文件名和类型</h3><ol>
+<li>文件名和扩展名<br />(1) 文件名。<br />(2) 扩展名。</li>
+<li>文件类型</li>
+</ol>
+<p><strong>1) 按用途分类</strong><br />根据文件的性质和用途的不同，可将文件分为三类：<br />(1) 系统文件，这是指由系统软件构成的文件。大多数的系统文件只允许用户调用，但不允许用户去读，更不允许修改；有的系统文件不直接对用户开放。<br />(2) 用户文件，指由用户的源代码、目标文件、可执行文件或数据等所构成的文件。用户将这些文件委托给系统保管。<br />(3) 库文件，这是由标准子例程及常用的例程等所构成的文件。这类文件允许用户调用，但不允许修改。<br /><strong>2) 按文件中数据的形式分类</strong><br />(1) 源文件，这是指由源程序和数据构成的文件。通常，由终端或输入设备输入的源程序和数据所形成的文件都属于源文件。它通常是由ASCII码或汉字所组成的。<br />(2) 目标文件，这是指把源程序经过编译程序编译过，但尚未经过链接程序链接的目标代码所构成的文件。目标文件所使用的后缀名是“.obj”。<br />(3) 可执行文件，这是指把编译后所产生的目标代码经过链接程序链接后所形成的文件。其后缀名是 .exe。<br /><strong>3) 按存取控制属性分类</strong><br />根据系统管理员或用户所规定的存取控制属性，可将文件分为三类：<br />(1) 只执行文件，该类文件只允许被核准的用户调用执行，不允许读和写。<br />(2) 只读文件，该类文件只允许文件主及被核准的用户去读，不允许写。<br />(3) 读写文件，这是指允许文件主和被核准的用户去读或写的文件。<br /><strong>4) 按组织形式和处理方式分类</strong><br />根据文件的组织形式和系统对其处理方式的不同，可将文件分为三类：<br />(1) 普通文件。<br />(2) 目录文件。<br />(3) 特殊文件。</p>
+<h3 id="文件系统的层次结构"><a href="#文件系统的层次结构" class="headerlink" title="文件系统的层次结构"></a>文件系统的层次结构</h3><p>如图所示：文件系统的模型可分为三个层次：<br />最底层是对象及其属性，<br />中间层是对对象进行操纵和管理的软件集合，<br />最高层是文件系统提供给用户的接口。<br><img src="/imgs/OperationSystemAssets/1681533819917-29e1ce9d-7e50-4fca-833e-10441e14430d.png" alt="image.png"></p>
+<ol>
+<li>对象及其属性</li>
+</ol>
+<p>文件管理系统管理的对象如下：<br />(1) 文件。<br />(2) 目录。<br />(3) 磁盘(磁带)存储空间。 </p>
+<ol start="2">
+<li>对对象操纵和管理的软件集合</li>
+</ol>
+<p>该层是文件管理系统的核心部分。文件系统的功能大多是在这一层实现的，其中包括有：<br />① 对文件存储空间的管理；<br />② 对文件目录的管理；<br />③ 用于将文件的逻辑地址转换为物理地址的机制；<br />④ 对文件读和写的管理；<br />⑤ 对文件的共享与保护等功能。<br><img src="/imgs/OperationSystemAssets/1681534177609-725a59e1-34b6-4a2d-84ac-2a8692021d82.png" alt="image.png"></p>
+<ol start="3">
+<li>文件系统的接口</li>
+</ol>
+<p><strong>目的：</strong>方便用户的使用，文件系统以接口的形式提供了一组对文件和记录操作的方法和手段。<br /><strong>类型：</strong><br />(1) 命令接口，是指作为用户与文件系统直接交互的接口，用户可通过键盘终端键入命令取得文件系统的服务。<br />(2) 程序接口，是指作为用户程序与文件系统的接口，用户程序可通过系统调用取得文件系统的服务，例如，用于创建文件的系统调用Creat，用于打开一个文件的系统调用Open等。</p>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><ol>
+<li>最基本的文件操作</li>
+</ol>
+<p>(1) 创建文件。<br />(2) 删除文件。<br />(3) 读文件。<br />(4) 写文件。<br />(5) 设置文件的读/写位置。 </p>
+<ol start="2">
+<li>文件的“打开”和“关闭”操作</li>
+</ol>
+<p>当用户要求对一个文件实施多次读/写或其它操作时，每次都要从检索目录开始。为了<strong>避免多次重复地检索目录</strong>，在大多数OS中都引入了“打开”(open)这一文件系统调用，当用户第一次请求对某文件进行操作时，须先利用open系统调用将该文件打开。 </p>
+<ol start="3">
+<li>其他文件操作</li>
+</ol>
+<p>OS为用户都提供了一系列文件操作的系统调用，其中最常用的一类是有关对<br /><strong>文件属性的操作：</strong>如改变已存文件的文件名、改变文件的拥有者(文件主)、改变对文件的访问权，以及查询文件的状态(包括文件类型、大小和拥有者以及对文件的访问权等)。<br /><strong>有关目录的操作：</strong>如创建一个目录，删除一个目录，改变当前目录和工作目录等。<br />此外，还有用于实现文件共享的系统调用，以及用于对文件系统进行操作的系统调用等。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/">← Next 文件共享</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%A1%E7%90%86/">文件存储空间的管理 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text">文件和文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A1%B9%E3%80%81%E8%AE%B0%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6"><span class="toc-text">数据项、记录和文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%90%8D%E5%92%8C%E7%B1%BB%E5%9E%8B"><span class="toc-text">文件名和类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-text">文件系统的层次结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">文件操作</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

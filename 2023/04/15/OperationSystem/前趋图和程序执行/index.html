@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>前趋图和程序执行 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>前趋图和程序执行</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="前驱图"><a href="#前驱图" class="headerlink" title="前驱图"></a>前驱图</h2><p>前趋图(Precedence Graph)，是指一个有向无循环图，可记为DAG(Directed Acyclic Graph)，它用于描述进程之间执行的先后顺序。</p>
+<p>结点:表示一个进程或程序段，乃至一条语句，</p>
+<p>有向边:表示两个结点之间存在的偏序(Partial Order)或前趋关系(Precedence Relation)。</p>
+<p><strong>进程Pi和Pj存在着前趋关系</strong><br />(1)表示为：<br />        (Pi，Pj)∈→，也可写成Pi→Pj<br />(2) 概念<br />Pi是Pj的直接前趋，<br />Pj是Pi的直接后继。<br />把没有前趋的结点称为初始结点(Initial Node)，<br />把没有后继的结点称为终止结点(Final Node)。<br />每个结点还具有一个重量(Weight)，用于表示该结点所含有的程序量或程序的执行时间。<br><img src="/imgs/OperationSystemAssets/1679477061393-59f228b2-3150-406f-9214-30f3fcd42a81.png" alt="image.png"></p>
+<p>前趋图中是不允许有循环的，否则必然会产生不可能实现的前趋关系。</p>
+<p>在图(a)所示的前趋图中，存在着如下前趋关系：<br />P1→P2，P1→P3，P1→P4，P2→P5，P3→P5，P4→P6，P4→P7，P5→P8，P6→P8，P7→P9，P8→P9<br />或表示为：<br />P={P1, P2, P3, P4, P5, P6, P7, P8, P9}<br />  ={(P1, P2), (P1, P3), (P1, P4), (P2, P5), (P3, P5), (P4, P6), (P4, P7), (P5, P8), (P6, P8), (P7, P9), (P8, P9)}</p>
+<h2 id="程序顺序执行"><a href="#程序顺序执行" class="headerlink" title="程序顺序执行"></a>程序顺序执行</h2><ol>
+<li>程序的顺序执行<br /> 通常，一个应用程序由若干个程序段组成，每一个程序段完成特定的功能，它们在执行时，都需要按照某种先后次序顺序执行，仅当前一程序段执行完后，才运行后一程序段。</li>
+</ol>
+<p><img src="/imgs/OperationSystemAssets/1679477061386-163afb55-c1d8-43ba-afa4-f8ac8667111b.png" alt="image.png"></p>
+<p><img src="/imgs/OperationSystemAssets/1679477061340-cca74e4e-77d7-4797-bcbb-e25059aedfed.png" alt="image.png"></p>
+<ol start="2">
+<li>程序顺序执行时的特征</li>
+</ol>
+<p>程序顺序执行时，具有这样三个特征：<br />① 顺序性：指处理机严格地按照程序所规定的顺序执行，即每一操作必须在下一个操作开始之前结束；<br />② 封闭性：指程序在封闭的环境下运行，即程序运行时独占全机资源，资源的状态(除初始状态外)只有本程序才能改变它，程序一旦开始执行，其执行结果不受外界因素影响；<br />③ 可再现性：指只要程序执行时的环境和初始条件相同，当程序重复执行时，都可获得相同的结果。</p>
+<h2 id="程序并发执行"><a href="#程序并发执行" class="headerlink" title="程序并发执行"></a>程序并发执行</h2><ol>
+<li>程序的并发执行</li>
+</ol>
+<p>图(a)中的输入程序、计算程序和打印程序三者之间，存在着Ii→Ci→Pi这样的前趋关系，以至对一个作业的输入、计算和打印三个程序段必须顺序执行。</p>
+<p>但若是对一批作业进行处理时，每道作业的输入、计算和打印程序段的执行情况如图所示。 </p>
+<p><img src="/imgs/OperationSystemAssets/1679477061392-840b2d28-a612-4044-8277-af85d4fe7b27.png" alt="image.png"></p>
+<p>由图(c)可以看出，存在前趋关系Ii→Ci，Ii→Ii+1，Ci→Pi，Ci→Ci+1，Pi→Pi+1，而Ii+1和Ci及Pi-1是重叠的，即在Pi-1和Ci以及Ii+1之间，不存在前趋关系，可以并发执行。</p>
+<p>对于具有下述四条语句的程序段：<br />S1: a :=x+2<br />S2: b :=y+4<br />S3: c :=a+b<br />S4: d :=c+b</p>
+<p>可画出前趋关系</p>
+<p><img src="/imgs/OperationSystemAssets/1679477061362-62d6555f-02da-494b-9d02-15e51665b281.png" alt="image.png"></p>
+<ol start="2">
+<li>程序并发执行时的特征</li>
+</ol>
+<p>在引入了程序间的并发执行功能后，虽然提高了系统的吞吐量和资源利用率，但由于它们共享系统资源，以及它们为完成同一项任务而相互合作，致使在这些并发执行的程序之间必将形成相互制约的关系，由此会给程序并发执行带来新的特征。<br />(1) 间断性。<br />(2) 失去封闭性。<br />(3) 不可再现性。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F/">← Next 分页存储管理方式</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E5%92%8C%E6%AD%BB%E9%94%81/">处理机调度和死锁 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E9%A9%B1%E5%9B%BE"><span class="toc-text">前驱图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C"><span class="toc-text">程序顺序执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%B9%B6%E5%8F%91%E6%89%A7%E8%A1%8C"><span class="toc-text">程序并发执行</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

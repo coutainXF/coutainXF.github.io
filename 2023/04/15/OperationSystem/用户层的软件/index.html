@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>用户层的软件 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>用户层的软件</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="用户层的I-O软件"><a href="#用户层的I-O软件" class="headerlink" title="用户层的I/O软件"></a>用户层的I/O软件</h1><h2 id="系统调用与库函数"><a href="#系统调用与库函数" class="headerlink" title="系统调用与库函数"></a>系统调用与库函数</h2><ol>
+<li>系统调用</li>
+</ol>
+<p>一方面，为使诸进程能有条不紊地使用I/O设备，且能保护设备的安全性，不允许运行在用户态的应用进程去直接调用运行在核心态(系统态)的OS过程。<br />但另一方面，应用进程在运行时，又必须取得OS所提供的服务，否则，应用程序几乎无法运行。<br />为了解决此矛盾，OS在用户层中引入了一个中介过程——系统调用，应用程序可以通过它间接调用OS中的I/O过程，对I/O设备进行操作。</p>
+<p>系统调用的执行过程:<br><img src="/imgs/OperationSystemAssets/1679720306729-bc3b519d-e483-40d8-8926-4aa82734ea9e.png" alt="image.png"></p>
+<ol start="2">
+<li>库函数</li>
+</ol>
+<p>在C语言以及UNIX系统中，系统调用(如read)与各系统调用所使用的库函数(如read)之间几乎是一一对应的。而微软定义了一套过程，称为Win32 API的应用程序接口(Application Program Interface)，程序员利用它们取得OS服务，该接口与实际的系统调用并不一一对应。用户程序通过调用对应的库函数使用系统调用，这些库函数与调用程序连接在一起，被嵌入在运行时装入内存的二进制程序中。</p>
+<h2 id="假脱机-Spooling-系统"><a href="#假脱机-Spooling-系统" class="headerlink" title="假脱机(Spooling)系统"></a>假脱机(Spooling)系统</h2><ol>
+<li>假脱机技术   </li>
+</ol>
+<p><strong>目的</strong>：在20世纪50年代，为了缓和CPU的高速性与I/O设备低速性间的矛盾，而引入了脱机输入、脱机输出技术。<br /><strong>方法</strong>：该技术是利用专门的<strong>外围控制机</strong>，先将低速I/O设备上的数据传送到高速磁盘上，或者相反。这样当处理机需要输入数据时，便可以直接从磁盘中读取数据，极大地提高了输入速度。反之，在处理机需要输出数据时，也可以很快的速度把数据先输出到磁盘上，处理机便可去做自己的事情。</p>
+<ol start="2">
+<li>SPOOLing的组成</li>
+</ol>
+<p>如前所述，SPOOLing技术是对脱机输入/输出系统的模拟，相应地，如图(a)所示，SPOOLing系统建立在通道技术和多道程序技术的基础上，以高速随机外存(通常为磁盘)为后援存储器。SPOOLing的工作原理如图(b)所示。<br><img src="/imgs/OperationSystemAssets/1679720474472-1966b808-ffb0-4feb-aafd-80846dbc13f8.png" alt="image.png"><br><img src="/imgs/OperationSystemAssets/1679720482130-d90735be-ec73-44de-b742-d7b4f7317a6f.png" alt="image.png"><br><img src="/imgs/OperationSystemAssets/1679720462618-8ddca619-1d5a-47a1-9160-0bc9ba40927e.png" alt="image.png"><br>SPOOLing系统主要由以下四部分构成：<br />(1) 输入井和输出井。<br />(2) 输入缓冲区和输出缓冲区。<br />(3) 输入进程和输出进程。<br />(4) 井管理程序。</p>
+<ol start="3">
+<li>SPOOLing系统的特点</li>
+</ol>
+<p>(1) 提高了I/O的速度。<br />(2) 将独占设备改造为共享设备。<br />(3) 实现了虚拟设备功能。</p>
+<ol start="4">
+<li>假脱机打印机系统</li>
+</ol>
+<p>打印机是经常用到的输出设备，属于独占设备。利用假脱机技术可将它改造为一台可供多个用户共享的打印设备，从而提高设备的利用率，也方便了用户。共享打印机技术已被广泛地用于多用户系统和局域网络中。假脱机打印系统主要有以下三部分：<br />(1) 磁盘缓冲区。<br />(2) 打印缓冲区。<br />(3) 假脱机管理进程和假脱机打印进程。</p>
+<ol start="5">
+<li>守护进程(daemon)</li>
+</ol>
+<p>前面是利用假脱机系统来实现打印机共享的一种方案，人们对该方案进行了某些修改，如取消该方案中的假脱机管理进程，为打印机建立一个守护进程，由它执行一部分原来由假脱机管理进程实现的功能，如为用户在磁盘缓冲区中申请一个空闲盘块，并将要打印的数据送入其中，将该盘块的首址返回给请求进程。<br />另一部分由请求进程自己完成，每个要求打印的进程首先生成一份要求打印的文件，其中包含对打印的要求和指向装有打印输出数据盘块的指针等信息，然后将用户请求打印文件放入假脱机文件队列(目录)中。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%AD%BB%E9%94%81/">← Next 死锁</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%94%A8%E6%88%B7%E6%8E%A5%E5%8F%A3/">用户接口 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%B1%82%E7%9A%84I-O%E8%BD%AF%E4%BB%B6"><span class="toc-text">用户层的I&#x2F;O软件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E5%BA%93%E5%87%BD%E6%95%B0"><span class="toc-text">系统调用与库函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%87%E8%84%B1%E6%9C%BA-Spooling-%E7%B3%BB%E7%BB%9F"><span class="toc-text">假脱机(Spooling)系统</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>提高磁盘速度的途径 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>提高磁盘速度的途径</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="提高磁盘I-O速度的途径"><a href="#提高磁盘I-O速度的途径" class="headerlink" title="提高磁盘I/O速度的途径"></a>提高磁盘I/O速度的途径</h2><p>(1) 改进文件的<strong>目录结构以及检索目录的方法</strong>来减少对目录的查找时间；<br />(2) 选取好的<strong>文件存储结构</strong>，以提高对文件的<strong>访问速度</strong>；<br />(3) 提高<strong>磁盘的I/O速度</strong>，能将文件中的数据快速地从磁盘传送到内存中，或者相反。本节主要对如何提高磁盘的I/O速度作一简单介绍。</p>
+<h3 id="磁盘高速缓存（Disk-Cache）"><a href="#磁盘高速缓存（Disk-Cache）" class="headerlink" title="磁盘高速缓存（Disk Cache）"></a>磁盘高速缓存（Disk Cache）</h3><p>在设计磁盘高速缓存时需要考虑的问题有：<br />(1) 如何将磁盘高速缓存中的数据传送给请求进程；<br />(2) 采用什么样的置换策略；<br />(3) 已修改的盘块数据在何时被写回磁盘。</p>
+<ol>
+<li>数据交付（Data  Delivery）方式</li>
+</ol>
+<p>如果I/O请求所需要的数据能从磁盘高速缓存中获取，此时就需要将磁盘高速缓存中的数据传送给请求进程。所谓的<strong>数据交付</strong>就是指将<strong>磁盘高速缓存中的数据传送给请求者进程</strong>。<br />系统可以采取两种方式将数据交付给请求进程：<br />(1) 数据交付<br />(2) 指针交付 </p>
+<ol start="2">
+<li>置换算法</li>
+</ol>
+<p>现在不少系统在设计其高速缓存的置换算法时，除了考虑到最近最久未使用这一原则外，还考虑了以下几点：<br />(1) 访问频率。<br />(2) 可预见性。<br />(3) 数据的一致性。 </p>
+<ol start="3">
+<li>周期性地写回磁盘</li>
+</ol>
+<p>还有一种情况值得注意，那就是根据LRU算法，那些经常要被访问的盘块数据可能会一直保留在高速缓存中，长期不会被写回磁盘。 </p>
+<h3 id="提高磁盘I-O速度的其他方法"><a href="#提高磁盘I-O速度的其他方法" class="headerlink" title="提高磁盘I/O速度的其他方法"></a>提高磁盘I/O速度的其他方法</h3><p>能有效地提高磁盘I/O速度的方法还有许多，如提前读、延迟写等，现介绍如下：</p>
+<ol>
+<li>提前读</li>
+<li>延迟写</li>
+<li>优化物理块的分布</li>
+<li>虚拟盘</li>
+</ol>
+<p>由于访问内存的速度远高于访问磁盘的速度，于是有人试图<strong>利用内存空间去仿真磁盘</strong>，形成所谓<strong>虚拟盘</strong>，又称为RAM盘。该盘的设备驱动程序也可以接受所有标准的磁盘操作，但这些操作的执行不是在磁盘上而是在内存中。这对用户都是透明的。 </p>
+<h3 id="廉价磁盘冗余阵列（RAID）"><a href="#廉价磁盘冗余阵列（RAID）" class="headerlink" title="廉价磁盘冗余阵列（RAID）"></a>廉价磁盘冗余阵列（RAID）</h3><ol>
+<li>并行交叉存取</li>
+</ol>
+<p>这是把在大、中型机中，用于提高访问内存速度的并行交叉存取技术应用到磁盘存储系统中，以提高对磁盘的I/O速度。在该系统中，有多台磁盘驱动器，系统将每一盘块中的数据分为若干个子盘块数据，再把<strong>每一个子盘块的数据</strong>分别存储到<strong>各个不同磁盘中的相同位置</strong>上。以后当要将一个盘块的数据传送到内存时，采取并行传输方式，将各个盘块中的子盘块数据同时向内存中传输，从而使传输时间大大减少。 </p>
+<ol start="2">
+<li>RAID的分级</li>
+</ol>
+<p>RAID在刚被推出时，是分成6级的，后来又增加了RAID 6级和RAID 7级。<br />(1) RAID 0级。并行交叉存取<br />(2) RAID 1级。磁盘镜像<br />(3) RAID 3级。并行传输的磁盘阵列<br />(4) RAID 5级。独立传送功能的磁盘阵列<br />(5) RAID 6级和RAID 7级。专用的、可快速访问的异步校验盘。所有磁盘都具有较高的传输速率和优异性能。 </p>
+<ol start="3">
+<li>RAID的优点</li>
+</ol>
+<p>(1) <strong>可靠性高</strong>，除了RAID 0级外，其余各级都采用了容错技术。当阵列中某一磁盘损坏时，并不会造成数据的丢失。此时可根据其它未损坏磁盘中的信息来恢复已损坏的盘中的信息。其可靠性比单台磁盘机高出一个数量级。<br />(2**) 磁盘I/O速度高<strong>，由于采取了</strong>并行交叉存取方式**，可使磁盘I/O速度提高N-1倍。<br />(3) <strong>性能/价格比高</strong>，RAID的体积与具有相同容量和速度的大型磁盘系统相比，只是后者的1/3，价格也只是后者的1/3，且可靠性高。换言之，它仅以牺牲1/N的容量为代价，换取了高可靠性。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%8F%90%E9%AB%98%E7%A3%81%E7%9B%98%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E6%8A%80%E6%9C%AF/">← Next 提高磁盘可靠性的技术</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E8%AE%BA/">操作系统引论 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E7%A3%81%E7%9B%98I-O%E9%80%9F%E5%BA%A6%E7%9A%84%E9%80%94%E5%BE%84"><span class="toc-text">提高磁盘I&#x2F;O速度的途径</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%EF%BC%88Disk-Cache%EF%BC%89"><span class="toc-text">磁盘高速缓存（Disk Cache）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E7%A3%81%E7%9B%98I-O%E9%80%9F%E5%BA%A6%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="toc-text">提高磁盘I&#x2F;O速度的其他方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%89%E4%BB%B7%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89"><span class="toc-text">廉价磁盘冗余阵列（RAID）</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

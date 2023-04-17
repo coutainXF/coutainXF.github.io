@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>文件的逻辑结构 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>文件的逻辑结构</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="文件的逻辑结构"><a href="#文件的逻辑结构" class="headerlink" title="文件的逻辑结构"></a>文件的逻辑结构</h2><p>(1) 文件的逻辑结构(File Logical Structure)。<br />(2) 文件的物理结构，又称为文件的存储结构。 </p>
+<h3 id="文件逻辑结构的类型"><a href="#文件逻辑结构的类型" class="headerlink" title="文件逻辑结构的类型"></a>文件逻辑结构的类型</h3><p>对文件逻辑结构所提出的<strong>基本要求</strong>：<br />（1）首先是有助于提高对文件的检索速度，即在将大批记录组成文件时，应采用一种有利于提高检索记录速度和效率的逻辑结构形式。<br />（2）其次是该结构应方便对文件进行修改，即便于在文件中增加、删除和修改一个或多个记录。<br />（3）第三是降低文件存放在外存上的存储费用，即尽量减少文件占用的存储空间，不要求大片的连续存储空间。</p>
+<h4 id="文件逻辑结构分类"><a href="#文件逻辑结构分类" class="headerlink" title="文件逻辑结构分类"></a>文件逻辑结构分类</h4><ol>
+<li>按文件是否有结构分类</li>
+</ol>
+<ol>
+<li>有结构文件(数据库表)<br>(1) 定长记录。<br />(2) 变长记录。数据项数目不同，比如书的作者<br />2）无结构文件（媒体文件）<br />即<strong>流式文件</strong>。其文件的长度是以字节为单位的。对流式文件的访问，则是利用读、写指针来指出下一个要访问的字符。可以把流式文件看做是记录式文件的一个特例：一个记录仅有一个字节。</li>
+</ol>
+<ol start="2">
+<li>按文件的组织方式分类</li>
+</ol>
+<p>根据文件的组织方式，可把有结构文件分为三类：<br />(1) 顺序文件。<br />(2) 索引文件。<br />(3) 索引顺序文件。 </p>
+<h3 id="顺序文件-Sequential-File"><a href="#顺序文件-Sequential-File" class="headerlink" title="顺序文件(Sequential File)"></a>顺序文件(Sequential File)</h3><ol>
+<li>顺序文件的排列方式</li>
+</ol>
+<p>在顺序文件中的记录，可以按照各种不同的顺序进行排列。一般地，可分为两种情况：<br />(1) 串结构。按存入时间先后排序，各记录之间的顺序与关键字无关。<br />(2) 顺序结构。按关键字大小排序-&gt;查找算法</p>
+<ol start="2">
+<li>顺序文件的优缺点</li>
+</ol>
+<p>（1）顺序文件的<strong>最佳应用场合</strong>是在对文件中的记录进行批量存取时(即每次要读或写一大批记录)。所有逻辑文件中顺序文件的存取效率是最高的。<br />（2）对于顺序存储设备(如磁带)，也只有顺序文件才能被存储并能有效地工作。</p>
+<h3 id="记录寻址"><a href="#记录寻址" class="headerlink" title="记录寻址"></a>记录寻址</h3><ol>
+<li>隐式寻址方式</li>
+</ol>
+<p>对于定长记录的顺序文件，如果已知当前记录的逻辑地址，便很容易确定下一个记录的逻辑地址。<br><img src="/imgs/OperationSystemAssets/1681534944540-c05b030e-1f77-4677-88c4-a362778cdb72.png" alt="image.png"></p>
+<ol start="2">
+<li>显示寻址方式</li>
+</ol>
+<p><strong>(对定长记录的随机访问)<strong>：该方式可用于对定长记录的文件实现直接或随机访问。因为任何记录的位置都很容易通过记录长度计算出来。<br /></strong>(对变长记录的随机访问)：</strong>而对于可变长度记录的文件则不能利用显式寻址方式实现直接或随机访问，必须增加适当的支持机构方能实现。下面我们通过两种方式对定长记录实现随机访问：<br />(1) 通过文件中记录的位置。<br />(2) 利用关键字。 </p>
+<h3 id="索引文件-Index-File"><a href="#索引文件-Index-File" class="headerlink" title="索引文件(Index File)"></a>索引文件(Index File)</h3><ol>
+<li>按关键字建立索引</li>
+</ol>
+<p><strong>问题：</strong>定长记录的文件可以通过简单的计算，很容易地实现随机查找。但变长记录文件查找一个记录必须从第一个记录查起，一直顺序查找到目标记录为止，耗时很长。<br><img src="/imgs/OperationSystemAssets/1681535176694-0c09ef44-75ac-42f6-954b-4704bc14c42d.png" alt="image.png"></p>
+<ol start="2">
+<li>具有多个索引表的索引文件</li>
+</ol>
+<p><strong>目的：</strong>使用按关键字建立索引表的索引文件与顺序文件一样，都只能按该关键字进行检索。而实际应用情况往往是：不同的用户，为了不同的目的，希望能按不同的属性(或不同的关键字)来检索一条记录。<br /><strong>策略：</strong>为实现此要求，需要为顺序文件建立多个索引表，即为每一种可能成为检索条件的域(属性或关键字)都配置一张索引表。在每一个索引表中，都按相应的一种属性或关键字进行排序。 </p>
+<h3 id="索引顺序文件-Index-Sequential-File"><a href="#索引顺序文件-Index-Sequential-File" class="headerlink" title="索引顺序文件 (Index Sequential File)"></a>索引顺序文件 (Index Sequential File)</h3><ol>
+<li>索引顺序文件的特征  </li>
+</ol>
+<p><strong>目的：</strong>索引顺序文件是对顺序文件的一种改进，它基本上克服了变长记录的顺序文件不能随机访问，以及不便于记录的删除和插入的缺点。但它仍保留了顺序文件的关键特征，即记录是按关键字的顺序组织起来的。<br /><strong>方法：</strong>它又增加了两个新特征：一个是引入了文件索引表，通过该表可以实现对索引顺序文件的随机访问；另一个是增加了溢出(overflow)文件，用它来记录新增加的、删除的和修改的记录。 </p>
+<ol start="2">
+<li>一级索引顺序文件</li>
+</ol>
+<p>其具体的建立方法是，首先将变长记录顺序文件中的所有记录分为若干个组，如50个记录为一个组。然后为顺序文件建立一张索引表，并为每组中的第一个记录在索引表中建立一个索引项，其中含有该记录的关键字和指向该记录的指针。索引顺序文件是最常见的一种逻辑文件形式，如图所示。<br><img src="/imgs/OperationSystemAssets/1681535502063-dd11fc87-e15e-443f-a7df-cfe4d587ca1f.png" alt="image.png"></p>
+<ol start="3">
+<li>两级索引顺序文件</li>
+</ol>
+<p><strong>问题：</strong>对于一个非常大的文件，为找到一个记录而须查找的记录数目仍然很多，例如，对于一个含有106个记录的顺序文件，当把它作为索引顺序文件时，为找到一个记录，平均须查找1000个记录。<br /><strong>目的：</strong>为了进一步提高检索效率，可以为顺序文件建立多级索引，即为索引文件再建立一张索引表，从而形成两级索引表。 </p>
+<h3 id="直接文件和哈希文件"><a href="#直接文件和哈希文件" class="headerlink" title="直接文件和哈希文件"></a>直接文件和哈希文件</h3><ol>
+<li>直接文件   </li>
+</ol>
+<p><strong>问题：</strong>采用前述几种文件结构对记录进行存取时，都须利用给定的记录键值，先对线性表或链表进行检索，以找到指定记录的物理地址。<br /><strong>记录键值-&gt;检索-&gt;物理地址</strong><br /><strong>目的：</strong>然而对于直接文件，则可根据给定的关键字直接获得指定记录的物理地址。换而言之，关键字本身就决定了记录的物理地址。 <br /><strong>记录键值-&gt;哈希-&gt;物理地址</strong><br />2. 哈希(Hash)文件<br />这是目前应用最为广泛的一种直接文件。它利用Hash函数(或称散列函数)可将关键字转换为相应记录的地址。但为了能实现文件存储空间的动态分配，通常由Hash函数所求得的并非是相应记录的地址，而是指向某一目录表相应表目的指针，该表目的内容指向相应记录所在的物理块，如图所示。<br><img src="/imgs/OperationSystemAssets/1681535708241-5729805e-4ea0-4c97-896e-b4c3a00d4bf4.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%A1%E7%90%86/">← Next 文件存储空间的管理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95/">文件目录 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="toc-text">文件的逻辑结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">文件逻辑结构的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E5%88%86%E7%B1%BB"><span class="toc-text">文件逻辑结构分类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%96%87%E4%BB%B6-Sequential-File"><span class="toc-text">顺序文件(Sequential File)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%AF%BB%E5%9D%80"><span class="toc-text">记录寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E6%96%87%E4%BB%B6-Index-File"><span class="toc-text">索引文件(Index File)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E9%A1%BA%E5%BA%8F%E6%96%87%E4%BB%B6-Index-Sequential-File"><span class="toc-text">索引顺序文件 (Index Sequential File)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%96%87%E4%BB%B6%E5%92%8C%E5%93%88%E5%B8%8C%E6%96%87%E4%BB%B6"><span class="toc-text">直接文件和哈希文件</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

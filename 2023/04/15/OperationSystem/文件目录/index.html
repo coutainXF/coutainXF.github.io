@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>文件目录 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>文件目录</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h2><p>(1) 实现“按名存取”。<br />(2) 提高对目录的检索速度。<br />(3) 文件共享。<br />(4) 允许文件重名。 </p>
+<h3 id="文件控制块和索引结点"><a href="#文件控制块和索引结点" class="headerlink" title="文件控制块和索引结点"></a>文件控制块和索引结点</h3><ol>
+<li>文件控制块FCB(File Control Block)</li>
+</ol>
+<p>为了能对系统中的大量文件施以有效的管理，在文件控制块中，通常应含有三类信息:<br />(1)基本信息<br />(2)存取控制信息<br />(3)使用信息。</p>
+<ul>
+<li>基本信息类</li>
+</ul>
+<p>基本信息类包括：<br />(1) 文件名。<br />(2) 文件物理位置。 <br />(3) 文件逻辑结构。<br />(4) 文件的物理结构。</p>
+<ul>
+<li>存取控制信息类</li>
+</ul>
+<p>存取控制信息类包括:<br />(1) 文件主的存取权限<br />(2) 核准用户的存取权限<br />(3) 一般用户的存取权限。</p>
+<ul>
+<li>使用信息类</li>
+</ul>
+<p>使用信息类包括文件的建立日期和时间、文件上一次修改的日期和时间，以及当前使用信息。这些信息包括当前已打开该文件的进程数，是否被其它进程锁住，文件在内存中是否已被修改但尚未拷贝到盘上等。应该说明，对于不同OS的文件系统，由于功能不同，可能只含有上述信息中的某些部分。<br><img src="/imgs/OperationSystemAssets/1681535985060-35c3c9ca-c10e-4647-b196-ec39302e8d7e.png" alt="image.png"></p>
+<ol start="2">
+<li>索引节点</li>
+</ol>
+<ol>
+<li>索引结点的引入<br />文件目录通常是存放在磁盘上的，当文件很多时，文件目录可能要占用大量的盘块。<br />在查找目录的过程中，必须先将存放目录文件的第一个盘块中的目录调入内存，然后将用户所给定的文件名，与目录项中的文件名逐一比较。若未找到指定文件，还需要将下一盘块的目录项调入内存。<br><img src="/imgs/OperationSystemAssets/1681536288698-4eb5c6c4-3ffa-437e-9ead-1dece6ab089e.png" alt="image.png"></li>
+<li>磁盘索引结点<br /> 这是存放在磁盘上的索引结点。每个文件有唯一的一个磁盘索引结点，它主要包括以下内容：<br />(1) 文件主标识符，即拥有该文件的个人或小组的标识符；<br />(2) 文件类型，包括正规文件、目录文件或特别文件；<br />(3) 文件存取权限，指各类用户对该文件的存取权限；<br />(4) 文件物理地址，每一个索引结点中含有13个地址项，即iaddr(0)～iaddr(12)，它们以直接或间接方式给出数据文件所在盘块的编号；<br />(5) 文件长度，指以字节为单位的文件长度；<br />(6) 文件连接计数，表明在本文件系统中所有指向该(文件的)文件名的指针计数；<br />(7) 文件存取时间，指出本文件最近被进程存取的时间、最近被修改的时间及索引结点最近被修改的时间。<br />3) 内存索引结点(磁盘-&gt;内存)<br>这是存放在内存中的索引结点。当文件被打开时，要将磁盘索引结点<strong>拷贝</strong>到内存的索引结点中，便于以后使用。在内存索引结点中又增加了以下内容：<br />(1) 索引结点编号，用于标识内存索引结点；<br />(2) 状态，指示i结点是否上锁或被修改；<br />(3) 访问计数，每当有一进程要访问此i结点时，将该访问计数加1，访问完再减1；<br />(4) 文件所属文件系统的逻辑设备号；<br />(5) 链接指针，设置有分别指向空闲链表和散列队列的指针。</li>
+</ol>
+<h3 id="简单的文件目录"><a href="#简单的文件目录" class="headerlink" title="简单的文件目录"></a>简单的文件目录</h3><ol>
+<li>单级文件目录<br />这是最简单的文件目录。在整个文件系统中只建立一张目录表，每个文件占一个目录项，目录项中含文件名、文件扩展名、文件长度、文件类型、文件物理地址以及其它文件属性。此外，为表明每个目录项是否空闲，又设置了一个状态位。单级文件目录如图所示。</li>
+</ol>
+<p><img src="/imgs/OperationSystemAssets/1681536481809-30ec44e4-69e2-4f5e-93fb-07f64b756571.png" alt="image.png"></p>
+<ol start="2">
+<li>两级文件目录</li>
+</ol>
+<p>目的：为了克服单级文件目录所存在的缺点，可以为每一个用户再建立一个单独的用户文件目录UFD(User File Directory)。<br />方法：这些文件目录具有相似的结构，它由用户所有文件的文件控制块组成。此外，在系统中再建立一个主文件目录MFD(Master File Directory)；在主文件目录中，每个用户目录文件都占有一个目录项，其目录项中包括用户名和指向该用户目录文件的指针。<br><img src="/imgs/OperationSystemAssets/1681536902182-7f5523af-8da9-46a2-8394-08c6fa7e0612.png" alt="image.png"></p>
+<ol start="3">
+<li>树形结构目录(Tree-Structured Directory)</li>
+</ol>
+<h3 id="树形结构目录-Tree-Structured-Directory"><a href="#树形结构目录-Tree-Structured-Directory" class="headerlink" title="树形结构目录(Tree-Structured Directory)"></a>树形结构目录(Tree-Structured Directory)</h3><ol>
+<li>树形目录</li>
+</ol>
+<p>**目的:**在现代OS中，最通用且实用的文件目录无疑是树形结构目录。它可以明显地提高对目录的检索速度和文件系统的性能。<br />主目录在这里被称为根目录，在每个文件目录中，只能有一个根目录，每个文件和每个目录都只能有一个父目录。把数据文件称为树叶，其它的目录均作为树的结点，或称为子目录。树形结构目录如图所示。<br><img src="/imgs/OperationSystemAssets/1681536876440-40c0b853-cfe0-490a-9eb0-6391b340c7db.png" alt="image.png"></p>
+<ol start="2">
+<li>路径名和当前目录</li>
+</ol>
+<ol>
+<li>路径名(path name)<br>在树形结构目录中，从根目录到任何数据文件都只有一条唯一的通路。在该路径上，从树的根(即主目录)开始，把全部目录文件名与数据文件名依次地用“/”连接起来，即构成该数据文件唯一的<strong>路径名</strong>。 <br />2) 当前目录(Current Directory)<br>当一个文件系统含有许多级时，每访问一个文件，都要使用从树根开始，直到树叶(数据文件)为止的、包括各中间节点(目录)名的全路径名。 </li>
+</ol>
+<ol start="3">
+<li>目录操作</li>
+</ol>
+<p>(1)创建目录。<br />(2)删除目录。<br />① 不删除非空目录。<br />② 可删除非空目录。<br />(3) 改变目录。<br />(4)移动目录。<br />(5)链接(Link)操作。<br />(6)查找。</p>
+<h3 id="目录查询技术"><a href="#目录查询技术" class="headerlink" title="目录查询技术"></a>目录查询技术</h3><ol>
+<li>线性检索法</li>
+</ol>
+<p>线性检索法又称为顺序检索法。<br />(1)在单级目录中，利用用户提供的文件名，用顺序查找法直接从文件目录中找到指名文件的目录项。<br />(2)在树形目录中，用户提供的文件名是由多个文件分量名组成的路径名，此时需对多级目录进行查找。假定用户给定的文件路径名是 /usr/ast/mbox，则查找 /usr/ast/mbox文件的过程如图所示。<br><img src="/imgs/OperationSystemAssets/1681537256109-5fb7b5f9-cbaa-481a-9b9e-df52796f584b.png" alt="image.png"></p>
+<ol start="2">
+<li>Hash方法</li>
+</ol>
+<p>如果我们建立了一张Hash索引文件目录，便可利用Hash方法进行查询，即系统利用用户提供的文件名，并将它变换为文件目录的索引值，再利用该索引值到目录中去查找，这样将显著地提高检索速度。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/">← Next 文件的逻辑结构</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">文件管理 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-text">文件目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97%E5%92%8C%E7%B4%A2%E5%BC%95%E7%BB%93%E7%82%B9"><span class="toc-text">文件控制块和索引结点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-text">简单的文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E7%9B%AE%E5%BD%95-Tree-Structured-Directory"><span class="toc-text">树形结构目录(Tree-Structured Directory)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%9F%A5%E8%AF%A2%E6%8A%80%E6%9C%AF"><span class="toc-text">目录查询技术</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

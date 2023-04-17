@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>作业与作业调度 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>作业与作业调度</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h2 id="作业与作业调度"><a href="#作业与作业调度" class="headerlink" title="作业与作业调度"></a>作业与作业调度</h2><p>在多道批处理系统中，作业是用户提交给系统的一项相对独立的工作。操作员把用户提交的作业通过相应的输入设备输入到磁盘存储器，并保存在一个后备作业队列中。再由作业调度程序将其从外存调入内存。<br><img src="/imgs/OperationSystemAssets/1679500358524-c009fefa-078b-4f18-9798-7bbe5c9fc7ce.png" alt="image.png"></p>
+<ol>
+<li><p>作业和作业步<br />(1) 作业(Job)。<br />(2) 作业步(Job Step)。</p>
+</li>
+<li><p>作业控制块(Job Control Block，JCB)</p>
+</li>
+</ol>
+<p>（why)为了管理和调度作业，在多道批处理系统中，为每个作业设置了一个作业控制块JCB，它是作业在系统中存在的标志，其中保存了系统对作业进行管理和调度所需的全部信息。<br />(what)通常在JCB中包含的内容有：作业标识、用户名称、用户账号、作业类型(CPU 繁忙型、I/O 繁忙型、批量型、终端型)、作业状态、调度信息(优先级、作业运行时间)、资源需求(预计运行时间、要求内存大小等)、资源使用情况等。</p>
+<ol start="3">
+<li>作业运行的三个阶段和三种状态</li>
+</ol>
+<p>作业从进入系统到运行结束，通常需要经历收容、运行和完成三个阶段。相应的作业也就有“后备状态”、“运行状态”和“完成状态”。<br />(1) 收容阶段。用户à磁盘<br />(2) 运行阶段。磁盘à内存（就绪队列） <br />(3) 完成阶段。 结束回收</p>
+<p>收容阶段：将用户提交的作业输入到硬盘上，再为改作业建立JCB。<br />运行阶段：当作业被作业调度选中时，便为它分配必要的资源并建立进程，将其放入就绪队列。<br />完成阶段：当作业运行完成，或发生异常情况而提前结束时，作业便进入完成状态。“终止作业”程序将会回收给该作业的作业控制块和所有资源。</p>
+<h2 id="作业调度的主要任务"><a href="#作业调度的主要任务" class="headerlink" title="作业调度的主要任务"></a>作业调度的主要任务</h2><p>作业调度的主要任务是: 根据JCB中的信息，检查系统中的资源能否满足作业对资源的需求，以及按照一定的调度算法，从外存的后备队列中选取某些作业调入内存，并为它们创建进程、分配必要的资源。然后再将新创建的进程排在就绪队列上等待调度。</p>
+<p>把作业调度称为接纳调度(Admission Scheduling)。在每次执行作业调度时，都需做出以下两个决定。 <br />1. 接纳多少个作业<br />2. 接纳哪些作业</p>
+<ol>
+<li><p>先来先服务(first-come first-served，FCFS)调度算法<br /> 算法:  系统将按照作业到达的先后次序来进行调度，或者说它是优先考虑在系统中等待时间最长的作业。<br />适应情况:作业调度和进程调度。<br />过程：从后备作业队列中选择几个最先进入该队列的作业，将它们调入内存，为它们分配资源和创建进程。然后把它放入就绪队列。</p>
+</li>
+<li><p>短作业优先(short job first，SJF)的调度算法<br />why: 由于在实际情况中，短作业(进程)占有很大比例，为了能使它们能比长作业优先执行。<br />1) 短作业优先算法<br />算法： 是以作业的长短来计算优先级，作业越短，其优先级越高。<br />适应情况：作业调度和进程调度。<br />过程：将从外存的作业后备队列中选择若干个估计运行时间最短的作业，优先将它们调入内存运行。</p>
+</li>
+</ol>
+<p>SJF调度算法较之FCFS算法有了明显的改进，但仍然存在不容忽视的缺点：<br /> (1) 必须预知作业的运行时间。很难准确估计作业的运行时间。<br />(2) 对长作业非常不利，长作业的周转时间会明显地增长。更严重的是，该算法完全忽视作业的等待时间，可能使作业等待时间过长，出现饥饿现象。<br />(3) 在采用SJF算法时，人机无法实现交互。<br />(4) 未考虑作业的紧迫程度，故不能保证紧迫性作业能得到及时处理。</p>
+<h2 id="优先级调度算法"><a href="#优先级调度算法" class="headerlink" title="优先级调度算法"></a>优先级调度算法</h2><p>我们可以这样来看作业的优先级<br />对于先来先服务调度算法，作业的等待时间就是作业的优先级，等待时间越长，其优先级越高。<br />对于短作业优先调度算法，作业的长短就是作业的优先级，作业所需运行的时间越短，其优先级越高。<br />但上述两种优先级都不能反映作业的紧迫程度。</p>
+<h3 id="高响应比优先调度算法-Highest-Response-Ratio-Next，HRRN"><a href="#高响应比优先调度算法-Highest-Response-Ratio-Next，HRRN" class="headerlink" title="高响应比优先调度算法(Highest Response Ratio Next，HRRN )"></a>高响应比优先调度算法(Highest Response Ratio Next，HRRN )</h3><p>FCFS算法所考虑的只是作业的等待时间，而忽视了作业的运行时间。<br />SJF算法只考虑作业的运行时间，而忽视了作业的等待时间。<br />高响应比优先调度算法则是既考虑了作业的等待时间，又考虑作业运行时间的调度算法，因此既照顾了短作业，又不致使长作业的等待时间过长，从而改善了处理机调度的性能。</p>
+<p>高响应比优先算法是如何实现的呢? <br />解决思路：如果我们能为每个作业引入一个动态优先级，即优先级是可以改变的，令它随等待时间延长而增加，这将使长作业的优先级在等待期间不断地增加，等到足够的时间后，必然有机会获得处理机。该优先级的变化规律可描述为：</p>
+<p><img src="/imgs/OperationSystemAssets/1679500358569-fd80cb9c-204e-4046-a4de-c1f1edd8e3b6.png" alt="image.png"></p>
+<p>由于等待时间与服务时间之和就是系统对该作业的响应时间，故该优先级又相当于响应比RP。据此，优先级又可表示为：</p>
+<p><img src="/imgs/OperationSystemAssets/1679500579449-8455bf1e-7f6a-42db-bd6b-fdf6bccfb244.png" alt="image.png"></p>
+<ol>
+<li>如果作业的等待时间相同，则要求服务的时间愈短，其优先权越高。有利于短作业。</li>
+<li>当要求服务的时间相同时，作业的优先级决定于其等待时间，因而该算法又类似于先来先服务策略。</li>
+<li>对于长作业的优先级，可以随等待时间的增加而提高，当其等待时间足够长时，也可以获得处理机。</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E4%B8%AD%E6%96%AD%E6%9C%BA%E6%9E%84%E5%92%8C%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/">← Next 中断机构和中断处理程序</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%AE%89%E5%85%A8/">保护和安全 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E4%B8%8E%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6"><span class="toc-text">作业与作业调度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BB%BB%E5%8A%A1"><span class="toc-text">作业调度的主要任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-text">优先级调度算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95-Highest-Response-Ratio-Next%EF%BC%8CHRRN"><span class="toc-text">高响应比优先调度算法(Highest Response Ratio Next，HRRN )</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

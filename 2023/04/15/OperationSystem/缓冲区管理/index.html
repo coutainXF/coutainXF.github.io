@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>缓冲区管理 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>缓冲区管理</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.086Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="缓冲区管理"><a href="#缓冲区管理" class="headerlink" title="缓冲区管理"></a>缓冲区管理</h1><p>在现代操作系统中，几乎所有的I/O设备在与处理机交换数据时都用了缓冲区。缓冲区是一个存储区域，它可以由专门的硬件寄存器组成，但由于硬件的成本较高，容量也较小，一般仅用在对速度要求非常高的场合，如存储器管理中所用的联想存储器；设备控制器中用的数据缓冲区等。</p>
+<h2 id="缓冲的引入"><a href="#缓冲的引入" class="headerlink" title="缓冲的引入"></a>缓冲的引入</h2><p>(WHY)引入缓冲区的原因有很多，可归结为以下几点：<br />(1) 缓和CPU与I/O设备间速度不匹配的矛盾。<br />(2) 减少对CPU的中断频率，放宽对CPU中断响应时间的限制。<br />(3) 解决数据粒度不匹配的问题。<br />(4) 提高CPU和I/O设备之间的并行性。<br />利用缓冲寄存器实现缓冲：<br><img src="/imgs/OperationSystemAssets/1679720635299-04d59bab-a58f-4cc9-85b9-4a73c018d376.png" alt="image.png"></p>
+<h2 id="单缓冲区和双缓冲区"><a href="#单缓冲区和双缓冲区" class="headerlink" title="单缓冲区和双缓冲区"></a>单缓冲区和双缓冲区</h2><ol>
+<li>单缓冲区(Single Buffer)</li>
+</ol>
+<p>在单缓冲情况下，每当用户进程发出一I/O请求时，操作系统便在主存中为之分配一缓冲区，如图所示。<br><img src="/imgs/OperationSystemAssets/1679720635331-19ecf0e8-8326-4c50-a1f4-645a1be60937.png" alt="image.png"></p>
+<ol start="2">
+<li>双缓冲区(Double Buffer)</li>
+</ol>
+<p>问题：由于缓冲区是共享资源，生产者与消费者在使用缓冲区时必须互斥。如果消费者尚未取走缓冲区中的数据，即使生产者又生产出新的数据，也无法将它送入缓冲区，生产者等待。<br />策略：如果为生产者与消费者设置了两个缓冲区，便能解决这一问题。</p>
+<p><img src="/imgs/OperationSystemAssets/1679720635327-e076a291-2c5d-4af5-8f37-a189a10192fb.png" alt="image.png"></p>
+<p>如果在实现两台机器之间的通信时仅为它们配置了单缓冲，如图(a)所示，那么，它们之间在任一时刻都只能实现单方向的数据传输。例如，只允许把数据从A传送到B，或者从B传送到A，而绝不允许双方同时向对方发送数据。<br />为了实现双向数据传输，必须在两台机器中都设置两个缓冲区，一个用作发送缓冲区，另一个用作接收缓冲区，如图(b)所示。<br><img src="/imgs/OperationSystemAssets/1679720635323-37b48d05-5a15-43c0-80bc-3338462bb43b.png" alt="image.png"></p>
+<h2 id="环形缓冲区"><a href="#环形缓冲区" class="headerlink" title="环形缓冲区"></a>环形缓冲区</h2><ol>
+<li>环形缓冲区的组成</li>
+</ol>
+<p>(1) 多个缓冲区。在环形缓冲中包括多个缓冲区，其每个缓冲区的大小相同。作为输入的多缓冲区可分为三种类型：用于装输入数据的空缓冲区R、已装满数据的缓冲区G以及计算进程正在使用的现行工作缓冲区C，如图所示。<br><img src="/imgs/OperationSystemAssets/1679720635325-3dd8b08b-ba68-4648-a44c-fde7d34003eb.png" alt="image.png"></p>
+<ol start="2">
+<li>环形缓冲区的使用</li>
+</ol>
+<p>计算进程和输入进程可利用下述两个过程来使用形环缓冲区。<br />(1) Getbuf 过程。Nextg 指示的缓冲区改为现行的缓冲区； Nextg 下移一个缓冲区。<br />(2) Releasebuf 过程。</p>
+<ol start="3">
+<li>进程之间的同步问题</li>
+</ol>
+<p>使用输入循环缓冲，可使输入进程和计算进程并行执行。相应地，指针Nexti和指针Nextg将不断地沿着顺时针方向移动，这样就可能出现下述两种情况：<br />(1) Nexti指针追赶上Nextg指针。<br />(2) Nextg指针追赶上Nexti指针。 </p>
+<h2 id="缓冲池-Buffer-Pool"><a href="#缓冲池-Buffer-Pool" class="headerlink" title="缓冲池(Buffer Pool)"></a>缓冲池(Buffer Pool)</h2><ol>
+<li>缓冲池的组成</li>
+</ol>
+<p>缓冲池管理着多个缓冲区，每个缓冲区由用于标识和管理的缓冲首部以及用于存放数据的缓冲体两部分组成。<br />缓冲首部一般包括缓冲区号、设备号、设备上的数据块号、同步信号量以及队列链接指针等。<br />为了管理上的方便，一般将缓冲池中具有相同类型的缓冲区链接成一个队列，于是可形成以下三个队列：<br />(1) 空白缓冲队列emq。<br />(2) 输入队列inq。<br />(3) 输出队列outq。 </p>
+<ol start="2">
+<li>Getbuf过程和Putbuf过程</li>
+</ol>
+<p>在数据结构课程中，曾介绍过队列和对队列进行操作的两个过程，第一个是 Addbuf(type，number)过程。该过程用于将由参数number所指示的缓冲区B挂在type队列上。第二个是Takebuf(type)过程。它用于从type所指示的队列的队首摘下一个缓冲区。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">void Getbuf(type)<br>&#123;<br>  Wait(RS(type));      	//RS资源信号量<br>  Wait(MS(type));     	//MS互斥信号量<br>  B(number) =Takebuf(type);<br>  Signal(MS(type));<br>&#125;<br><br>void Putbuf(type, number)<br>&#123;<br>  Wait(MS(type));<br>  Addbuf(type, number);<br>  Signal(MS(type));<br>  Signal(RS(type));<br>&#125; <br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>缓冲区的工作方式</li>
+</ol>
+<p><img src="/imgs/OperationSystemAssets/1679720636290-2286ac25-9bb5-42b7-ad5b-4dc452fd4bb9.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%BB%8F%E5%85%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98/">← Next 经典进程的同步问题</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%81%94%E6%9C%BA%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0/">联机命令接口的实现 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E7%AE%A1%E7%90%86"><span class="toc-text">缓冲区管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-text">缓冲的引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%BC%93%E5%86%B2%E5%8C%BA%E5%92%8C%E5%8F%8C%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-text">单缓冲区和双缓冲区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%BD%A2%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-text">环形缓冲区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E6%B1%A0-Buffer-Pool"><span class="toc-text">缓冲池(Buffer Pool)</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

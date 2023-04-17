@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>设备驱动程序 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>设备驱动程序</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.086Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="设备驱动程序"><a href="#设备驱动程序" class="headerlink" title="设备驱动程序"></a>设备驱动程序</h1><p>设备处理程序通常又称为设备驱动程序，它是I/O系统的高层与设备控制器之间的通信程序，其主要任务是：<br />（1）接收上层软件发来的抽象I/O要求，如read或write命令，再把它转换为具体要求后，发送给设备控制器，启动设备去执行；<br />（2）反之，它也将由设备控制器发来的信号传送给上层软件。由于驱动程序与硬件密切相关，故通常应为每一类设备配置一种驱动程序。例如，打印机和显示器需要不同的驱动程序。</p>
+<h2 id="设备驱动程序概述"><a href="#设备驱动程序概述" class="headerlink" title="设备驱动程序概述"></a>设备驱动程序概述</h2><ol>
+<li>设备驱动程序的<strong>功能</strong>   </li>
+</ol>
+<p>(1) 接收由与设备无关的软件发来的命令和参数，并将命令中的抽象要求转换为与设备相关的低层操作序列。<br />(2) 检查用户I/O请求的合法性，了解I/O设备的工作状态，传递与I/O设备操作有关的参数，设置设备的工作方式。<br />(3) 发出I/O命令，如果设备空闲，便立即启动I/O设备，完成指定的I/O操作；如果设备忙碌，则将请求者的请求块挂在设备队列上等待。<br />(4) 及时响应由设备控制器发来的中断请求，并根据其中断类型，调用相应的中断处理程序进行处理。</p>
+<ol start="2">
+<li>设备驱动程序的<strong>特点</strong></li>
+</ol>
+<p>设备驱动程序属于低级的系统例程，它与一般的应用程序及系统程序之间有下述明显差异：<br />(1) 驱动程序是实现在与设备无关的软件和设备控制器之间通信和转换的程序，具体说，它将抽象的I/O请求转换成具体的I/O操作后传送给控制器。又把控制器中所记录的设备状态和I/O操作完成情况，及时地反映给请求I/O的进程。<br />(2) 驱动程序与设备控制器以及I/O设备的硬件特性紧密相关，对于不同类型的设备，应配置不同的驱动程序。但可以为相同的多个终端设置一个终端驱动程序。<br />(3) 驱动程序与I/O设备所采用的I/O控制方式紧密相关，<strong>常用的I/O控制方式是中断驱动和DMA方式</strong>。<br />(4) 由于驱动程序与硬件紧密相关，因而其中的一部分必须用汇编语言书写。目前有很多驱动程序的基本部分已经固化在ROM中。<br />(5) 驱动程序应允许可重入。一个正在运行的驱动程序常会在一次调用完成前被再次调用。</p>
+<ol start="3">
+<li>设备处理方式</li>
+</ol>
+<p>在不同的操作系统中，所采用的设备处理方式并不完全相同。</p>
+<h2 id="设备驱动程序的处理过程"><a href="#设备驱动程序的处理过程" class="headerlink" title="设备驱动程序的处理过程"></a>设备驱动程序的处理过程</h2><p>设备驱动程序的主要任务是启动指定设备，完成上层指定的I/O工作。但在启动之前，应先完成必要的准备工作，如检测设备状态是否为“忙”等。在完成所有的准备工作后，才向设备控制器发送一条启动命令。</p>
+<p>状态寄存器中的格式<br><img src="/imgs/OperationSystemAssets/1679719197388-99e94456-4194-44e6-b15f-10c5e97a3eb6.png" alt="image.png"></p>
+<h2 id="对I-O设备的控制方式"><a href="#对I-O设备的控制方式" class="headerlink" title="对I/O设备的控制方式"></a>对I/O设备的控制方式</h2><p>对设备的控制，早期是使用轮询的可编程I/O方式，<br />后来发展为使用中断的可编程I/O方式。</p>
+<ol>
+<li>使用轮询的可编程I/O方式</li>
+</ol>
+<p>处理机对I/O设备的控制采取轮询的可编程I/O方式，即在处理机向控制器发出一条I/O指令，启动输入设备输入数据时，要同时把状态寄存器中的忙/闲标志busy置为1，然后便不断地循环测试busy(称为轮询)。当busy=1时，表示输入机尚未输完一个字(符)，处理机应继续对该标志进行测试，直至busy=0，表明输入机已将输入数据送入控制器的数据寄存器中。于是处理机将数据寄存器中的数据取出，送入内存指定单元中，这样便完成了一个字(符)的I/O。接着再去启动读下一个数据，并置busy=1。</p>
+<p>程序I/O和中断驱动方式的流程<br><img src="/imgs/OperationSystemAssets/1679719197662-d7f52d6c-5760-4ad6-97de-c08ff4b18924.png" alt="image.png"></p>
+<ol start="2">
+<li>使用中断的可编程I/O方式</li>
+</ol>
+<p>当前，对I/O设备的控制，广泛采用中断的可编程I/O方式，即当某进程要启动某个I/O设备工作时，便由CPU向相应的设备控制器发出一条I/O命令，然后立即返回继续执行原来的任务。设备控制器于是按照该命令的要求去控制指定I/O设备。此时，CPU与I/O设备并行操作。</p>
+<ol start="3">
+<li>直接存储器访问方式</li>
+</ol>
+<ol>
+<li>接存储器访问方式的引入<br />虽然中断驱动I/O比程序I/O方式更有效，但它仍是以字(节)为单位进行I/O的。每当完成一个字(节)的I/O时，控制器便要向CPU请求一次中断。 例如，为了从磁盘中读出1KB的数据库，需要中断CPU 1K次。<br />为了进一步减少CPU对I/O的干预，引入直接存储器访问方式（上图(c)）</li>
+</ol>
+<p>DMA方式的特点是：<br />(1) 数据传输的基本单位是数据块，即在CPU与I/O设备之间，每次传送至少一个数据块。<br />(2) 所传送的数据是从设备直接送入内存的，或者相反。<br />(3) 仅在传送一个或多个数据块的开始和结束时，才需CPU干预，整块数据的传送是在控制器的控制下完成的。可见，DMA方式较之中断驱动方式又进一步提高了CPU与I/O设备的并行操作程度。</p>
+<ol start="2">
+<li>DMA控制器的组成<br />DMA控制器由三部分组成：<br />（1）主机与DMA控制器的接口；<br />（2）DMA控制器与块设备的接口；<br />（3）I/O控制逻辑。<br />下图示出了DMA控制器的组成。这里主要介绍主机与控制器之间的接口。<br><img src="/imgs/OperationSystemAssets/1679719197352-14dcb86f-126a-4788-b210-1069a8d5edf1.png" alt="image.png"></li>
+</ol>
+<ol start="3">
+<li>DMA工作过程<br />当CPU要从磁盘读入一数据块时，便向磁盘控制器发送一条读命令。该命令被送入命令寄存器CR中。同时，需要将本次要读入数据在内存的起始目标地址送入内存地址寄存器MAR中。 </li>
+</ol>
+<p>DMA方式的工作流程图<br><img src="/imgs/OperationSystemAssets/1679719197414-2862a768-581e-4b5a-8396-a28d27e9cf86.png" alt="image.png"></p>
+<ol start="4">
+<li>I/O通道控制方式</li>
+</ol>
+<ol>
+<li><p>I/O通道控制方式的引入<br />虽然DMA方式比起中断方式来已经显著地减少了CPU的干预，即已由以字(节)为单位的干预减少到以数据块为单位的干预，但CPU每发出一条I/O指令，也只能去读(或写)一个连续的数据块。而当我们需要一次去读多个数据块且将它们分别传送到不同的内存区域，或者相反时，则须由CPU分别发出多条I/O指令及进行多次中断处理才能完成。</p>
+</li>
+<li><p>通道程序<br />通道是通过执行通道程序并与设备控制器共同实现对I/O设备的控制的。通道程序是由一系列通道指令(或称为通道命令)所构成的。通道指令构成：<br />（1）操作码，如读、写、控制等操作；<br />（2）内存地址，读或写的内存首址；<br />（3）计数， 表示 本条指令读或写数据的字节数；<br />（4）通道程序结束为P（=1表示表示本条指令是最后一条指令）<br />（5）记录结束标志R，R=0表示同属一个记录，R=1表示处理记录的最后一条指令</p>
+</li>
+</ol>
+<p>下面示出了一个由六条通道指令所构成的简单的通道程序。该程序的功能是将内存中不同地址的数据写成多个记录。<br><img src="/imgs/OperationSystemAssets/1679719197206-385c3e7e-02a7-4ca2-ba73-3f3110713df3.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%AE%BE%E5%A4%87%E5%92%8C%E8%AE%BE%E5%A4%87%E6%8E%A7%E5%88%B6%E5%99%A8/">← Next 设备和设备控制器</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%AF%B7%E6%B1%82%E5%88%86%E6%AE%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F/">请求分段存储管理方式 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">设备驱动程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E6%A6%82%E8%BF%B0"><span class="toc-text">设备驱动程序概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B"><span class="toc-text">设备驱动程序的处理过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9I-O%E8%AE%BE%E5%A4%87%E7%9A%84%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="toc-text">对I&#x2F;O设备的控制方式</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>联机命令接口的实现 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>联机命令接口的实现</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.086Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="联机命令接口的实现"><a href="#联机命令接口的实现" class="headerlink" title="联机命令接口的实现"></a>联机命令接口的实现</h1><h2 id="键盘终端处理程序"><a href="#键盘终端处理程序" class="headerlink" title="键盘终端处理程序"></a>键盘终端处理程序</h2><p>在微机或终端上所配置的键盘终端处理程序应具有下述几方面的功能：① 接收用户从终端上打入的字符；② 字符缓冲，用于暂存所接收的字符；③ 回送显示；④ 屏幕编辑；⑤ 特殊字符处理。</p>
+<ol>
+<li>字符接收功能</li>
+</ol>
+<p>为了实现人机交互，键盘终端处理程序必须能够接收从终端输入的字符，并将之传送给用户程序。有两种方式可实现字符接收功能：<br />(1) 面向字符方式。<br />(2) 面向行方式。 </p>
+<ol start="2">
+<li>字符缓冲功能</li>
+</ol>
+<p>为了能暂存从终端键入的字符，以降低中断处理器的频率，在终端处理程序中，还必须具有字符缓冲功能。字符缓冲可采用以下两种方式之一：<br />(1) 专用缓冲方式。<br />(2) 公用缓冲方式。<br><img src="/imgs/OperationSystemAssets/1681556785713-83a4c21c-0cdc-444c-a736-0efe67d84ee4.png" alt="image.png"></p>
+<ol start="3">
+<li>回送显示</li>
+</ol>
+<p>回送显示(回显)是指每当用户从键盘输入一个字符后，终端处理程序便将该字符送往屏幕显示。有些终端的回显由硬件实现，其速度较快，但往往会引起麻烦。如当用户键入口令时，为防止口令被盗用，显然不该有回显。此外，用硬件实现回显也缺乏灵活性，因而近年来多改用软件来实现回显，这样可以做到在用户需要时才回显。 </p>
+<ol start="4">
+<li>屏幕编辑</li>
+</ol>
+<p>用户经常希望能对从键盘打入的数据(字符)进行修改，如删除(插入)一个或多个字符。为此，在终端处理程序中，还应能实现屏幕编辑功能，包括能提供若干个编辑键。常用的编辑键有：<br />(1) 删除字符键。<br />(2) 删除一行键。<br />(3) 插入键。<br />(4) 移动光标键。<br />(5) 屏幕上卷或下移键等。</p>
+<ol start="5">
+<li>特殊字符处理</li>
+</ol>
+<p>终端处理程序必须能对若干特殊字符进行及时处理，这些字符是：<br />(1) 中断字符。<br />(2) 停止上卷字符。<br />(3) 恢复上卷字符。 </p>
+<h2 id="MS-DOS解释程序"><a href="#MS-DOS解释程序" class="headerlink" title="MS-DOS解释程序"></a>MS-DOS解释程序</h2><ol>
+<li>命令解释程序的作用</li>
+</ol>
+<p>在联机操作方式下，终端处理程序把用户键入的信息送键盘缓冲区中保存。一旦用户键入回车符，便立即把控制权交给命令解释程序。显然，对于不同的命令，应有能完成特定功能的命令处理程序与之对应。可见，命令解释程序的主要作用是在屏幕上给出提示符，请用户键入命令，然后读入该命令，识别命令，再转到相应命令处理程序的入口地址，把控制权交给该处理程序去执行，并将处理结果送屏幕上显示。若用户键入的命令有错，而命令解释程序未能予以识别，或在执行中间出现问题时，则应显示出某一出错信息。</p>
+<ol start="2">
+<li>命令解释程序的组成</li>
+</ol>
+<p>MS-DOS是1981年由Microsoft公司开发的、 配置在微机上的OS。随着微机的发展，MS-DOS的版本也在不断升级，由开始时的1.0版本升级到1994年的6.X版本。在此期间，它已是事实上的16位微机OS的标准。我们以MS-DOS操作系统中的COMMAND.COM处理程序为例来说明命令解释程序的组成。它包括以下三部分：<br />(1) 常驻部分。<br />(2) 初始化部分。<br />(3) 暂存部分。 </p>
+<ol start="3">
+<li>命令解释程序的工作流程</li>
+</ol>
+<p>系统在接通电源或复位后，初始化部分获得控制权，对整个系统完成初始化工作，并自动执行AUTOEXEC.BAT文件，之后便把控制权交给暂存部分。暂存部分首先读入键盘缓冲区中的命令，判别其文件名、扩展名及驱动器名是否正确。若发现有错，在给出出错信息后返回；若无错，再识别该命令。<br><img src="/imgs/OperationSystemAssets/1681557196617-e7819460-3048-4700-ba6e-465e0368f98b.png" alt="image.png"></p>
+<h2 id="Shell解释程序"><a href="#Shell解释程序" class="headerlink" title="Shell解释程序"></a>Shell解释程序</h2><ol>
+<li>Shell命令的特点</li>
+</ol>
+<p>前面我们介绍了MS-DOS的命令解释程序，它非常简单。而Shell命令解释程序就复杂得多，这主要是因为Shell命令的类型多而复杂所致。主要表现如下：<br />(1) 一条命令行中含有多个命令。<br />(2) 具有不同的分隔符。</p>
+<ol start="2">
+<li>二叉树结构的命令行树</li>
+</ol>
+<ol>
+<li>命令表型结点<br />Shell命令解释程序按命令行语句的结构顺序进行检查，每当遇到“；”及“&amp;”分隔符时便为之建立一个命令表型结点，将分隔符左面部分构成该结点的左子树，右面部分构成右子树。例如下面的命令行所构成的命令树如图所示：<br />Command 1；Command 2；&amp; Command 3<br><img src="/imgs/OperationSystemAssets/1681557278553-7253c57a-adee-4163-bccc-a9466c3d83e2.png" alt="image.png"></li>
+<li>管道文件型结点<br />当Shell命令解释程序遇到管道算符“Ι”时，先为之建立一个管道文件型结点，再将分隔符左面部分构成该结点的左子树，右面部分构成右子树。例如对下面的命令行所构成的命令树如图所示：<br />Command 1 Ι Command 2 Ι  Command 3<br><img src="/imgs/OperationSystemAssets/1681557334222-bedd42be-8ca4-41ab-aa68-07471face468.png" alt="image.png"></li>
+<li>简单命令型结点<br />对于简单命令，在命令行中仅有一条命令，它是属于可以立即执行的命令，系统无需为它建立二叉树结构的命令行树。当命令解释程序读入键盘缓冲区中的命令后，若判定它是简单命令，再进一步确定是否是内部命令。 </li>
+</ol>
+<ol start="3">
+<li>Linux命令解释程序的工作流程</li>
+</ol>
+<p>在Linux系统中，系统初启后，内核为每个终端用户建立一个进程，去执行Shell解释程序。<br><img src="/imgs/OperationSystemAssets/1681557457757-df789e91-711a-40bf-b6c5-7c06703414ac.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%BC%93%E5%86%B2%E5%8C%BA%E7%AE%A1%E7%90%86/">← Next 缓冲区管理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/">虚拟存储器 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%94%E6%9C%BA%E5%91%BD%E4%BB%A4%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">联机命令接口的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E7%BB%88%E7%AB%AF%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-text">键盘终端处理程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MS-DOS%E8%A7%A3%E9%87%8A%E7%A8%8B%E5%BA%8F"><span class="toc-text">MS-DOS解释程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell%E8%A7%A3%E9%87%8A%E7%A8%8B%E5%BA%8F"><span class="toc-text">Shell解释程序</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

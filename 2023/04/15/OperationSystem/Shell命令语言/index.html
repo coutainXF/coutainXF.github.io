@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Shell命令语言 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Shell命令语言</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="Shell命令语言"><a href="#Shell命令语言" class="headerlink" title="Shell命令语言"></a>Shell命令语言</h1><h2 id="简单命令简介"><a href="#简单命令简介" class="headerlink" title="简单命令简介"></a>简单命令简介</h2><p>在Shell命令语言中提供了许多不同形式的命令，并允许在一条命令行中有多个命令。如果在一条命令行中仅有一个命令，就把它称为简单命令。实际上，一条简单命令便是一个能完成某种功能的目标程序的名字。</p>
+<ol>
+<li>简单命令的格式</li>
+</ol>
+<p>简单命令的格式比较自由，包括命令名字符的个数及用于分隔命令名、选项、各参数间的空格数等，都是任意的。在UNIX和Linux系统中都规定，命令由小写字母构成，命令可带有参数表，用于给出执行命令时的附加信息，每个参数是一个单词。命令名与参数表之间还可使用一种称为选项的自变量，用减号开始，后跟一个或多个字母、数字。一条命令可有多个选项，用于改变命令执行动作的类型。 </p>
+<ol start="2">
+<li>简单命令的分类</li>
+</ol>
+<p>在Linux或UNIX系统中，一般把简单命令分为两类：<br />(1) 系统提供的标准命令，包括调用各种语言处理程序、实用程序等，其数量随系统版本的不同而有所差异，系统管理员可以增添新的系统标准命令。<br />(2) 用户自定义的命令。系统管理员和用户自行定义的命令的执行方式与系统标准命令的执行方式相同。<br />对于简单命令，还可根据命令是否包含在Shell内部，即<strong>是否常驻内存</strong>，而分为<strong>内部命令和外部命令</strong>两类：<br />(1) 内部命令。Shell中少数标准命令，如改变工作目录命令cd等，是包含在Shell内部的，作为内部命令常驻内存。<br />(2) 外部命令。Shell中大多数的命令如拷贝命令cp和移动命令rm等，均保存于外存(盘)上，即每个命令是存在于文件系统中某个目录下的单独程序。这样做的好处在于，可以很大程度地节省内存空间。</p>
+<ol start="3">
+<li>Shell的种类</li>
+</ol>
+<p>现在流行的Shell有多种类型，下面简单介绍几种流行的Shell：<br />(1) Bourne Shell。<br />(2) C Shell。C Shell是一种比B Shell更适于编程的Shell，是标准BSD(Berkeley System Distribution)命令解释。<br />(3) Korn Shell。Korn Shell集合了C Shell和B Shell的优点，并且和B Shell完全兼容，它的名字是K Sh。 </p>
+<h2 id="简单命令的类型"><a href="#简单命令的类型" class="headerlink" title="简单命令的类型"></a>简单命令的类型</h2><p>根据简单命令功能的不同，可将它们分成如下五大类： </p>
+<ol>
+<li>进入与退出系统</li>
+</ol>
+<p>(1) 进入系统，也称为注册。<br />(2) 退出系统。</p>
+<ol start="2">
+<li>文件操作命令</li>
+</ol>
+<p>(1) 显示文件内容命令cat。<br />(2) 复制文件副本的命令cp。<br />(3) 对已有文件改名的命令mv。<br />(4) 撤消文件的命令rm。<br />(5) 确定文件类型的命令file。</p>
+<ol start="3">
+<li>目录操作命令</li>
+</ol>
+<p>(1) 建立目录的命令mkdir(简称md)。<br />(2) 撤消目录的命令rmdir(简称rd)。<br />(3) 改变工作目录的命令cd。 </p>
+<ol start="4">
+<li>系统询问命令</li>
+</ol>
+<p>(1) 访问当前日期和时间命令date。<br />(2) 询问系统当前用户的命令who。<br />(3) 显示当前目录路径名的命令pwd。 </p>
+<ol start="5">
+<li>其他常用命令</li>
+</ol>
+<p>输入输出重定向命令<br />管道连接命令<br />通信命令<br />后台命令</p>
+<h2 id="重定向与管道命令"><a href="#重定向与管道命令" class="headerlink" title="重定向与管道命令"></a>重定向与管道命令</h2><ol>
+<li>重定向命令</li>
+</ol>
+<p>在Linux系统中，由系统定义了三个文件。其中，有两个分别称为<strong>标准输入</strong>和<strong>标准输出</strong>的文件，各对应于终端键盘输入和终端屏幕输出。它们是在用户注册时，由Login程序打开的。这样，在用户程序执行时，隐含的标准输入是键盘输入，标准输出即屏幕(输出)显示。但用户程序中可能不要求从键盘输入，而是从某个指定文件上读取信息供程序使用；同样，用户可能希望把程序执行时所产生的结果数据写到某个指定文件中而非屏幕上。 </p>
+<ol start="2">
+<li>管道命令</li>
+</ol>
+<p>人们又进一步把重定向思想加以扩充，用符号“|”来连接两条命令，使其前一条命令的输出作为后一条命令的输入。</p>
+<h2 id="通信命令"><a href="#通信命令" class="headerlink" title="通信命令"></a>通信命令</h2><ol>
+<li>信箱通信命令mail</li>
+</ol>
+<p>信箱通信是作为在UNIX的各用户之间进行非交互式通信的工具。发信者把要发送的消息写成信件，“邮寄”到对方的信箱中。</p>
+<ol start="2">
+<li>对话通信命令write</li>
+</ol>
+<p>用这条命令可以使用户与当前在系统中的其他用户直接进行联机通信。 </p>
+<ol start="3">
+<li>允许或拒绝接收消息的mesg命令</li>
+</ol>
+<p>其格式为：<br />mesg[-n][-y]</p>
+<h2 id="后台命令"><a href="#后台命令" class="headerlink" title="后台命令"></a>后台命令</h2><p>有些命令需要执行很长的时间，这样，当用户键入该命令后，要一直等到该命令执行完毕，方可再键入下一条命令。这时用户自然会想到应该利用这段时间去做些别的事。UNIX系统提供了这种机制，用户可以在这种命令后面再加上“&amp;”号，以告诉Shell将该命令放在后台执行，以便用户能在前台继续键入其它命令，完成其它工作。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E2%80%9C%E6%8A%96%E5%8A%A8%E2%80%9D%E4%B8%8E%E5%B7%A5%E4%BD%9C%E9%9B%86/">← Next “抖动”与工作集</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/Unix%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/">Unix系统调用 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shell%E5%91%BD%E4%BB%A4%E8%AF%AD%E8%A8%80"><span class="toc-text">Shell命令语言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B"><span class="toc-text">简单命令简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">简单命令的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E4%B8%8E%E7%AE%A1%E9%81%93%E5%91%BD%E4%BB%A4"><span class="toc-text">重定向与管道命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E5%91%BD%E4%BB%A4"><span class="toc-text">通信命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E5%91%BD%E4%BB%A4"><span class="toc-text">后台命令</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

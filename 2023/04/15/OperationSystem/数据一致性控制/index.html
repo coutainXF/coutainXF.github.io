@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>数据一致性控制 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>数据一致性控制</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="数据一致性控制"><a href="#数据一致性控制" class="headerlink" title="数据一致性控制"></a>数据一致性控制</h1><p>在实际应用中，经常会在多个文件中都含有同一个数据。所谓<strong>数据一致性问题</strong>是指，保存在多个文件中的同一数据，在任何情况下都必需能保证相同。 </p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><ol>
+<li>事务的定义</li>
+</ol>
+<p><strong>事务</strong>是<strong>用于访问和修改各种数据项的一个程序单位</strong>。事务也可以被看做是一系列相关读和写操作。 </p>
+<ol start="2">
+<li>事务记录(Transaction Record)</li>
+</ol>
+<p>为了实现上述的原子修改，通常须借助于称为<strong>事务记录</strong>的数据结构来实现。这些数据结构被放在一个非常可靠的存储器(又称稳定存储器)中，<strong>用来记录在事务运行时数据项修改的全部信息</strong>，故又称为运行记录(Log)。<br><img src="/imgs/OperationSystemAssets/1681552492196-93383da8-fc15-4295-ae1f-9f6f00128470.png" alt="image.png"></p>
+<ol start="3">
+<li>恢复算法</li>
+</ol>
+<p>利用事务记录表系统能处理任何故障而不致使故障造成非易失性存储器中信息的丢失。恢复算法可利用以下两个过程：<br />(1) **undo<Ti>**。该过程把所有被事务Ti修改过的数据恢复为修改前的值。<br />(2) **redo<Ti>**。该过程能把所有被事务Ti修改过的数据设置为新值。</p>
+<h2 id="检查点"><a href="#检查点" class="headerlink" title="检查点"></a>检查点</h2><ol>
+<li>检查点（Check Points）的作用</li>
+</ol>
+<p>如前所述，当系统发生故障时，必须去检查整个Log表，以确定哪些事务需要利用redo<Ti>过程去设置新值，而哪些事务又需要利用undo<Ti>过程去恢复数据的旧值。<br /><strong>问题：</strong>由于在系统中可能存在着许多并发执行的事务，因而在事务记录表中就会有许多事务执行操作的记录。随着时间的推移，记录的数据也会愈来愈多。因此，<strong>一旦系统发生故障，在事务记录表中的记录清理起来就非常费时</strong>。</p>
+<ol start="2">
+<li>新的恢复算法</li>
+</ol>
+<p>在引入检查点后，可以大大减少恢复处理的开销。因为在发生故障后，并不需要对事务记录表中的所有事务记录进行处理，而只需对最后一个检查点之后的事务记录进行处理。因此，恢复例程首先查找事务记录表，确定在最近检查点以前开始执行的最后的事务Ti。在找到这样的事务后，再返回去搜索事务记录表，便可找到第一个检查点记录，恢复例程便从该检查点开始返回搜索各个事务的记录，并利用redo和undo过程对它们进行处理。</p>
+<h2 id="并发控制（Concurrent-Control）"><a href="#并发控制（Concurrent-Control）" class="headerlink" title="并发控制（Concurrent Control）"></a>并发控制（Concurrent Control）</h2><ol>
+<li>利用互斥锁实现“顺序性”</li>
+</ol>
+<p><strong>思路</strong>：实现顺序性的一种最简单的方法，是设置一种用于实现互斥的锁，简称为互斥锁(Exclusive Lock)。<br /><strong>方法</strong>：在利用互斥锁实现顺序性时，应为每一个共享对象设置一把互斥锁。当某一事务Ti要去访问某对象时，应先获得该对象的互斥锁。若成功，便用该锁将该对象锁住，于是事务T便可对该对象执行读或写操作；而其它事务由于未能获得该锁，因而不能访问该对象。如果Ti需要对一批对象进行访问，则为了保证事务操作的原子性，Ti应先获得这一批对象的互斥锁，以将这些对象全部锁住。 </p>
+<ol start="2">
+<li>利用互斥锁和共享锁实现顺序性</li>
+</ol>
+<p><strong>问题：</strong>互斥锁存在着效率不高的问题。因为一个共享文件虽然只允许一个事务去写，但却允许多个事务同时去读；而在利用互斥锁来锁住文件后，则只允许一个事务去读。<br /><strong>思路：</strong>为了提高运行效率而又引入了另一种形式的锁——共享锁(Shared Lock)。<br />共享锁与互斥锁的<strong>区别</strong>在于：互斥锁仅允许一个事务对相应对象执行读或写操作，而共享锁则允许多个事务对相应对象执行读操作，但不允许其中任何一个事务对对象执行写操作。</p>
+<h2 id="重复数据的数据一致性问题"><a href="#重复数据的数据一致性问题" class="headerlink" title="重复数据的数据一致性问题"></a>重复数据的数据一致性问题</h2><ol>
+<li>重复文件的一致性</li>
+</ol>
+<p><strong>问题</strong>：如何保证重复文件的一致性问题。<br /><strong>方法</strong>：<br />（1）每个目录项中含有一个ASCII码的文件名和一个索引结点号，后者指向一个索引结点。<br />（2）当有重复文件时，一个目录项可由一个文件名和若干个索引结点号组成，每个索引结点号都是指向各自的索引结点。图8-18示出了UNIX类型的目录和具有重复文件的目录。<br><img src="/imgs/OperationSystemAssets/1681553040876-37f3476e-59a6-48f4-8c56-478fc1783af8.png" alt="image.png"></p>
+<ol start="2">
+<li>链接数一致性检查</li>
+</ol>
+<p>在UNIX类型的文件目录中，其每个目录项内都含有一个索引结点号，用于指向该文件的索引结点。对于一个共享文件，其索引结点号会在目录中出现多次。查找系统所有目录，计算file对应的索引号个数，称为链接计数，记为Scount。<br />Scount&gt;count，用户不使用时会让count减1，当count为0，系统将此文件删除， 并释放其索引结点及文件所占用的盘块；会导致 剩余用户不能共享文件。让count=Scount。 <br />Scount&lt;count，不会删除文件，浪费空间。 让count=Scount。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87%E5%92%8C%E4%BD%9C%E7%94%A8/">← Next 操作系统的目标和作用</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4/">文件保护 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%8E%A7%E5%88%B6"><span class="toc-text">数据一致性控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-text">事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%82%B9"><span class="toc-text">检查点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%EF%BC%88Concurrent-Control%EF%BC%89"><span class="toc-text">并发控制（Concurrent Control）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-text">重复数据的数据一致性问题</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

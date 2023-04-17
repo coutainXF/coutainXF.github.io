@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>虚拟存储器概述 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>虚拟存储器概述</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.086Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="虚拟存储器概述"><a href="#虚拟存储器概述" class="headerlink" title="虚拟存储器概述"></a>虚拟存储器概述</h1><p>问题：第四章所介绍的各种存储器管理方式有一个共同的特点，即它们都要求将一个作业全部装入内存后方能运行。于是，出现了下面这样两种情况：</p>
+<p>(1) 有的作业很大，其所要求的内存空间超过了内存总容量，作业不能全部被装入内存，致使该作业无法运行；<br />(2) 有大量作业要求运行，但由于内存容量不足以容纳所有这些作业，只能将少数作业装入内存让它们先运行，而将其它大量的作业留在外存上等待。</p>
+<h2 id="常规存储管理方式的特征和局部性原理"><a href="#常规存储管理方式的特征和局部性原理" class="headerlink" title="常规存储管理方式的特征和局部性原理"></a>常规存储管理方式的特征和局部性原理</h2><ol>
+<li><strong>常规存储器管理方式的特征</strong></li>
+</ol>
+<p>(1) 一次性：作业一次性装入内存。（空间维度）<br />导致小内存无法运行大作业，以及无法进一步提高系统的多道程序度。事实上，许多作业在运行时，并非需要用到全部程序和数据，如果一次性装入全部的程序和数据，显然是对内存空间的浪费。</p>
+<p>(2) 驻留性：作业一直驻留在内存。（时间维度）<br />其中任何部分都不会被换出，直至作业运行结束。<br />尽管有时它们会因I/O等原因而被阻塞，可能处于长期等待状态，或者有的程序模块在运行过一次后就不再需要运行了，它们都仍将驻留在内存中，继续占用宝贵的内存资源。</p>
+<ol start="2">
+<li><strong>局部性原理</strong></li>
+</ol>
+<p>程序运行时存在的局部性现象，很早就已被人发现，但直到1968年，P.Denning才真正指出：程序在执行时将呈现出局部性规律，即在一较短的时间内，程序的执行仅局限于某个部分，相应地，它所访问的存储空间也局限于某个区域。</p>
+<p>局限性表示在下面两个方面：<br /><strong>(1) 时间局限性。</strong><br />一条指令被执行，不久以后该指令可能再次执行；一条数据被访问，不久以后该指令可能再次访问。 <strong>（循环结构）</strong><br />**(2) 空间局限性。 <strong><br />一旦程序访问了某个存储单元，在不久之后，其附近的存储单元也将被访问。</strong>（顺序结构） **</p>
+<ol start="3">
+<li><strong>虚拟存储器的基本工作情况</strong></li>
+</ol>
+<p>策略：基于局部性原理可知，应用程序在运行之前没有必要将之全部装入内存，而仅须将那些当前要运行的少数页面或段先装入内存便可运行，其余部分暂留在盘上。 <br />虚拟存储器可以解决前面所提到的问题。-&gt;研究</p>
+<h2 id="虚拟存储器的定义和特征"><a href="#虚拟存储器的定义和特征" class="headerlink" title="虚拟存储器的定义和特征"></a>虚拟存储器的定义和特征</h2><ol>
+<li>虚拟存储器的定义</li>
+</ol>
+<p>当用户看到自己的程序能在系统中正常运行时，他会认为，<strong>该系统所具有的内存容量一定比自己的程序大，或者说，用户所感觉到的内存容量会比实际内存容量大得多</strong>。但用户所看到的大容量只是一种错觉，是<strong>虚</strong>的，故人们把这样的存储器称为虚拟存储器。</p>
+<ol start="2">
+<li>虚拟存储器的特征</li>
+</ol>
+<p>与传统的存储器管理方式比较，虚拟存储器具有以下三个重要特征：<br />(1) 多次性：分多次调入内存。<br />指的是一个作业中的程序和数据无需在作业运行时一次性地全部装入内存，而是允许被分成多次调入内存运行，即只需将当前要运行的那部分程序和数据装入内存即可开始运行。<br />多次性是虚拟存储器最重要的特征。</p>
+<p>(2) 对换性：允许作业的程序和数据在运行过程中换进换出。 <br />是指一个作业中的程序和数据，无须在作业运行时一直常驻内存，而是允许在作业的运行过程中进行换进、换出，在程序运行期间，允许将那些暂不使用的代码和数据从内存调至外存**(换出)<strong>，待以后需要时再将它们从外存调至内存</strong>(换进)**。</p>
+<p>(3) 虚拟性：在逻辑上扩充了内存，使得用户看到比时间内存容量大的内存容量。 </p>
+<h2 id="虚拟存储器的实现方法"><a href="#虚拟存储器的实现方法" class="headerlink" title="虚拟存储器的实现方法"></a>虚拟存储器的实现方法</h2><ol>
+<li>分页请求系统</li>
+</ol>
+<ol>
+<li><p>硬件支持<br />主要的硬件支持有：<br />(1) 请求分页的页表机制。<br />(2) 缺页中断机构。<br />(3) 地址变换机构。</p>
+</li>
+<li><p>实现请求分页的软件<br /> </p>
+</li>
+</ol>
+<ol start="2">
+<li>请求分段系统</li>
+</ol>
+<ol>
+<li><p>硬件支持<br />主要的硬件支持有：<br />(1) 请求分段的段表机制。<br />(2) 缺页中断机构。<br />(3) 地址变换机构。</p>
+</li>
+<li><p>软件支持</p>
+</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/">← Next 虚拟存储器</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="toc-text">虚拟存储器概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F%E7%9A%84%E7%89%B9%E5%BE%81%E5%92%8C%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86"><span class="toc-text">常规存储管理方式的特征和局部性原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%89%B9%E5%BE%81"><span class="toc-text">虚拟存储器的定义和特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-text">虚拟存储器的实现方法</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

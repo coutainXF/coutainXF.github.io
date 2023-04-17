@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>处理机调度的层次和调度算法的目标 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>处理机调度的层次和调度算法的目标</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="处理机调度的层次和调度算法的目标"><a href="#处理机调度的层次和调度算法的目标" class="headerlink" title="处理机调度的层次和调度算法的目标"></a>处理机调度的层次和调度算法的目标</h1><p>(1)  什么是调度？<br />实质是一种资源分配，处理机调度是对处理机资源进行分配。<br />(2)  处理机调度算法是？<br />指根据处理机分配策略所规定的处理机分配算法。<br />(3)  处理机调度的层次？</p>
+<ol>
+<li>高级调度(High Level Scheduling)</li>
+</ol>
+<p>高级调度又称作作业调度/长程调度，它的调度对象是作业。主要功能是根据某种算法，将外存上处于后备队列中的哪几个作业调入内存，为其创建进程、分配必要的资源，将其置入就绪队列。</p>
+<ol start="2">
+<li>低级调度(Low Level Scheduling)</li>
+</ol>
+<p>低级调度又被称作进程调度或短程调度，它的调度对象是进程。主要功能为：根据某种算法，决定将就绪队列中的哪个进程应获得处理机。进程调度是最基本的一种调度。</p>
+<ol start="3">
+<li>中级调度(Intermediate Scheduling)</li>
+</ol>
+<p>中级调度又称为内存调度，引入中级调度的目的是：提高内存利用率和系统吞吐量。将那些暂时不能运行的进程，调到外存等待，此时进程的状态为挂起/就绪驻外存状态。<br />当它们再次具备运行条件且内存又稍有空闲时，由中级调度来决定，把外存上的那些已具备运行条件的就绪进程再重新调入内存。</p>
+<h2 id="处理机调度算法的目标"><a href="#处理机调度算法的目标" class="headerlink" title="处理机调度算法的目标"></a>处理机调度算法的目标</h2><p>(1) 资源利用率。为提高系统的资源利用率，应使系统中的处理机和其它所有资源都尽可能地保持忙碌状态，其中最重要的处理机利用率可用以下方法计算：<br><img src="/imgs/OperationSystemAssets/1679499901752-70f5e18d-26b9-4a0e-9943-11db3ea62c90.png" alt="image.png"><br>(2) 公平性。公平性是指应使诸进程都获得合理的CPU 时间，不会发生进程饥饿现象。公平性是相对的，对相同类型的进程应获得相同的服务；但对于不同类型的进程，由于其紧急程度或重要性的不同，则应提供不同的服务。</p>
+<p>(3) 平衡性。由于在系统中可能具有多种类型的进程，有的属于计算型作业，有的属于I/O型。为使系统中的CPU和各种外部设备都能经常处于忙碌状态，调度算法应尽可能保持系统资源使用的平衡性。</p>
+<p>(4) 策略强制执行。对所制订的策略其中包括安全策略，只要需要，就必须予以准确地执行，即使会造成某些工作的延迟也要执行。</p>
+<h2 id="批处理系统的目标"><a href="#批处理系统的目标" class="headerlink" title="批处理系统的目标"></a>批处理系统的目标</h2><p>(1) 平均周转时间短。 <br />平均周转时间:<br><img src="/imgs/OperationSystemAssets/1679499901757-37dfb923-c144-4f47-966e-542b8e78f572.png" alt="image.png"><br>平均带权周转时间:<br><img src="/imgs/OperationSystemAssets/1679499901756-2c9db624-ace3-4a9e-95ff-7d5a5a494b0c.png" alt="image.png"><br>(2) 系统吞吐量高。由于吞吐量是指在单位时间内系统所完成的作业数，因而它与批处理作业的平均长度有关。<br />（如果单纯是为了获得高的系统吞吐量，就应尽量多地选择短作业运行。）<br />(3) 处理机利用率高。对于大、中型计算机，CPU价格十分昂贵，致使处理机的利用率成为衡量系统性能的十分重要的指标；而调度方式和算法又对处理机的利用率起着十分重要的作用。<br />（如果单纯是为使处理机利用率高，应尽量多地选择计算量大的作业运行。）</p>
+<h2 id="分时系统的目标"><a href="#分时系统的目标" class="headerlink" title="分时系统的目标"></a>分时系统的目标</h2><p>(1) 响应时间快。<br />(2) 均衡性。 </p>
+<h2 id="实时系统的目标"><a href="#实时系统的目标" class="headerlink" title="实时系统的目标"></a>实时系统的目标</h2><p>截止时间的保证。<br />可预测性。 </p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E5%92%8C%E6%AD%BB%E9%94%81/">← Next 处理机调度和死锁</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%A4%96%E5%AD%98%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F/">外存的组织方式 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E7%9A%84%E5%B1%82%E6%AC%A1%E5%92%8C%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">处理机调度的层次和调度算法的目标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">处理机调度算法的目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">批处理系统的目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%97%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">分时系统的目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">实时系统的目标</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

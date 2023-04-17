@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>分段存储管理方式 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>分段存储管理方式</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.071Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><p>存储管理方式随着OS的发展也在不断地发展。当OS由单道向多道发展时，存储管理方式便由单一连续分配发展为固定分区分配。 </p>
+<h1 id="分段存储管理方式的引入"><a href="#分段存储管理方式的引入" class="headerlink" title="分段存储管理方式的引入"></a>分段存储管理方式的引入</h1><ol>
+<li>方便编程</li>
+</ol>
+<p>通常，用户把自己的作业按照逻辑关系划分为若干个段，每个段都从0开始编址，并有自己的名字和长度。因此，程序员们都迫切地需要访问的逻辑地址是由段名(段号)和段内偏移量(段内地址)决定的，这不仅可以方便程序员编程，也可使程序非常直观，更具可读性。例如，下述的两条指令便使用段名和段内地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">LOAD 1，[A] | &lt;D&gt;;<br>STORE 1，[B] | &lt;C&gt;;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>信息共享</li>
+</ol>
+<p>在实现对程序和数据的共享时，是以信息的逻辑单位为基础的。比如，为了共享某个过程、函数或文件。<strong>分页系统中的“页”只是存放信息的物理单位(块)，并无完整的逻辑意义</strong>，这样，一个可被共享的过程往往可能需要占用数十个页面，这为实现共享增加了困难。 </p>
+<ol start="3">
+<li>信息保护</li>
+</ol>
+<p>信息保护同样是以信息的逻辑单位为基础的，而且经常是以一个过程、函数或文件为基本单位进行保护的。 </p>
+<ol start="4">
+<li>动态增长</li>
+</ol>
+<p>在实际应用中，往往存在着一些段，尤其是数据段，在它们的使用过程中，由于数据量的不断增加，而使<strong>数据段动态增长</strong>，相应地它<strong>所需要的存储空间也会动态增加</strong>。然而，<strong>对于数据段究竟会增长到多大，事先又很难确切地知道</strong>。对此，很难采取预先多分配的方法进行解决。</p>
+<ol start="5">
+<li>动态链接</li>
+</ol>
+<p>在4.2.2节中我们已对运行时动态链接做了介绍。<strong>为了提高内存的利用率，系统只将真正要运行的目标程序装入内存，也就是说，动态链接在作业运行之前，并不是把所有的目标程序段都链接起来。</strong>当程序要运行时，首先将主程序和它立即需要用到的目标程序装入内存，即启动运行。而在程序运行过程中，当需要调用某个目标程序时，才将该段(目标程序)调入内存并进行链接。 </p>
+<h2 id="分段系统的基本原理"><a href="#分段系统的基本原理" class="headerlink" title="分段系统的基本原理"></a>分段系统的基本原理</h2><ol>
+<li>分段</li>
+</ol>
+<p>在分段存储管理方式中，作业的地址空间被划分为若干个段，每个段定义了一组逻辑信息。例如，有主程序段MAIN、子程序段X、数据段D及栈段S等，如图所示。<br><img src="/imgs/OperationSystemAssets/1679627248625-e09f1ba0-160e-4b34-920b-0e397def9647.png" alt="image.png"><br> 分段地址中的地址具有如下结构：<br><img src="/imgs/OperationSystemAssets/1679627248453-de900cb9-4edf-4ab0-a1d0-4aff1ce3014c.png" alt="image.png"></p>
+<ol start="2">
+<li>段表</li>
+</ol>
+<p>在前面所介绍的动态分区分配方式中，系统为整个进程分配一个连续的内存空间。而在分段式存储管理系统中，则是为每个分段分配一个连续的分区。进程中的各个段，可以离散地装入内存中不同的分区中。为保证程序能正常运行，就必须能从物理内存中找出每个逻辑段所对应的位置。<br />*（使用段表实现地址映射）</p>
+<ol start="3">
+<li>地址变换机构</li>
+</ol>
+<p>为了实现进程从逻辑地址到物理地址的变换功能，在系统中设置了段表寄存器，用于存放段表始址和段表长度TL。在进行地址变换时，系统将逻辑地址中的段号与段表长度TL进行比较。若S&gt;TL，表示段号太大，是访问越界，于是产生越界中断信号。若未越界，则根据段表的始址和该段的段号，计算出该段对应段表项的位置，从中读出该段在内存的起始地址。然后，再检查段内地址d是否超过该段的段长SL。若超过，即d&gt;SL，同样发出越界中断信号。若未越界，则将该段的基址d与段内地址相加，即可得到要访问的内存物理地址。图4-20示出了分段系统的地址变换过程。<br><img src="/imgs/OperationSystemAssets/1679627248627-17c87e61-f0e3-4854-baf0-776d36cf0e14.png" alt="image.png"></p>
+<h2 id="分页和分段的区别"><a href="#分页和分段的区别" class="headerlink" title="分页和分段的区别"></a>分页和分段的区别</h2><ol>
+<li>目的</li>
+</ol>
+<p>页是信息的物理单位，分页是为实现离散分配方式，以消减内存的外零头，提高内存的利用率。或者说，分页是出于系统管理的需要而不是用户需要。<br />段是信息的逻辑单位，它含有一组其意义相对完整的信息。分段的目的是为了更好地满足用户的需要。</p>
+<ol start="2">
+<li>长度</li>
+</ol>
+<p>页的大小固定而且由系统决定，由系统把逻辑地址划分为页号和页内地址两部分，是由机器硬件实现的，因而在系统中只能有一种大小的页面。<br />段的长度不固定，决定于用户所编写的程序，通常由编译程序在对程序进行编译时，根据信息的性质来划分。</p>
+<ol start="3">
+<li>地址空间</li>
+</ol>
+<p>页的地址空间是一维的，即单一的线形地址空间，程序员只要利用一个记忆符就可以表示一个地址。<br />作业地址空间是二维的，程序员在标识一个地址时，既需要给出段名，又需给出段内地址。</p>
+<ol start="4">
+<li>碎片</li>
+</ol>
+<p>分页有内部碎片无外部碎片<br />分段有外部碎片无内部碎片</p>
+<ol start="5">
+<li>绝对地址</li>
+</ol>
+<p>处理器使用页号和偏移量计算绝对地址<br />处理器使用段号和偏移量计算绝对地址</p>
+<ol start="6">
+<li>管理方式</li>
+</ol>
+<p>对于分页，操作系统必须为每个进程维护一个页表，以说明每个页对应的的页框。当进程运行时，它的所有页都必须在内存中，除非使用覆盖技术或虚拟技术，另外操作系统需要维护一个空闲页框列表。<br />对于分段，操作系统必须为每个进程维护一个段表，以说明每个段的加载地址和长度。当进程运行时，它的所有短都必须在内存中，除非使用覆盖技术或虚拟技术，另外操作系统需要维护一个内存中的空闲的空洞列表。<br />特别的，当使用虚拟技术是，把一页或一段写入内存时可能需要把一页或几个段写入磁盘。</p>
+<ol start="7">
+<li>共享和动态链接</li>
+</ol>
+<p>分页不容易实现，分段容易实现</p>
+<h2 id="实现共享"><a href="#实现共享" class="headerlink" title="实现共享"></a>实现共享</h2><ol>
+<li>分页系统中对程序和数据的共享</li>
+</ol>
+<p>在分页系统中，虽然也能实现对程序和数据的共享，但远不如分段系统来得方便。我们通过一个例子来说明这个问题。<br />分页系统中实现共享editor<br><img src="/imgs/OperationSystemAssets/1679627248624-bd0cb96c-f830-4742-9a25-7781806b403f.png" alt="image.png"></p>
+<ol start="2">
+<li>分段系统中对程序和数据的共享</li>
+</ol>
+<p>在分段系统中，由于是以段为基本单位的，不管该段有多大，我们都只需为该段设置一个段表项，因此使实现共享变得非常容易。我们仍以共享editor为例，此时只需在(每个)进程1和进程2的段表中，为文本编辑程序设置一个段表项，让段表项中的基址(80)指向editor程序在内存的起始地址。下图是<strong>分段系统中共享editor的示意图</strong>。<br><img src="/imgs/OperationSystemAssets/1679627248568-f7243344-9b46-4f1a-9afe-beedd3f59a41.png" alt="image.png"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%AE%89%E5%85%A8/">← Next 保护和安全</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F/">分页存储管理方式 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-text">分段存储管理方式的引入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-text">分段系统的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E5%92%8C%E5%88%86%E6%AE%B5%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">分页和分段的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%85%B1%E4%BA%AB"><span class="toc-text">实现共享</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

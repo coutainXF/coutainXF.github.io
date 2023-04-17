@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>系统的功能、模型和接口 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>系统的功能、模型和接口</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-15T15:16:20.000Z" id="date"> 2023-04-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-15T15:16:20.086Z" id="updated"> 2023-04-15</time></div></span></div></div><hr><div id="post-content"><h1 id="I-O系统的功能、模型和接口"><a href="#I-O系统的功能、模型和接口" class="headerlink" title="I/O系统的功能、模型和接口"></a>I/O系统的功能、模型和接口</h1><p>I/O系统管理的主要对象是I/O设备和相应的设备控制器。<br />其最主要的任务是:<br>:::info</p>
+<ol>
+<li>完成用户提出的I/O请求；</li>
+<li>提高I/O速率；</li>
+<li>提高设备的利用率；</li>
+<li>能为更高层的进程方便地使用这些设备提供手段。<br>:::</li>
+</ol>
+<h2 id="I-O系统的基本功能"><a href="#I-O系统的基本功能" class="headerlink" title="I/O系统的基本功能"></a>I/O系统的基本功能</h2><h3 id="1、隐藏物理设备的细节"><a href="#1、隐藏物理设备的细节" class="headerlink" title="1、隐藏物理设备的细节"></a>1、隐藏物理设备的细节</h3><p>I/O设备的类型非常多，且彼此间在多方面都有差异，诸如它们接收和产生数据的速度，传输方向、粒度、数据的表示形式及可靠性等方面。</p>
+<h3 id="2、与设备的无关性"><a href="#2、与设备的无关性" class="headerlink" title="2、与设备的无关性"></a>2、与设备的无关性</h3><p>隐藏物理设备的细节，在早期的OS中就已实现，它可方便用户对设备的使用。与设备的无关性是在较晚时才实现的，这是在隐藏物理设备细节的基础上实现的。</p>
+<h3 id="3、提高处理机和I-O设备的利用率"><a href="#3、提高处理机和I-O设备的利用率" class="headerlink" title="3、提高处理机和I/O设备的利用率"></a>3、提高处理机和I/O设备的利用率</h3><p>在一般的系统中，许多I/O设备间是相互独立的，能够并行操作，在处理机与设备之间也能并行操作。因此，I/O系统的第三个功能是要尽可能地让处理机和I/O设备并行操作，以提高它们的利用率。<br />一方面：要求处理机能快速响应用户的I/O请求，使I/O设备尽快地运行起来；<br />另一方面：也应尽量减少在每个I/O设备运行时处理机的干预时间。 </p>
+<h3 id="4、对I-O设备进行控制"><a href="#4、对I-O设备进行控制" class="headerlink" title="4、对I/O设备进行控制"></a>4、对I/O设备进行控制</h3><p>对I/O设备进行控制是驱动程序的功能。目前对I/O设备有四种控制方式：<br />① 采用轮询的可编程I/O方式；<br />② 采用中断的可编程I/O方式；<br />③ 直接存储器访问方式；<br />④  I/O通道方式。 </p>
+<h3 id="5、确保对设备的正确共享"><a href="#5、确保对设备的正确共享" class="headerlink" title="5、确保对设备的正确共享"></a>5、确保对设备的正确共享</h3><p>从设备的共享属性上，可将系统中的设备分为如下两类：<br />(1) 独占设备，进程应互斥地访问这类设备，即系统一旦把这类设备分配给了某进程后，便由该进程独占，直至用完释放。典型的独占设备有打印机、磁带机等。<br />(2) 共享设备，是指在一段时间内允许多个进程同时访问的设备。典型的共享设备是磁盘，当有多个进程需对磁盘执行读、写操作时，可以交叉进行，不会影响到读、写的正确性。</p>
+<h3 id="6、错误处理"><a href="#6、错误处理" class="headerlink" title="6、错误处理"></a>6、错误处理</h3><p>大多数的设备都包括了较多的机械和电气部分，运行时容易出现错误和故障。<br />从处理的角度，可将错误分为临时性错误和持久性错误。对于临时性错误，可通过重试操作来纠正，只有在发生了持久性错误时，才需要向上层报告。</p>
+<h2 id="I-O系统的层次结构和模型"><a href="#I-O系统的层次结构和模型" class="headerlink" title="I/O系统的层次结构和模型"></a>I/O系统的层次结构和模型</h2><h3 id="1、I-O软件的层次结构"><a href="#1、I-O软件的层次结构" class="headerlink" title="1、I/O软件的层次结构"></a>1、I/O软件的层次结构</h3><p>通常把I/O 软件组织成四个层次，如图所示。<br><img src="/imgs/OperationSystemAssets/1679718324505-31dea32d-192e-4754-8792-ae3aa756f339.png" alt="image.png"></p>
+<p>（1）**<em>用户层I/O软件</em>**，实现与用户交互的接口，用户可直接调用该层提供的、与I/O操作相关的库函数对设备进行操作。<br />（2）_<strong>设备独立性软件</strong><em>，用于实现用户持续与设备驱动器的统一接口、设备命名、设备的保护以及设备的分配与释放等，同时为设备管理和数据传送提供必要的存储空间。<br />（3）</em><strong>设备驱动程序</strong><em>，和硬件直接相关，用于具体实现系统对设备发出的操作指令，驱动I/O设备工作的驱动程序。<br />（4）</em><strong>中断处理程序</strong>_，用于保存被中断进程的CPU环境，转入相应的中断处理程序进行处理，处理完毕再恢复被中断进程的现场后，返回被中断的进程。</p>
+<h3 id="2、I-O系统中各种模块之间的层次视图"><a href="#2、I-O系统中各种模块之间的层次视图" class="headerlink" title="2、I/O系统中各种模块之间的层次视图"></a>2、I/O系统中各种模块之间的层次视图</h3><p>为了能更清晰地描述I/O系统中主要模块之间的关系，我们进一步介绍I/O系统中各种I/O模块之间的层次视图。见图所示。</p>
+<p><strong>1) I/O系统的上、下接口</strong><br />(1) I/O系统接口。<br />(2) 软件/硬件(RW/HW)接口。<br><img src="/imgs/OperationSystemAssets/1679718324656-e7a4be84-23db-4ac6-ac7d-ace6cd4e67da.png" alt="image.png"></p>
+<p><strong>2) I/O系统的分层</strong><br />与前面所述的I/O软件组织的层次结构相对应，I/O系统本身也可分为如下三个层次：<br />(1) 中断处理程序。<br />(2) 设备驱动程序。<br />(3) 设备独立性软件。 </p>
+<h2 id="I-O系统接口"><a href="#I-O系统接口" class="headerlink" title="I/O系统接口"></a>I/O系统接口</h2><p>在I/O系统与高层之间的接口中，根据设备类型的不同，又进一步分为若干个接口。在I/O系统中各种模块之间的层次视图中示出了块设备接口、流设备接口和网络接口。</p>
+<ol>
+<li>块设备接口（磁盘）</li>
+</ol>
+<p>块设备接口是块设备管理程序与高层之间的接口。该接口反映了大部分磁盘存储器和光盘存储器的本质特征，用于控制该类设备的输入或输出。<br />(1) 块设备。 <br />(2) 隐藏了磁盘的二维结构。<br />(3) 将抽象命令映射为底层操作。 </p>
+<ol start="2">
+<li>流设备接口（键盘）</li>
+</ol>
+<p>流设备接口是流设备管理程序与高层之间的接口。该接口又称为字符设备接口，它反映了大部分字符设备的本质特征，用于控制字符设备的输入或输出。<br />(1) 字符设备。<br />(2) get和put操作。<br />(3) in-control指令。</p>
+<ol start="3">
+<li>网络通信接口</li>
+</ol>
+<p>在现代OS中，都提供了面向网络的功能。但首先还需要通过某种方式把计算机连接到网络上。同时操作系统也必须提供相应的网络软件和网络通信接口，使计算机能通过网络与网络上的其它计算机进行通信或上网浏览。 </p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E4%B9%A0%E9%A2%98/">← Next 第四章习题</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/OperationSystem/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%AE%9E%E7%8E%B0/">系统调用的实现 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8A%9F%E8%83%BD%E3%80%81%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%8E%A5%E5%8F%A3"><span class="toc-text">I&#x2F;O系统的功能、模型和接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#I-O%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD"><span class="toc-text">I&#x2F;O系统的基本功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%9A%90%E8%97%8F%E7%89%A9%E7%90%86%E8%AE%BE%E5%A4%87%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-text">1、隐藏物理设备的细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%B8%8E%E8%AE%BE%E5%A4%87%E7%9A%84%E6%97%A0%E5%85%B3%E6%80%A7"><span class="toc-text">2、与设备的无关性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%8F%90%E9%AB%98%E5%A4%84%E7%90%86%E6%9C%BA%E5%92%8CI-O%E8%AE%BE%E5%A4%87%E7%9A%84%E5%88%A9%E7%94%A8%E7%8E%87"><span class="toc-text">3、提高处理机和I&#x2F;O设备的利用率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AF%B9I-O%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E6%8E%A7%E5%88%B6"><span class="toc-text">4、对I&#x2F;O设备进行控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E7%A1%AE%E4%BF%9D%E5%AF%B9%E8%AE%BE%E5%A4%87%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%85%B1%E4%BA%AB"><span class="toc-text">5、确保对设备的正确共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-text">6、错误处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I-O%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%92%8C%E6%A8%A1%E5%9E%8B"><span class="toc-text">I&#x2F;O系统的层次结构和模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81I-O%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-text">1、I&#x2F;O软件的层次结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81I-O%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%90%84%E7%A7%8D%E6%A8%A1%E5%9D%97%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B1%82%E6%AC%A1%E8%A7%86%E5%9B%BE"><span class="toc-text">2、I&#x2F;O系统中各种模块之间的层次视图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I-O%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3"><span class="toc-text">I&#x2F;O系统接口</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
