@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>晓枫的博客</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2024-06-15T17:33:09.677Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>晓枫</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>快速了解26种设计模式和常见的设计思想</title>
+    <link href="http://example.com/2024/06/16/%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A326%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://example.com/2024/06/16/%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A326%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
+    <published>2024-06-15T17:13:45.000Z</published>
+    <updated>2024-06-15T17:33:09.677Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="快速了解26种设计模式和常见的设计思想"><a href="#快速了解26种设计模式和常见的设计思想" class="headerlink" title="快速了解26种设计模式和常见的设计思想"></a>快速了解26种设计模式和常见的设计思想</h1><h2 id="设计模式的不同类型"><a href="#设计模式的不同类型" class="headerlink" title="设计模式的不同类型"></a>设计模式的不同类型</h2><h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><p>创建型模式（Creational Pattern）：对类的实例化过程进行了抽象，能够将软件模块中对象的创建和对象的使用分离。</p><h3 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h3><p>结构型模式（Structural Pattern）：关注于对象的组成以及对象之间的依赖关系，描述如何将类或者对象结合在一起形成更大的结构，就像搭积木，可以通过简单积木的组合形成复杂的、功能更为强大的结构。</p><h3 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h3><p>行为型模式（Behavioral Pattern）：关注于对象的行为问题，是对在不同的对象之间划分责任和算法的抽象化；不仅仅关注类和对象的结构，而且重点关注它们之间的相互作用。</p><h2 id="创建型设计模式"><a href="#创建型设计模式" class="headerlink" title="创建型设计模式"></a>创建型设计模式</h2><p>工厂模式（Factory Pattern），</p><p>抽象工厂模式（Abstract Factory Pattern）</p><p>单例模式（Singleton），保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p><p>建造者模式（Builder），将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p><p>原型模式（Prototype Pattern）是用于创建重复的对象，同时又能保证性能。该模式实现了一个原型接口，该接口用于创建当前对象的克隆。</p><h2 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h2><p>适配器模式（Adapter Pattern）是作为两个不兼容的接口之间的桥梁。这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。</p><p>装饰模式（Decorator），动态地给一个对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更为灵活。</p><p>代理模式（Proxy），为其他对象提供一种代理以控制对这个对象的访问。</p><p>外观模式（Facade Pattern）隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。外观类需要了解所有的子系统的方法或属性，进行组合，以备外界调用。</p><p>桥接模式（Bridge），将抽象部分与它的实现部分分离，使它们可以独立地变化。实现指的是抽象类和它的派生类用来实现自己的对象。实现的方式有多种，桥接模式的思想就是把这些实现独立出来，让它们各自的变化，这样就使得每种实现的变化不会影响其他实现，从而达到应对变化的目的。实现系统可能有多角度分类，每一种分类都有可能变化，那么就把这种多角度分离出来让它们独立变化，减少它们的耦合。桥接模式是合成/聚合原则的完美体现。</p><p>组合模式（Composite Pattern）依据树形结构来组合对象，用来表示部分以及整体层次。组件模式是将独立的功能点做一个封装，便于增删和管理。</p><p>享元模式（Flyweight Pattern）主要用于减少创建对象的数量，以减少内存占用和提高性能。享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象。运用共享技术有效地支持大量细粒度的对象。</p><h2 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h2><p>策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。策略模式封装了“变化“</p><p>模板模式（Template Pattern）就是通过抽象类来定义一个逻辑模板，逻辑框架、逻辑原型，然后将无法决定的部分抽象成抽象类交由子类来实现。定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。</p><p>观察者模式（Observer Pattern）定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。当这个主题对象状态发生改变时，会通知所有的观察者对象，使他们能够自动更新自己。所以也称之为发布-订阅模式（Publish/Subscribe）。</p><p>迭代器模式（Iterator Pattern）式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。提供一种方法顺序访问一个聚合对象中各个元素，而又无须暴露该对象的内部表示。</p><p>责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。这种模式给予请求的类型，对请求的发送者和接收者进行解耦。在这种模式中，通常每个接收者都包含对另一个接收者的引用。如果一个对象不能处理该请求，那么它会把相同的请求传给下一个接收者，依此类推。避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止。</p><p>命令模式（Command Pattern）是一种数据驱动的设计模式。请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。将一个请求封装成一个对象，从而使您可以用不同的请求对客户进行参数化。</p><p>备忘录模式（Memento Pattern）保存一个对象的某个状态，以便在适当的时候恢复对象。在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。</p><p>在状态模式（State Pattern）中，类的行为是基于它的状态改变的。在状态模式中，我们创建表示各种状态的对象和一个行为随着状态对象改变而改变的context对象。允许对象在内部状态发生改变时改变它的行为，对象看起来好像修改了它的类。</p><p>在访问者模式（Visitor Pattern）中，我们使用了一个访问者类，它改变了元素类的执行算法。通过这种方式，元素的执行算法可以随着访问者改变而改变。根据模式，元素对象已接受访问者对象，这样访问者对象就可以处理元素对象上的操作。主要将数据结构与数据操作分离。主要解决：稳定的数据结构和易变的操作耦合问题。</p><p>中介者模式（Mediator Pattern）是用来降低多个对象和类之间的通信复杂性。这种模式提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护。用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</p><p>解释器模式（Interpreter Pattern）提供了评估语言的语法或表达式的方式。这种模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在SQL解析、符号处理引擎等。给定一个语言，定义它的文法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子。</p><h2 id="设计思想与设计原则"><a href="#设计思想与设计原则" class="headerlink" title="设计思想与设计原则"></a>设计思想与设计原则</h2><p>开闭原则（Open Closed Principle）一个软件实体，如类、模块和函数应该对扩展开放，对修改关闭。</p><p>单一职责原则：应该有且仅有一个原因引起类的变更。</p><p>里氏替换原则：子类必须能够替换父类，子类行为可以扩展但不能破坏父类行为，子类可以增加自己的特有方法，遵循父类的约束。</p><p>依赖倒置原则：“面向接口编程”。依赖于抽象而不依赖于具体。</p><p>迪米特法则（LoD）也叫最少知道法则：一个对象应该对其他对象有最少的了解。</p><p>合成复用原则（Composite Reuse Principle）尽量使用对象组合/聚合，而不是继承关系达到软件复用的目的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;快速了解26种设计模式和常见的设计思想&quot;&gt;&lt;a href=&quot;#快速了解26种设计模式和常见的设计思想&quot; class=&quot;headerlink&quot; title=&quot;快速了解26种设计模式和常见的设计思想&quot;&gt;&lt;/a&gt;快速了解26种设计模式和常见的设计思想&lt;/h1&gt;&lt;h2 i</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="计算机学科基础" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E7%A7%91%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>创建卡牌游戏原型</title>
+    <link href="http://example.com/2023/04/19/%E5%88%9B%E5%BB%BA%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F%E5%8E%9F%E5%9E%8B/"/>
+    <id>http://example.com/2023/04/19/%E5%88%9B%E5%BB%BA%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F%E5%8E%9F%E5%9E%8B/</id>
+    <published>2023-04-19T11:09:43.000Z</published>
+    <updated>2024-06-13T12:38:45.202Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="创建卡牌游戏原型"><a href="#创建卡牌游戏原型" class="headerlink" title="创建卡牌游戏原型"></a>创建卡牌游戏原型</h1><h2 id="开发日志"><a href="#开发日志" class="headerlink" title="开发日志"></a>开发日志</h2><p>日志4.14</p><p>没想到一个卡牌游戏项目的复杂程度能这么大，我感觉无从下手。</p><p>日志4.15</p><p>制作了简陋的UI界面，甚至几乎没有任何可以装载的图片。</p><p>跑去制作了一个Python程序，用来批量处理md文件。</p><p>日志4.16</p><p>开始参考NueDeck代码模板进行开发。</p><p>日志4.17</p><p>创建卡牌行为枚举，创建了能够打出去并造成影响的卡牌。</p><p>实现了卡牌行为中间间，并在GameApp中进行初始化。</p><p>战斗的基本框架搭建完成。</p><p>接下来的任务：</p><p>1、制作抽牌、打牌动画，为卡牌添加特效、mana消耗</p><p>2、制作玩家和关卡敌人的数据注入。</p><p>日志4.18</p><p>制作了卡牌、玩家、敌人的数据注入。</p><p>并且对卡牌造成的影响能够正确做到。</p><p>编写UI更新的逻辑。</p><p>维护玩家卡组、抽牌堆、弃牌堆。</p><p>4.19</p><p>制作了敌人血条UI、敌人AI（固定行为模式和随机行为模式）</p><p>尝试维护玩家抽牌堆、弃牌堆。</p><p><img src="/imgs/misc/%E6%95%8C%E4%BA%BAai.png"></p><p><img src="/imgs/misc/%E5%8D%A1%E7%89%8C_Ark_4_19%E8%BF%9B%E5%BA%A6.png"></p><p>4.20</p><p>教训：如果你在尝试运行时修改ScriptableObject数据，将会引起一场灾难。</p><p>最好只用来做数据的初始化。</p><p>问题来源ScriptableObject：在运行时修改meta文件并保存上一次Play的运行结果，当你退出编辑器后（大退），修改会重置；如果SetDirty的话，会将数据保存。 </p><h2 id="开发过程中遇到的困难"><a href="#开发过程中遇到的困难" class="headerlink" title="开发过程中遇到的困难"></a>开发过程中遇到的困难</h2><p>1、种子seed是怎么做的？这使得我难以复现同一局游戏。</p><p>肉鸽的随机：拿一个初始随机数种子，只要遇到需要用到随机数的地方，就使用这个种子通过某种去生成一个新的种子，然后再将这个新种子保存起来，然后后面再用到的时候就用这个生成的新种子去生成，重复上面的。</p><p>2、怎么提供保存机制？使得我能够从上次的进度中加载并继续。</p><p>3、没有开发资源（图片、icon、音效等</p><p>4、反射相关的内容。</p><p>5、如何搭建策划也能使用的框架？</p><p>-&gt;CardData为CardBase注入数据，让自定义卡牌不再充满苦难（悲</p><p>6、程序执行顺序总是有问题，报空指针是最难受的（悲</p><p>7、UI的更新逻辑使我头疼。</p><p>8、Debug</p><p><font color=red><strong>highlight the text</strong></font></p><h2 id="开发使用的版本-包-资源"><a href="#开发使用的版本-包-资源" class="headerlink" title="开发使用的版本/包/资源"></a>开发使用的版本/包/资源</h2><p>Universal RenderPine</p><p>TextMeshPro</p><p>Cinemachine</p><p>DOTween</p><p>TrueShadow</p><p>Spine-Unity=&gt;创建小人动画</p><p>参考项目：</p><p>NueDeck(一个代码模板，提供了Roguelike卡牌类游戏的基础功能)</p><p><a href="https://github.com/Arefnue/NueDeck">Arefnue/NueDeck: Open source, roguelike deck-building card game template (github.com)</a></p><h2 id="导入开发使用的资源"><a href="#导入开发使用的资源" class="headerlink" title="导入开发使用的资源"></a>导入开发使用的资源</h2><p>Spine骨骼动画（构成了角色的所有动画）</p><p>一些卡牌图片、UI、GUI</p><p>特效、粒子效果等</p><p>icon来自<a href="https://www.fanatical.com/en/orders">Orders | Fanatical</a>的RPG Game Builder Assets Kit（$15）</p><h2 id="创建并搭建场景"><a href="#创建并搭建场景" class="headerlink" title="创建并搭建场景"></a>创建并搭建场景</h2><p>1、主菜单场景</p><p>2、GamePlay场景</p><p>3、地图线路选择场景（Map）</p><p>可以通过SceneLoader在场景中进行切换。</p><h3 id="创建Menu场景"><a href="#创建Menu场景" class="headerlink" title="创建Menu场景"></a>创建Menu场景</h3><p>放置开始和退出按钮</p><h3 id="创建GamePlay场景"><a href="#创建GamePlay场景" class="headerlink" title="创建GamePlay场景"></a>创建GamePlay场景</h3><p>搭建游玩时的UI界面</p><p>包括顶部的通用设置界面</p><ul><li><p><input checked="" disabled="" type="checkbox">  血量</p></li><li><p><input disabled="" type="checkbox">  主动道具</p></li><li><p><input disabled="" type="checkbox">  coins，用于购买的硬币</p></li><li><p><input disabled="" type="checkbox">  settings，设置按钮</p></li><li><p><input disabled="" type="checkbox">  collections，收藏品背包</p></li></ul><p>和底部的战斗界面</p><ul><li><p><input checked="" disabled="" type="checkbox">  mana，打出卡牌需要消耗能量</p></li><li><p><input checked="" disabled="" type="checkbox">  end turn按钮，进入下一回合的按钮</p></li><li><p><input checked="" disabled="" type="checkbox">  cardsCanvas，用于存放卡牌的位置</p></li><li><p><input checked="" disabled="" type="checkbox">  抽牌堆</p></li><li><p><input checked="" disabled="" type="checkbox">  弃牌堆</p></li></ul><h3 id="创建地图线路选择场景"><a href="#创建地图线路选择场景" class="headerlink" title="创建地图线路选择场景"></a>创建地图线路选择场景</h3><p>提供一个能够选择随机行进路线的地图。</p><h2 id="研究NueDeck框架内容"><a href="#研究NueDeck框架内容" class="headerlink" title="研究NueDeck框架内容"></a>研究NueDeck框架内容</h2><p>1、大量使用ScriptableObject作为数据文件存储，用以快捷地配置数据。</p><p>2、可以了解，卡牌类的游戏UI交互是不可或缺的一部分，甚至说比重相当大。</p><p>3、回合制战斗：</p><p>枚举实现</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-built_in">enum</span> CombatType&#123;<br>    prepareCombat,-&gt;<span class="hljs-number">0</span>，代表战斗前<br>    playerTurn,-&gt;<span class="hljs-number">1</span>，代表玩家回合<br>    enemyTurn,-&gt;<span class="hljs-number">2</span>，代表敌人回合<br>    endCombat-&gt;<span class="hljs-number">3</span>，代表战斗结束<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> UnityAction <span class="hljs-title">OnPlayerTurnStart</span>()</span>;<span class="hljs-comment">//往里面添加监听</span><br><br><span class="hljs-function"><span class="hljs-keyword">public</span> UnityAction <span class="hljs-title">OnEnemyTurnStart</span>()</span>;<span class="hljs-comment">//往里面添加方法</span><br><br><br><span class="hljs-keyword">switch</span>(currentCombatType)&#123; <br>    <span class="hljs-keyword">case</span> CombatType.prepareCombat:<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> CombatType.playerTurn:<br>        <span class="hljs-comment">//监听玩家回合事件</span><br>        <span class="hljs-comment">//大概是抽卡drawCard、更新能量（打出手牌需要消耗能量）</span><br>    <span class="hljs-keyword">case</span> CombatType.enemyTurn:<br>        <span class="hljs-comment">//监听敌人回合事件</span><br>    <span class="hljs-comment">//case any other CombatType:</span><br>    <span class="hljs-comment">//在这里添加任何其他的战斗类型枚举</span><br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//想必这里是其他的类，</span><br><br>获取OnPlayerTurnStart事件<br>为玩家订阅上述的方法：<br></code></pre></td></tr></table></figure><h2 id="绘制框架图"><a href="#绘制框架图" class="headerlink" title="绘制框架图"></a>绘制框架图</h2><h2 id="完成回合制卡牌GameLoop"><a href="#完成回合制卡牌GameLoop" class="headerlink" title="完成回合制卡牌GameLoop"></a>完成回合制卡牌GameLoop</h2><h3 id="制作可以打出的卡牌UI"><a href="#制作可以打出的卡牌UI" class="headerlink" title="制作可以打出的卡牌UI"></a>制作可以打出的卡牌UI</h3><ul><li><p><input checked="" disabled="" type="checkbox">  控制卡牌能够选中、缩放、拖拽</p></li><li><p><input disabled="" type="checkbox">  发牌动画以及打出卡牌后的动画</p></li></ul><h3 id="卡牌管理"><a href="#卡牌管理" class="headerlink" title="卡牌管理"></a>卡牌管理</h3><ul><li><p><input checked="" disabled="" type="checkbox">  管理玩家的牌组（想必是一个 List<Card> 结构来存储相应的数据）。</p></li><li><p><input checked="" disabled="" type="checkbox">  管理玩家的抽牌堆、弃牌堆，提供抽牌、弃牌等方法。</p></li><li><p><input checked="" disabled="" type="checkbox">  调用UIManager来实现上述方法。</p></li><li><p><input checked="" disabled="" type="checkbox">  提供使用UseCard方法，调用DoAction来使用卡牌。</p></li><li><p><input disabled="" type="checkbox">  查看抽牌堆，查看弃牌堆</p></li></ul><h3 id="制作UI管理器UIManager"><a href="#制作UI管理器UIManager" class="headerlink" title="制作UI管理器UIManager"></a>制作UI管理器UIManager</h3><ul><li><input checked="" disabled="" type="checkbox"> 控制玩家UI的显示=&gt;获取UI的画布组件，通过enable/disable，显示/隐藏UI</li><li><input checked="" disabled="" type="checkbox"> 绘制卡牌，提供动画。</li><li><input checked="" disabled="" type="checkbox"> 编写UI更新逻辑。</li></ul><h3 id="制作回合制卡牌战斗系统CombatMananger"><a href="#制作回合制卡牌战斗系统CombatMananger" class="headerlink" title="制作回合制卡牌战斗系统CombatMananger"></a>制作回合制卡牌战斗系统CombatMananger</h3><ul><li><p><input checked="" disabled="" type="checkbox">  依据CombatType控制进入不同的回合。</p></li><li><p><input checked="" disabled="" type="checkbox">  做战斗的初始化工作：</p><ol><li><p>生成敌人(√)</p></li><li><p>生成玩家（√）</p></li><li><p>显示战斗UI（√）</p></li><li><p>（待定）使用收藏品被动（）</p></li><li><p>初始化CombatType为玩家回合。（√）</p></li></ol></li></ul><h2 id="有一个机制：存储和加载"><a href="#有一个机制：存储和加载" class="headerlink" title="有一个机制：存储和加载"></a>有一个机制：存储和加载</h2><p>某个类创建的ScriptableObject存放了玩家的所有信息。</p><p>在每次战斗的时候重新从那里加载信息。包括剩余血量、存放的内容等。</p><h2 id="创建一张能够打出去并造成影响的牌！"><a href="#创建一张能够打出去并造成影响的牌！" class="headerlink" title="创建一张能够打出去并造成影响的牌！"></a>创建一张能够打出去并造成影响的牌！</h2><ul><li><p><input checked="" disabled="" type="checkbox">  定义卡牌的行为抽象类，包含parameters和可能用到的组件</p></li><li><p><input checked="" disabled="" type="checkbox">  一个行为枚举，代表不同的行为</p></li><li><p><input checked="" disabled="" type="checkbox">  定义基础的几个卡牌行为</p><ol><li><p>Attack</p></li><li><p>Defend</p></li><li><p>DrawCard</p></li><li><p>RestoreHealth</p></li><li><p>Strength</p></li><li><p>…other</p></li></ol></li><li><p><input checked="" disabled="" type="checkbox">  定义使用卡牌方法，依据行为枚举来指定打出的牌</p></li><li><p><input checked="" disabled="" type="checkbox">  1、指定目标（包括self和target）</p></li><li><p><input checked="" disabled="" type="checkbox">  2、需要一个中间件来打出卡牌</p></li></ul><p>定义这个中间件：</p><p>开始时自动初始化它。</p><p>设置一个字典来存储所有的行为枚举-行为类实例。</p><p>当打出卡牌时，给出字典[行为类型]即可获取行为类实例，执行DoAction来实现影响。</p><ul><li><p><input checked="" disabled="" type="checkbox">  实现这个中间件</p></li><li><p><input checked="" disabled="" type="checkbox">  为这个中间件Debug</p></li><li><p><input checked="" disabled="" type="checkbox">  当什么时候使用卡牌方法？鼠标OnDrag的时候选择目标！！！</p></li><li><p><input checked="" disabled="" type="checkbox">  动态地构建Params？</p><p>使用输入检测检测在onDrag的时候开启检测协程。</p><p>检测协程在射线检测到hit2D的目标时，为param设置卡牌作用目标target</p><p>否则只设置其他的参数：</p><p>CardBase（当前打出的卡），</p><p>BaseCharacter Self（指玩家）；</p><p>在endDrag的时候关闭该协程。并将params置为null</p></li></ul><h2 id="创建角色BaseCharacter"><a href="#创建角色BaseCharacter" class="headerlink" title="创建角色BaseCharacter"></a>创建角色BaseCharacter</h2><h3 id="创建玩家Player"><a href="#创建玩家Player" class="headerlink" title="创建玩家Player"></a>创建玩家Player</h3><ul><li><input checked="" disabled="" type="checkbox"> 数据注入</li></ul><h3 id="创建敌人Enemy"><a href="#创建敌人Enemy" class="headerlink" title="创建敌人Enemy"></a>创建敌人Enemy</h3><ul><li><input checked="" disabled="" type="checkbox"> 同上</li></ul><h2 id="完善卡牌Action（数据交互方面的内容）"><a href="#完善卡牌Action（数据交互方面的内容）" class="headerlink" title="完善卡牌Action（数据交互方面的内容）"></a>完善卡牌Action（数据交互方面的内容）</h2><ul><li><p><input checked="" disabled="" type="checkbox">  1、消耗mana</p></li><li><p><input checked="" disabled="" type="checkbox">  2、使用AudioManager播放音效，指定卡牌Params为其提供audio</p></li><li><p><input checked="" disabled="" type="checkbox">  3、使用EffectManager播放特效，并在打出卡牌时播放动画。</p></li><li><p><input checked="" disabled="" type="checkbox">  4、为卡片添加描述等参数内容。</p></li><li><p><input checked="" disabled="" type="checkbox">  5、实现抽牌效果。</p></li><li><p><input checked="" disabled="" type="checkbox">  6、抽牌堆、弃牌堆等内容</p></li></ul><h2 id="创建敌人AI"><a href="#创建敌人AI" class="headerlink" title="创建敌人AI"></a>创建敌人AI</h2><ul><li><input checked="" disabled="" type="checkbox"> 类似于创建卡牌的行为，创建敌人行为。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">![]()   ---&gt;  type this to add an image<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;创建卡牌游戏原型&quot;&gt;&lt;a href=&quot;#创建卡牌游戏原型&quot; class=&quot;headerlink&quot; title=&quot;创建卡牌游戏原型&quot;&gt;&lt;/a&gt;创建卡牌游戏原型&lt;/h1&gt;&lt;h2 id=&quot;开发日志&quot;&gt;&lt;a href=&quot;#开发日志&quot; class=&quot;headerlink&quot; </summary>
+      
+    
+    
+    
+    <category term="--[Unity]" scheme="http://example.com/categories/Unity/"/>
+    
+    
+    <category term="游戏原型" scheme="http://example.com/tags/%E6%B8%B8%E6%88%8F%E5%8E%9F%E5%9E%8B/"/>
+    
+    <category term="CardGame" scheme="http://example.com/tags/CardGame/"/>
+    
+    <category term="Unity" scheme="http://example.com/tags/Unity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>资源链接导航</title>
+    <link href="http://example.com/2023/04/15/%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E5%AF%BC%E8%88%AA/"/>
+    <id>http://example.com/2023/04/15/%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E5%AF%BC%E8%88%AA/</id>
+    <published>2023-04-15T02:00:19.000Z</published>
+    <updated>2023-04-15T03:25:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="资源链接导航"><a href="#资源链接导航" class="headerlink" title="资源链接导航"></a>资源链接导航</h1><h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>存放了项目的源码、项目总结以及资源链接等</p><p><a href="https://github.com/coutainXF">coutainXF (晓枫) (github.com)</a></p><h2 id="计算机科学与技术"><a href="#计算机科学与技术" class="headerlink" title="计算机科学与技术"></a>计算机科学与技术</h2><p><a href="https://csdiy.wiki/">CS自学指南 (csdiy.wiki)</a></p><p><a href="https://github.com/PKUFlyingPig/cs-self-learning">PKUFlyingPig/cs-self-learning: 计算机自学指南 (github.com)</a></p><h2 id="计算机图形学"><a href="#计算机图形学" class="headerlink" title="计算机图形学"></a>计算机图形学</h2><p><a href="https://games-cn.org/">计算机图形学与混合现实在线平台 – GAMES: Graphics And Mixed Environment Symposium (games-cn.org)</a></p><p><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html">GAMES101: 现代计算机图形学入门 (ucsb.edu)</a></p><p><a href="https://www.bilibili.com/video/av90798049/?vd_source=56e8fdea1840126840d1260a558908b9">GAMES101-现代计算机图形学入门-闫令琪_哔哩哔哩_bilibili</a></p><p><a href="http://games-cn.org/forums/topic/allhw/">往期作业汇总帖 – 计算机图形学与混合现实在线平台 (games-cn.org)</a></p><h3 id="OpenGL"><a href="#OpenGL" class="headerlink" title="OpenGL"></a>OpenGL</h3><p><a href="https://github.com/JoeyDeVries/LearnOpenGL">JoeyDeVries/LearnOpenGL: Code repository of all OpenGL chapters from the book and its accompanying website https://learnopengl.com (github.com)</a></p><p><a href="https://learnopengl-cn.github.io/">https://learnopengl-cn.github.io/</a></p><p><a href="http://cg.cs.tsinghua.edu.cn/course/">http://cg.cs.tsinghua.edu.cn/course/</a></p><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p><a href="https://caochenlei.blog.csdn.net/article/details/108281646">(455条消息) Java工程师的成长之路_java工程师成长之路_轻松的小希的博客-CSDN博客</a></p><p><a href="https://www.nenggz.com/">| Java 全栈知识体系 (nenggz.com)</a></p><h2 id="C-CSharp"><a href="#C-CSharp" class="headerlink" title="C# (CSharp)"></a>C# (CSharp)</h2><h2 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h2><p><a href="https://www.redblobgames.com/">Red Blob Games</a></p><p><a href="https://github.com/gonglei007/GameDevMind">gonglei007/GameDevMind: 最全面的游戏开发技术图谱。帮助游戏开发者们在已知问题上节省时间，省出更多的精力投入到更有创造性的工作中去。 | The most comprehensive technical map of game development. Help game developers save time on known problems and save more energy for more creative work. (github.com)</a></p><p><a href="https://github.com/Kavex/GameDev-Resources">Kavex/GameDev-Resources: A wonderful list of Game Development resources. (github.com)</a></p><p><a href="https://github.com/crazyshader/GameDev">crazyshader/GameDev: # Unity游戏开发资源 (github.com)</a></p><p><a href="https://github.com/ThisisGame/cpp-game-engine-book">ThisisGame/cpp-game-engine-book: 从零编写游戏引擎教程 Writing a game engine tutorial from scratch (github.com)</a></p><p><a href="https://github.com/candycat1992/Unity_Shaders_Book">candycat1992/Unity_Shaders_Book: 书籍《Unity Shader入门精要》源代码 (github.com)</a></p><p><a href="https://github.com/QianMo/Awesome-Unity-Shader">QianMo/Awesome-Unity-Shader: 关于炫酷的Unity3D Shader | About Cool Unity3D Shaders (github.com)</a></p><p><a href="https://github.com/XINCGer/Unity3DTraining">XINCGer/Unity3DTraining: 【Unity杂货铺】unity大杂烩~ (github.com)</a></p><h3 id="游戏开发素材资源"><a href="#游戏开发素材资源" class="headerlink" title="游戏开发素材资源"></a>游戏开发素材资源</h3><p><a href="https://indienova.com/">独立精神 | indienova 独立游戏</a></p><p><a href="https://itch.io/">Download the latest indie games - itch.io</a></p><p><a href="https://www.humblebundle.com/?hmb_source=navbar">Humble Bundle | game bundles, book bundles, software bundles, and more</a></p><p><a href="https://www.fanatical.com/en/">Fanatical</a></p><p><a href="https://www.iconfont.cn/?spm=a313x.7781069.1998910419.d4d0a486a">iconfont-阿里巴巴矢量图标库</a></p><h2 id="算法和数据结构"><a href="#算法和数据结构" class="headerlink" title="算法和数据结构"></a>算法和数据结构</h2><p><a href="https://www.javatpoint.com/data-structure-tutorial">Data Structures | DS Tutorial - javatpoint</a></p><p><a href="https://github.com/TheAlgorithms/Java">TheAlgorithms/Java: All Algorithms implemented in Java (github.com)</a></p><p><a href="https://github.com/dunwu/algorithm-tutorial">dunwu/algorithm-tutorial: 算法和数据结构教程 (github.com)</a></p><p><a href="https://github.com/doocs/leetcode">doocs/leetcode: 😏 LeetCode solutions in any programming language | 多种编程语言实现 LeetCode、《剑指 Offer（第 2 版）》、《程序员面试金典（第 6 版）》题解 (github.com)</a></p><h2 id="杂项（Misc）"><a href="#杂项（Misc）" class="headerlink" title="杂项（Misc）"></a>杂项（Misc）</h2><p><a href="http://cxy521.com/">个人技术分享-程序员导航cxy521</a></p><p><a href="https://github.com/CyC2018/CS-Notes">CyC2018/CS-Notes: 技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计 (github.com)</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;资源链接导航&quot;&gt;&lt;a href=&quot;#资源链接导航&quot; class=&quot;headerlink&quot; title=&quot;资源链接导航&quot;&gt;&lt;/a&gt;资源链接导航&lt;/h1&gt;&lt;h2 id=&quot;Github&quot;&gt;&lt;a href=&quot;#Github&quot; class=&quot;headerlink&quot; titl</summary>
+      
+    
+    
+    
+    <category term="--[资源链接]" scheme="http://example.com/categories/%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5/"/>
+    
+    
+    <category term="资源" scheme="http://example.com/tags/%E8%B5%84%E6%BA%90/"/>
+    
+    <category term="导航" scheme="http://example.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅表复制和深层复制</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/Additions/%E6%B5%85%E8%A1%A8%E5%A4%8D%E5%88%B6%E5%92%8C%E6%B7%B1%E5%B1%82%E5%A4%8D%E5%88%B6/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/Additions/%E6%B5%85%E8%A1%A8%E5%A4%8D%E5%88%B6%E5%92%8C%E6%B7%B1%E5%B1%82%E5%A4%8D%E5%88%B6/</id>
+    <published>2023-04-12T08:05:26.000Z</published>
+    <updated>2023-04-12T08:15:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="浅表复制和深层复制"><a href="#浅表复制和深层复制" class="headerlink" title="浅表复制和深层复制"></a>浅表复制和深层复制</h1><p><font color=red><strong>设计模式的补充内容</strong></font></p><h2 id="关于浅表复制和深层复制"><a href="#关于浅表复制和深层复制" class="headerlink" title="关于浅表复制和深层复制"></a>关于浅表复制和深层复制</h2><p>string类型是一种拥有值类型特点的特殊引用类型，MemberwiseClone方法是这样进行的：如果字段是值类型的，则对该字段执行逐位复制，如果字段是引用类型，则复制引用但不复制引用的对象：因此原始对象及其副本引用同一对象。</p><h2 id="为什么不能同步复制过来呢？"><a href="#为什么不能同步复制过来呢？" class="headerlink" title="为什么不能同步复制过来呢？"></a>为什么不能同步复制过来呢？</h2><p>这就是复制引用和复制数值的区别。</p><p>复制了引用，新对象指向的仍然是同一个堆。</p><p>“浅复制”，被复制对象的所有变量都含有与原来的对象相同的值，而所有的对其他对象的引用都仍然指向原来的对象。</p><p>“深复制”，深复制把引用对象的变量指向复制过的新对象，而不是原有的被引用的对象。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;浅表复制和深层复制&quot;&gt;&lt;a href=&quot;#浅表复制和深层复制&quot; class=&quot;headerlink&quot; title=&quot;浅表复制和深层复制&quot;&gt;&lt;/a&gt;浅表复制和深层复制&lt;/h1&gt;&lt;p&gt;&lt;font color=red&gt;&lt;strong&gt;设计模式的补充内容&lt;/strong&gt;</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="copy" scheme="http://example.com/tags/copy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>事件和委托</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/Additions/%E4%BA%8B%E4%BB%B6%E5%92%8C%E5%A7%94%E6%89%98/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/Additions/%E4%BA%8B%E4%BB%B6%E5%92%8C%E5%A7%94%E6%89%98/</id>
+    <published>2023-04-12T08:04:59.000Z</published>
+    <updated>2023-04-12T08:17:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="事件和委托"><a href="#事件和委托" class="headerlink" title="事件和委托"></a>事件和委托</h1><p><font color="red"><strong>作为设计模式的补充内容</strong></font></p><p>委托就是一种引用方法的类型。</p><p>一旦为委托分配了方法，委托将与该方法具有完全相同的行为。</p><p>委托方法的使用可以像其他任何方法一样，具有参数和返回值。委托可以看作是对函数的抽象，是函数的“类”，委托的实例将代表一个具体的函数。</p><p>一个委托可以搭载多个方法，所有方法将被依次唤起。</p><p>重要的是：它可以使得委托对象所搭载的方法并不需要属于同一个类。</p><p>委托对象所搭载的所有方法必须具有相同的原形和形式——具有相同的参数表列和返回值类型。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;事件和委托&quot;&gt;&lt;a href=&quot;#事件和委托&quot; class=&quot;headerlink&quot; title=&quot;事件和委托&quot;&gt;&lt;/a&gt;事件和委托&lt;/h1&gt;&lt;p&gt;&lt;font color=&quot;red&quot;&gt;&lt;strong&gt;作为设计模式的补充内容&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="事件" scheme="http://example.com/tags/%E4%BA%8B%E4%BB%B6/"/>
+    
+    <category term="委托" scheme="http://example.com/tags/%E5%A7%94%E6%89%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>反射</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/Additions/%E5%8F%8D%E5%B0%84/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/Additions/%E5%8F%8D%E5%B0%84/</id>
+    <published>2023-04-12T08:04:44.000Z</published>
+    <updated>2023-04-12T08:12:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p><font color=red><strong>作为设计模式的补充内容</strong></font></p><h2 id="反射的实例"><a href="#反射的实例" class="headerlink" title="反射的实例"></a>反射的实例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;反射&quot;&gt;&lt;a href=&quot;#反射&quot; class=&quot;headerlink&quot; title=&quot;反射&quot;&gt;&lt;/a&gt;反射&lt;/h1&gt;&lt;p&gt;&lt;font color=red&gt;&lt;strong&gt;作为设计模式的补充内容&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;h2 id=&quot;反射的实例&quot;</summary>
+      
+    
+    
+    
+    <category term="--[反射]" scheme="http://example.com/categories/%E5%8F%8D%E5%B0%84/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="反射" scheme="http://example.com/tags/%E5%8F%8D%E5%B0%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UML类图</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/Additions/UML%E7%B1%BB%E5%9B%BE/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/Additions/UML%E7%B1%BB%E5%9B%BE/</id>
+    <published>2023-04-12T08:04:08.000Z</published>
+    <updated>2023-04-13T04:30:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h1><p><font color=red><strong>作为设计模式内容的补充</strong></font></p><p>在UML类图中，常见的有以下几种关系:泛化（Generalization）, 实现（Realization）,关联（Association）,聚合（Aggregation）,组合(Composition)，依赖(Dependency)</p><h2 id="1-泛化-Generalization"><a href="#1-泛化-Generalization" class="headerlink" title="1.泛化(Generalization)"></a>1.泛化(Generalization)</h2><p>【泛化关系】：是一种继承关系,它指定了子类如何特化父类的所有特征和行为例如：老虎是动物的一种.</p><p>【箭头指向】：带三角箭头的实线，箭头指向父类</p><p><img src="/imgs/assets/p1.png"></p><h2 id="2-实现（Realization"><a href="#2-实现（Realization" class="headerlink" title="2.实现（Realization)"></a>2.实现（Realization)</h2><p>【实现关系】：是一种类与接口的关系，表示类是接口所有特征和行为的实现</p><p>【箭头指向】：带三角箭头的虚线，箭头指向接口</p><p><img src="/imgs/assets/p2.png"></p><h2 id="3-关联（Association）"><a href="#3-关联（Association）" class="headerlink" title="3.关联（Association）"></a>3.关联（Association）</h2><p>【关联关系】：是一种拥有的关系,它使一个类知道另一个类的属性和方法；如：老师与学生，丈夫与妻子</p><p>关联可以是双向的，也可以是单向的。双向的关联可以有两个箭头或者没有箭头，单向的关联有一个箭头。</p><p>【代码体现】：成员变量</p><p>【箭头及指向】：带普通箭头的实心线，指向被拥有者</p><p><img src="/imgs/assets/p3.png"></p><p><img src="/imgs/assets/p4.png"></p><p>上图中，老师与学生是双向关联，老师有多名学生，学生也可能有多名老师。但学生与某课程间的关系为单向关联，一名学生可能要上多门课程，课程是个抽象的东西他不拥有学生。</p><p>上图为自身关联：</p><h2 id="4-聚合（Aggregation）"><a href="#4-聚合（Aggregation）" class="headerlink" title="4.聚合（Aggregation）"></a>4.聚合（Aggregation）</h2><p>【聚合关系】：是整体与部分的关系.如车和轮胎是整体和部分的关系.</p><p>聚合关系是关联关系的一种，是强的关联关系；关联和聚合在语法上无法区分，必须考察具体的逻辑关系。</p><p>【代码体现】：成员变量</p><p>【箭头及指向】：带空心菱形的实心线，菱形指向整体</p><p><img src="/imgs/assets/p5.png"></p><h2 id="5-组合-Composition"><a href="#5-组合-Composition" class="headerlink" title="5.组合(Composition)"></a>5.组合(Composition)</h2><p>【组合关系】：是整体与部分的关系.,没有公司就不存在部门 组合关系是关联关系的一种，是比聚合关系还要强的关系，它要求普通的聚合关系中代表整体的对象负责代表部分的对象的生命周期</p><p>例如：人的器官组成人的整体，当人死亡时，器官也跟着死亡。</p><p>【代码体现】：成员变量</p><p>【箭头及指向】：带实心菱形的实线，菱形指向整体</p><p><img src="/imgs/assets/p6.png"></p><h2 id="6-依赖-Dependency"><a href="#6-依赖-Dependency" class="headerlink" title="6.依赖(Dependency)"></a>6.依赖(Dependency)</h2><p>【依赖关系】：是一种使用的关系,所以要尽量不使用双向的互相依赖。</p><p>【代码表现】：局部变量、方法的参数或者对静态方法的调用</p><p>【箭头及指向】：带箭头的虚线，指向被使用者</p><p><img src="/imgs/assets/p7.png"></p><h2 id="各种关系的强弱顺序："><a href="#各种关系的强弱顺序：" class="headerlink" title="各种关系的强弱顺序："></a>各种关系的强弱顺序：</h2><p>泛化= 实现&gt; 组合&gt; 聚合&gt; 关联&gt; 依赖</p><h2 id="下面这张UML图，比较形象地展示了各种类图关系："><a href="#下面这张UML图，比较形象地展示了各种类图关系：" class="headerlink" title="下面这张UML图，比较形象地展示了各种类图关系："></a>下面这张UML图，比较形象地展示了各种类图关系：</h2><p><img src="/imgs/assets/p8.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;UML类图&quot;&gt;&lt;a href=&quot;#UML类图&quot; class=&quot;headerlink&quot; title=&quot;UML类图&quot;&gt;&lt;/a&gt;UML类图&lt;/h1&gt;&lt;p&gt;&lt;font color=red&gt;&lt;strong&gt;作为设计模式内容的补充&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;p</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>合成/聚合复用原则（CAPR）</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E5%90%88%E6%88%90-%E8%81%9A%E5%90%88%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99%EF%BC%88CAPR%EF%BC%89/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E5%90%88%E6%88%90-%E8%81%9A%E5%90%88%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99%EF%BC%88CAPR%EF%BC%89/</id>
+    <published>2023-04-12T07:27:30.000Z</published>
+    <updated>2023-04-12T07:54:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="合成-聚合复用原则（CAPR）"><a href="#合成-聚合复用原则（CAPR）" class="headerlink" title="合成/聚合复用原则（CAPR）"></a>合成/聚合复用原则（CAPR）</h1><p>对象的继承关系是在编译时就定义好了，所以无法在运行时改变从父类继承的实现。子类的实现与它的父类有非常紧密的依赖关系，以至于父类实现中的任何变换必然导致子类发生变化。当你需要复用子类时，如果继承下来的实现不适合解决新的问题，则父类必须重写或者被其他更适合的类替换。这种依赖关系限制了灵活性并最终限制了复用性。</p><p><strong>合成/聚合复用原则：尽量使用合成/聚合，尽量不要使用类继承。</strong></p><p>聚合表示一种弱的“拥有”关系，体现的是A对象可以包含B对象，但B对象不是A对象的一部分；</p><p>合成则是一种强的“拥有”关系，体现了严格的部分与整体的关系，部分和整体的生命周期一样。</p><p>优先使用对象的合成聚合将有助于你保持每个类被封装，并被集中在单个任务上，这样类和类继承层次会保持较小规模，并且不太可能增长为不可控制的庞然大物。</p><p><strong>继承表示了父子之间的强耦合关系。</strong></p><p><strong>所以说，不要乱用继承。</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;合成-聚合复用原则（CAPR）&quot;&gt;&lt;a href=&quot;#合成-聚合复用原则（CAPR）&quot; class=&quot;headerlink&quot; title=&quot;合成/聚合复用原则（CAPR）&quot;&gt;&lt;/a&gt;合成/聚合复用原则（CAPR）&lt;/h1&gt;&lt;p&gt;对象的继承关系是在编译时就定义好了，</summary>
+      
+    
+    
+    
+    <category term="--[设计模式,设计原则]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>迪米特法则</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99/</id>
+    <published>2023-04-12T07:26:09.000Z</published>
+    <updated>2023-04-12T07:53:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h1><p>迪米特法则，也叫最少知识原则，如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。</p><p>迪米特法则首先强调的前提是在类的结构设计上，每一个类都应当尽量降低成员的访问权限。类应当尽量包装好自己的状态为private，不让别的类知道的字段和行为不必公开。需要公开的字段通常通过属性来体现。（C#尤其如此）</p><p>迪米特法则其根本思想，是强调了<strong>类之间的松耦合</strong>。</p><p>类之间的耦合越弱，越有利于复用，一个处于弱耦合的类被修改，不会对有关系的类造成波及。信息的隐藏促进了软件的复用。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;迪米特法则&quot;&gt;&lt;a href=&quot;#迪米特法则&quot; class=&quot;headerlink&quot; title=&quot;迪米特法则&quot;&gt;&lt;/a&gt;迪米特法则&lt;/h1&gt;&lt;p&gt;迪米特法则，也叫最少知识原则，如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中一个类需要</summary>
+      
+    
+    
+    
+    <category term="--[设计模式,设计原则]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开放封闭原则</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E5%BC%80%E6%94%BE%E5%B0%81%E9%97%AD%E5%8E%9F%E5%88%99/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E5%BC%80%E6%94%BE%E5%B0%81%E9%97%AD%E5%8E%9F%E5%88%99/</id>
+    <published>2023-04-12T07:25:53.000Z</published>
+    <updated>2023-04-12T07:51:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="开放封闭原则"><a href="#开放封闭原则" class="headerlink" title="开放封闭原则"></a>开放封闭原则</h1><h2 id="The-Open-Closed-Principle开闭原则"><a href="#The-Open-Closed-Principle开闭原则" class="headerlink" title="The Open-Closed Principle开闭原则"></a>The Open-Closed Principle开闭原则</h2><p>说的是软件实体（类、模块、函数等）应该是可以拓展，但是不可修改的。</p><p>两个特征:</p><p><strong>对于拓展是开放的（Open for Extension）</strong></p><p><strong>对于修改是封闭的（Closed for modification）</strong></p><p>在做任何系统时，不必指望系统需求一开始就是确定的，因为需求一定会更改，要设计出容易维护又不容易出问题的软件系统，最好就是多拓展，少修改。怎么样的设计才能面对需求的改变而保持相对稳定呢？</p><h2 id="拓展性问题"><a href="#拓展性问题" class="headerlink" title="拓展性问题"></a>拓展性问题</h2><ul><li>保留拓展点</li><li>要时刻具备拓展意识、抽象意识和封装意识</li></ul><h2 id="修改问题"><a href="#修改问题" class="headerlink" title="修改问题"></a>修改问题</h2><ul><li>添加了新类、新模块，但仍需要对高层模块作些许修改以适应新业务。</li><li>尽量让修改更集中、更少、更上层，尽量让最核心、最复杂的那部分逻辑代码满足开闭原则。</li><li>绝对的对修改关闭是不存在的、不可能的。</li><li>无论模块多么“封闭”，都存在无法对之封闭的变化，设计人员必须对他设计的模块应该对哪种变化封闭做出选择，他必须猜测最有可能发生的变化种类，然后抽象隔离出那些变化。</li><li>等到变化发生时立即采取行动</li><li>在最开始编写时，假设变化不会发生，当变化发生时，我们就创建抽象来隔离发生的同类变化。</li></ul><h2 id="例子：运算类——添加一个新的运算"><a href="#例子：运算类——添加一个新的运算" class="headerlink" title="例子：运算类——添加一个新的运算"></a>例子：运算类——添加一个新的运算</h2><p>刚开始的时候，这个运算整个写在控制台，如果要添加一个新的运算操作，需要修改整个程序结构。</p><p>后面通过抽象，继承的方式，将不同的运算操作分离开来，如果要添加一个新的运算操作，就直接新建一个类继承运算类重写虚方法。</p><p>面对需求，对程序的改动是通过增加新代码实现的（拓展），而不是修改原来的代码做出来的（减少修改）。</p><p>并非对于应用程序的每个部分都刻意进行抽象，<strong>拒绝这样的过度抽象，拒绝不成熟的抽象</strong>和学会使用抽象一样重要。</p><h2 id="如何做到“对扩展开放、修改关闭”？"><a href="#如何做到“对扩展开放、修改关闭”？" class="headerlink" title="如何做到“对扩展开放、修改关闭”？"></a>如何做到“对扩展开放、修改关闭”？</h2><p>实际上，开闭原则讲的就是<strong>代码****的扩展性问题</strong>，是判断一段代码是否易扩展的“金标准”。</p><p>在讲具体的方法论之前，我们先来看一些更加偏向顶层的指导思想。为了尽量写出扩展性好的代码，我们要时刻具备<strong>扩展意识、抽象意识、封装意识</strong>。这些“潜意识”可能比任何开发技巧都重要。</p><h3 id="扩展意识"><a href="#扩展意识" class="headerlink" title="扩展意识"></a>扩展意识</h3><p>在写代码的时候，我们要多花点时间往前多思考一下，这段代码未来可能有哪些需求变更、如何设计代码结构，事先留好扩展点，以便在未来需求变更的时候，不需要改动代码整体结构、做到最小代码改动的情况下，新的代码能够灵活地插入到扩展点上，做到“对扩展开放、对修改关闭”。</p><h3 id="抽象意识"><a href="#抽象意识" class="headerlink" title="抽象意识"></a>抽象意识</h3><p>提供抽象化的不可变接口，给上层系统使用。当具体的实现发生变化的时候，我们只需要基于相同的抽象接口，扩展一个新的实现，替换老的实现即可，上游系统的代码几乎不需要修改。</p><h3 id="封装意识"><a href="#封装意识" class="headerlink" title="封装意识"></a>封装意识</h3><p>在识别出代码可变部分和不可变部分之后，我们要将可变部分封装起来，隔离变化。</p><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>在众多的设计原则、思想、模式中，最常用来提高代码扩展性的方法有：多态、依赖注入、基于接口而非实现编程，以及大部分的设计模式（比如：装饰、策略、模板、职责链、状态等）。</p><h3 id="预留扩展点"><a href="#预留扩展点" class="headerlink" title="预留扩展点"></a>预留扩展点</h3><p>前面我们提到，写出支持“对扩展开放、对修改关闭”的代码的关键是预留扩展点，那么问题是，应该如何才能识别出所有可能的扩展点呢？</p><p>如果开发业务导向的系统，比如电商系统、物流系统、金融系统等，要想识别尽可能多的扩展点，就需要对业务本身有足够多的了解。</p><p>如果开发通用、偏底层的框架、类库、组件等，就需要了解它们会被如何使用，日后可能会添加什么功能。</p><h2 id="过度设计的问题"><a href="#过度设计的问题" class="headerlink" title="过度设计的问题"></a>过度设计的问题</h2><p>“唯一不变的就是变化本身”，尽管我们对业务系统、框架功能有足够多的了解，也不能识别出所有的扩展点。即便我们能够识别出所有的扩展点，为这些地方做预留扩展点的设计，成本都是很大的，这就叫做“过度设计”。</p><h2 id="合理的做法"><a href="#合理的做法" class="headerlink" title="合理的做法"></a>合理的做法</h2><p>应该是对于一些比较确定的，短期内可能就会扩展，或者需要改动对代码结构影响比较大的情况，或者实现成本不高的扩展点，在编写代码的时候，我们就可以事先做预留扩展点设计。但是对于一些不确定未来是否要支持的需求，或者实现起来比较复杂的扩展点，可以通过重构代码的方式来支持扩展的需求。</p><p>设计原则是否应用得当，应该根据具体的业务场景，具体分析。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol><li><p>对扩展开放，是为了应付变化（需求）；</p></li><li><p>对修改封闭，是为了保证已有代码的稳定性；</p></li><li><p>最终结果是为了让系统更有弹性！</p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;开放封闭原则&quot;&gt;&lt;a href=&quot;#开放封闭原则&quot; class=&quot;headerlink&quot; title=&quot;开放封闭原则&quot;&gt;&lt;/a&gt;开放封闭原则&lt;/h1&gt;&lt;h2 id=&quot;The-Open-Closed-Principle开闭原则&quot;&gt;&lt;a href=&quot;#The-Open</summary>
+      
+    
+    
+    
+    <category term="--[设计模式,设计原则]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>依赖倒置原则</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99/</id>
+    <published>2023-04-12T07:25:35.000Z</published>
+    <updated>2023-04-12T07:47:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><p>依赖倒置原则说的是：</p><ul><li><p>高层模块不应该依赖低层模块，两个都应该依赖于抽象。</p></li><li><p>抽象不应该依赖细节，细节应该依赖于抽象。</p></li><li><p>就是说，要针对接口编程，不要对实现编程。</p></li></ul><hr><p>依赖倒置其实可以说是面向对象设计的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，<font color="red">即程序中的所有依赖关系都是终止于抽象类或者接口，那就是面向对象的设计，反之就是过程化的设计</font>。</p><p><strong>只要接口是稳定的，那么任何一个的更改都不用担心受到影响，这就使得无论高层模块还是低层模块都可以很容易地被复用。</strong></p><p>做项目的时候，通常需要访问数据库，为了使代码能够重用，可以用一个DatabaseUtil类来装关于数据库的各种操作，然后再根据业务逻辑调用其中的各种方法来操作数据库。可以想到，业务逻辑层依赖于数据库操作层（高层依赖于低层），如果要做新项目的时候，发现业务逻辑的高层模块基本是一样的，但却要使用另外的数据库，我们想要复用业务逻辑层，但是却发现了窘境：这些业务逻辑都和低层绑定在一起，没办法复用这些模块。</p><p>如果想要复用这些模块，就需要类似实现像电脑cpu，内存，硬盘那样在主板上即插即用的接口*。主板坏了，会影响其他部件的使用，但是单一个内存坏了，不应该影响到其他部件的使用。<font color="red">提供统一的接口，才是让高层模块和低层模块都能复用的真理…</font></p><p><strong>只要行为是一致的，就可以通过接口的引用（父）来装载子类（实现该接口的类）。只要实例化对应的子类，不需要修改接口方法的调用。这样就实现了对高层模块的复用。</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;依赖倒置原则&quot;&gt;&lt;a href=&quot;#依赖倒置原则&quot; class=&quot;headerlink&quot; title=&quot;依赖倒置原则&quot;&gt;&lt;/a&gt;依赖倒置原则&lt;/h1&gt;&lt;p&gt;依赖倒置原则说的是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;高层模块不应该依赖低层模块，两个都应该依赖于抽象。&lt;/</summary>
+      
+    
+    
+    
+    <category term="--[设计模式,设计原则]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>里氏替换原则</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99/</id>
+    <published>2023-04-12T07:25:16.000Z</published>
+    <updated>2023-04-12T07:36:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>一个软件实体如果使用的是一个父类的话，那么一定适用于其子类，而且它察觉不出父类对象和子类对象的区别。  </p><p>也就是说，在软件里面，把父类都替换成他的子类，程序的行为没有变化。  </p><p>更加简单地：父类引用可以装载子类实例。</p><p>当子类可以替换掉父类，软件单位的功能不受到影响时，父类才能被真正被复用，而子类也能在父类的基础上面增加新的行为。  </p><p>由于子类型的可替换性才使得父类的模块在无需修改的情况下可以拓展。</p><p>里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。</p><h2 id="里氏替换原则的作用"><a href="#里氏替换原则的作用" class="headerlink" title="里氏替换原则的作用"></a>里氏替换原则的作用</h2><p>里氏替换原则的主要作用如下。</p><ol><li>里氏替换原则是实现开闭原则的重要方式之一。</li><li>它克服了继承中重写父类造成的可复用性变差的缺点。</li><li>它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性。</li><li>加强程序的健壮性，同时变更时可以做到非常好的兼容性，提高程序的维护性、可扩展性，降低需求变更时引入的风险。</li></ol><h2 id="里氏替换原则的实现方法"><a href="#里氏替换原则的实现方法" class="headerlink" title="里氏替换原则的实现方法"></a>里氏替换原则的实现方法</h2><p>里氏替换原则通俗来讲就是：子类可以扩展父类的功能，但不能改变父类原有的功能。也就是说：子类继承父类时，除添加新的方法完成新增功能外，尽量不要重写父类的方法。</p><p>根据上述理解，对里氏替换原则的定义可以总结如下：</p><ul><li>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法</li><li>子类中可以增加自己特有的方法</li><li>当子类的方法重载父类的方法时，方法的前置条件（即方法的输入参数）要比父类的方法更宽松</li><li>当子类的方法实现父类的方法时（重写/重载或实现抽象方法），方法的后置条件（即方法的的输出/返回值）要比父类的方法更严格或相等</li></ul><p>通过重写父类的方法来完成新的功能写起来虽然简单，但是整个继承体系的可复用性会比较差，特别是运用多态比较频繁时，程序运行出错的概率会非常大。</p><p>如果程序违背了里氏替换原则，则继承类的对象在基类出现的地方会出现运行错误。这时其修正方法是：取消原来的继承关系，重新设计它们之间的关系。</p><p>关于里氏替换原则的例子，最有名的是“正方形不是长方形”。当然，生活中也有很多类似的例子，例如，企鹅、鸵鸟和几维鸟从生物学的角度来划分，它们属于鸟类；但从类的继承关系来看，由于它们不能继承“鸟”会飞的功能，所以它们不能定义成“鸟”的子类。同样，由于“气球鱼”不会游泳，所以不能定义成“鱼”的子类；“玩具炮”炸不了敌人，所以不能定义成“炮”的子类等。</p><h3 id="什么是替换？"><a href="#什么是替换？" class="headerlink" title="什么是替换？"></a>什么是替换？</h3><p>替换的前提是面向对象语言所支持的多态特性，同一个行为具有多个不同表现形式或形态的能力。以JDK的集合框架为例，List接口的定义为有序集合，List接口有多个派生类，比如大家耳熟能详的ArrayList, LinkedList。那当某个方法参数或变量是List接口类型时，既可以是ArrayList的实现, 也可以是LinkedList的实现，这就是替换。</p><p>举个简单的例子：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getFirst</span>(<span class="hljs-params">List&lt;String&gt; values</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> values.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>); <br>&#125;<br><span class="hljs-comment">//对于getFirst方法，接受一个List接口类型的参数，</span><br><span class="hljs-comment">//那既可以传递一个ArrayList类型的参数：</span><br>List&lt;String&gt; values = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>values.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;a&quot;</span>);<br>values.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;b&quot;</span>);<br>String firstValue = getFirst(values);<br><br><span class="hljs-comment">//也可以接收一个LinkedList参数：</span><br>List&lt;String&gt; values = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();<br>values.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;a&quot;</span>);<br>values.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;b&quot;</span>);<br>String firstValue = getFirst(values);<br></code></pre></td></tr></table></figure><h3 id="什么是与期望行为一致的替换？"><a href="#什么是与期望行为一致的替换？" class="headerlink" title="什么是与期望行为一致的替换？"></a>什么是与期望行为一致的替换？</h3><p>在不了解派生类的情况下，仅通过接口或基类的方法，即可清楚的知道方法的行为，而不管哪种派生类的实现，都与接口或基类方法的期望行为一致。或者说接口或基类的方法是一种契约，使用方按照这个契约来使用，派生类也按照这个契约来实现。这就是与期望行为一致的替换。继续以上节中的例子说明： </p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getFirst</span>(<span class="hljs-params">List&lt;String&gt; values</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> values.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure><p>对于getFirst方法，接收List类型的参数，而List类型的get方法返回特定位置的元素，对于本例即为第一个元素。这些是不依赖派生类的知识的。所以对于上节中的示例，不管是ArrayList类型的实现，还是LinkedList的实现，getFirst方法最终的返回值是一样的。这就是与期望行为一致的替换。  </p><p>违反里氏替换原则的场景：  </p><ol><li><p>子类种抛出了基类中未定义的异常。</p></li><li><p>子类改变了基类定义的方法的语义（引入了副作用）。</p></li></ol><h3 id="违反里氏替换原则的危害"><a href="#违反里氏替换原则的危害" class="headerlink" title="违反里氏替换原则的危害"></a>违反里氏替换原则的危害</h3><p>反直觉。期望所有的子类行为均一致，但若非一致则需要文档记录。  </p><p>不可读。如果子类行为不一致，可能需要不同的逻辑分支来适配不同的行为，徒增代码复杂度。  </p><p>不可用。可能出错的地方终将出错。</p><h2 id="如何避免违反里氏替换原则"><a href="#如何避免违反里氏替换原则" class="headerlink" title="如何避免违反里氏替换原则"></a>如何避免违反里氏替换原则</h2><p>谈到如何避免，当然要基于里氏替换原则的定义，与期望行为一致的替换。</p><ul><li>从行为出发来设计。在做抽象或设计时，不只是要从模型概念出发，还要从行为出发，比如一个经典的例子，正方形和长方形，从现实的概念中正方形是一个长方形，但是在计算其面积的行为上是不一致的。</li><li>基于契约设计。这个契约即是基类方法签名、功能描述、参数类型、返回值等。在派生类的实现时，时刻保持派生类与基类的契约不被破坏。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;里氏替换原则&quot;&gt;&lt;a href=&quot;#里氏替换原则&quot; class=&quot;headerlink&quot; title=&quot;里氏替换原则&quot;&gt;&lt;/a&gt;里氏替换原则&lt;/h1&gt;&lt;p&gt;一个软件实体如果使用的是一个父类的话，那么一定适用于其子类，而且它察觉不出父类对象和子类对象的区别。  &lt;/</summary>
+      
+    
+    
+    
+    <category term="--[设计模式,设计原则]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单一职责原则</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99/</id>
+    <published>2023-04-12T07:25:01.000Z</published>
+    <updated>2023-04-12T07:43:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><p><strong>就一个类而言，应该仅有一个引起它变化的原因。</strong></p><p>如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致<strong>脆弱的设计</strong>，当变化发生时，设计会遭受到意想不到的破坏。当一个职责发生变化时，可能会影响其它的职责。另外，多个职责耦合在一起，会影响复用性。想要避免这种现象的发生，就要尽可能的遵守单一职责原则。</p><p><strong>单一职责原则的核心就是解耦和增强内聚性。</strong></p><p>软件设计真正需要做的内容，就是发现职责并把那些职责相互分离。</p><p>如果发现多于一个的动机去改变一个类，那么这个类就具有多于一个职责耦合在一起。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;单一职责原则&quot;&gt;&lt;a href=&quot;#单一职责原则&quot; class=&quot;headerlink&quot; title=&quot;单一职责原则&quot;&gt;&lt;/a&gt;单一职责原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;就一个类而言，应该仅有一个引起它变化的原因。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果一个类承担</summary>
+      
+    
+    
+    
+    <category term="--[设计模式,设计原则]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>敏捷开发原则</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E5%8E%9F%E5%88%99/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/DesignPrinciples/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E5%8E%9F%E5%88%99/</id>
+    <published>2023-04-12T07:24:31.000Z</published>
+    <updated>2023-04-12T07:30:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="敏捷开发原则"><a href="#敏捷开发原则" class="headerlink" title="敏捷开发原则"></a>敏捷开发原则</h1><p>不要为代码添加基于猜测的、实际不需要的功能。</p><p><a href="https://blog.csdn.net/hb5cn/article/details/81209938">敏捷开发的12条原则</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;敏捷开发原则&quot;&gt;&lt;a href=&quot;#敏捷开发原则&quot; class=&quot;headerlink&quot; title=&quot;敏捷开发原则&quot;&gt;&lt;/a&gt;敏捷开发原则&lt;/h1&gt;&lt;p&gt;不要为代码添加基于猜测的、实际不需要的功能。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.cs</summary>
+      
+    
+    
+    
+    <category term="--[设计模式,设计原则]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>中介者模式（Mediator）</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F%EF%BC%88Mediator%EF%BC%89/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F%EF%BC%88Mediator%EF%BC%89/</id>
+    <published>2023-04-12T06:50:43.000Z</published>
+    <updated>2023-04-12T07:16:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="中介者模式（Mediator）"><a href="#中介者模式（Mediator）" class="headerlink" title="中介者模式（Mediator）"></a>中介者模式（Mediator）</h1><p>中介者模式（Mediator），用一个中介对象来封装一系列的对象交互。<strong>中介使得各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互</strong>。</p><h2 id="中介者模式结构图"><a href="#中介者模式结构图" class="headerlink" title="中介者模式结构图"></a>中介者模式结构图</h2><p><img src="/imgs/assets/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F%E7%B1%BB%E5%9B%BE.png"></p><h2 id="中介者模式代码结构"><a href="#中介者模式代码结构" class="headerlink" title="中介者模式代码结构"></a>中介者模式代码结构</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs csharp">    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Mediator</span><br>    &#123;<br>        <span class="hljs-comment">//定义一个抽象的发生消息方法，得到同事对象和发送消息。</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Send</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message,Colleague colleague</span>)</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Colleague</span><br>    &#123;<br>        <span class="hljs-keyword">protected</span> Mediator mediator;<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Colleague</span>(<span class="hljs-params">Mediator mediator</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">this</span>.mediator = mediator;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteMediator</span> : <span class="hljs-title">Mediator</span><br>    &#123;<br>        <span class="hljs-keyword">private</span> ConcreteColleague1 colleague1;<br>        <span class="hljs-keyword">public</span> ConcreteColleague1 Colleague1<br>        &#123;<br>            <span class="hljs-keyword">set</span> &#123; colleague1 = <span class="hljs-keyword">value</span>; &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">private</span> ConcreteColleague2 colleague2;<br>        <span class="hljs-keyword">public</span> ConcreteColleague2 Colleague2<br>        &#123;<br>            <span class="hljs-keyword">set</span> &#123; colleague2 = <span class="hljs-keyword">value</span>; &#125;<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Send</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message, Colleague colleague</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">if</span>(colleague==colleague1)<br>            &#123;<br>                colleague2.Notify(message);<br>            &#125;<span class="hljs-keyword">else</span><br>            &#123;<br>                colleague1.Notify(message);<br>            &#125;<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteColleague1</span> : <span class="hljs-title">Colleague</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ConcreteColleague1</span>(<span class="hljs-params">Mediator mediator</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">mediator</span>)</span><br>        &#123;<br><br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Notify</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message</span>)</span> &#123; Console.WriteLine(<span class="hljs-string">&quot;同事1得到消息&quot;</span>+message); &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Send</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message</span>)</span> &#123; mediator.Send(message, <span class="hljs-keyword">this</span>); &#125;<br>    &#125;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteColleague2</span> : <span class="hljs-title">Colleague</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ConcreteColleague2</span>(<span class="hljs-params">Mediator mediator</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">mediator</span>)</span><br>        &#123;<br><br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Notify</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message</span>)</span> &#123; Console.WriteLine(<span class="hljs-string">&quot;同事2得到消息&quot;</span> + message); &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Send</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message</span>)</span> &#123; mediator.Send(message,<span class="hljs-keyword">this</span>); &#125;<br>    &#125;<br><br><span class="hljs-comment">//客户端代码：</span><br>    ConcreteMediator mediator = <span class="hljs-keyword">new</span> ConcreteMediator();<br>    ConcreteColleague1 c1 = <span class="hljs-keyword">new</span> ConcreteColleague1(mediator);<br>    ConcreteColleague2 c2 = <span class="hljs-keyword">new</span> ConcreteColleague2(mediator);<span class="hljs-comment">//两个同事类均认识中介者对象</span><br>    mediator.Colleague1 = c1;<br>    mediator.Colleague2 = c2;<br>    c1.Send(<span class="hljs-string">&quot;111&quot;</span>);<br>    c2.Send(<span class="hljs-string">&quot;222&quot;</span>);            <br></code></pre></td></tr></table></figure><h1 id="中介者模式总结"><a href="#中介者模式总结" class="headerlink" title="中介者模式总结"></a>中介者模式总结</h1><ol><li><p>尽管将一个系统分割成许多对象通常可以增加其复用性，但是对象间相互连接的激增又会降低其可复用性。</p></li><li><p>大量的连接使得一个对象不能在没有其他对象的支持下工作，系统表现为一个不可分割的整体，所以，对系统的任何行为进行较大的改动就十分困难了。</p></li><li><p><strong>通过中介者模式，系统从复杂交织的网状结构变成了以中介者为中心的星形结构，每个具体对象不再通过直接的联系与另一个对象发生相互作用吗，而是通过中介者对象与另一个对象发生相互作用。</strong></p></li><li><p>中介者模式一般应用在一组对象以定义良好但是复杂的方式进行通信的场合，以及想定制一个分布在多个类中的行为，而不想产生过多子类的场合。</p></li></ol><h2 id="中介者模式的缺点"><a href="#中介者模式的缺点" class="headerlink" title="中介者模式的缺点"></a>中介者模式的缺点</h2><p>缺点很明显，所有的具体联系必须由中介者来定义，必须了解所有需要联系的类，此时将会使得中介者类过于复杂（责任过多）</p><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>将考虑交互复杂性变为了中介者的复杂性，减轻了类联系的耦合性，将关注的对象从对象各自本身的行为转移到了它们之间的交互联系上。从更加宏观的角度看待系统。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;中介者模式（Mediator）&quot;&gt;&lt;a href=&quot;#中介者模式（Mediator）&quot; class=&quot;headerlink&quot; title=&quot;中介者模式（Mediator）&quot;&gt;&lt;/a&gt;中介者模式（Mediator）&lt;/h1&gt;&lt;p&gt;中介者模式（Mediator），用一</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解释器模式（Interpreter）</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%88Interpreter%EF%BC%89/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%88Interpreter%EF%BC%89/</id>
+    <published>2023-04-12T06:50:26.000Z</published>
+    <updated>2023-04-12T07:12:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="解释器模式（Interpreter）"><a href="#解释器模式（Interpreter）" class="headerlink" title="解释器模式（Interpreter）"></a>解释器模式（Interpreter）</h1><p>为什么需要这种模式？</p><p>某些场景，需要用到字符解析、SQL解析、符号处理等。</p><p>解释器模式提供了评估语言的语法或表达式的方法。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;解释器模式（Interpreter）&quot;&gt;&lt;a href=&quot;#解释器模式（Interpreter）&quot; class=&quot;headerlink&quot; title=&quot;解释器模式（Interpreter）&quot;&gt;&lt;/a&gt;解释器模式（Interpreter）&lt;/h1&gt;&lt;p&gt;为什么需要这</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>享元模式（Flyweight）</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F%EF%BC%88Flyweight%EF%BC%89/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F%EF%BC%88Flyweight%EF%BC%89/</id>
+    <published>2023-04-12T06:49:58.000Z</published>
+    <updated>2023-04-12T07:10:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="享元模式（Flyweight）"><a href="#享元模式（Flyweight）" class="headerlink" title="享元模式（Flyweight）"></a>享元模式（Flyweight）</h1><p>享元模式（Flyweight），运用共享技术有效地支持大量细粒度的对象。</p><h2 id="享元模式结构图"><a href="#享元模式结构图" class="headerlink" title="享元模式结构图"></a>享元模式结构图</h2><p><img src="/imgs/assets/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F%E7%B1%BB%E5%9B%BE.png"></p><h2 id="享元模式成员分析"><a href="#享元模式成员分析" class="headerlink" title="享元模式成员分析"></a>享元模式成员分析</h2><p>没看懂，也许后面会更新罢。</p><h2 id="享元模式代码结构"><a href="#享元模式代码结构" class="headerlink" title="享元模式代码结构"></a>享元模式代码结构</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment"><span class="hljs-doctag">///</span> FlyWeight类，它是所有具体享元类的超类或接口，通过这个接口，Flyweight可以接受并作用于外部状态。</span><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Flyweight</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> extrinsicstate</span>)</span>;<br>&#125;<br><br><span class="hljs-comment"><span class="hljs-doctag">///</span> ConcreteFlyweight类是继承Flyweight超类或实现Flyweight接口，并为内部状态增加存储空间</span><br><span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteFlyweight</span> : <span class="hljs-title">Flyweight</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> extrinsicstate</span>)</span><br>    &#123;<br>        Console.Write(<span class="hljs-string">&quot;具体的Flyweight&quot;</span> + extrinsicstate);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title">UnsharedConcreteFlyweight</span> : <span class="hljs-title">Flyweight</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> extrinsicstate</span>)</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">&quot;不共享的具体Flyweight&quot;</span> + extrinsicstate);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment"><span class="hljs-doctag">///</span> FlyweightFactory类，是一个享元工厂，用来创建并管理Flyweight对象。</span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 它主要是用来确保合理地共享Flyweight，当用户请求一个Flyweight时，</span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> FlyweightFactory对象提供一个已创建的实例或者创建一个（如果不存在的话）。</span><br><span class="hljs-keyword">class</span> <span class="hljs-title">FlyweightFactory</span><br>&#123;<br>    <span class="hljs-keyword">private</span> Hashtable flyweights = <span class="hljs-keyword">new</span> Hashtable();<br>    <span class="hljs-comment">//初始化工厂时，生成3个实例</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FlyweightFactory</span>()</span><br>    &#123;<br>        flyweights.Add(<span class="hljs-string">&quot;x&quot;</span>, <span class="hljs-keyword">new</span> ConcreteFlyweight());<br>        flyweights.Add(<span class="hljs-string">&quot;y&quot;</span>, <span class="hljs-keyword">new</span> ConcreteFlyweight());<br>        flyweights.Add(<span class="hljs-string">&quot;z&quot;</span>, <span class="hljs-keyword">new</span> ConcreteFlyweight());<br>    &#125;<br>    <span class="hljs-comment">//根据客户端的请求，获得已生成的实例</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Flyweight <span class="hljs-title">GetFlyweight</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> key</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> (Flyweight)flyweights[key];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h1 id="享元模式总结"><a href="#享元模式总结" class="headerlink" title="享元模式总结"></a>享元模式总结</h1><p>问题：</p><p>一定要在工厂里面事先实例化对象实例嘛？  </p><p>不一定，可以在工厂实例化时什么都不做，到需要使用时，再判断GetFlyweight(key)是否为null，是则实例化一个对象实例。  </p><p>Unshared的享元存在的意义何在？  </p><p>有一些时候的特例，有可能存在不需要共享的实例对象。</p><h2 id="关键"><a href="#关键" class="headerlink" title="关键"></a>关键</h2><p><strong>内部状态和外部状态</strong></p><p>享元模式可以避免大量非常相似类的开销。在程序设计中，有时需要生成大量细粒度的类实例来表示数据。如果能发现这些实例除了几个参数外基本相同，有时就能够大幅度地减少需要实例化的类的数量。如果能够把那些参数移到类实例的外面，在<strong>方法调用时再将它们传递进来</strong>，就可以通过共享去大幅度地减少单个实例的数目。  </p><p><strong>内部状态存储在具体享元当中</strong></p><p>将外部状态作为方法参数存放于具体享元的方法中</p><p>考虑将外部状态放在客户端中存储或计算。</p><h2 id="享元模式应用场景"><a href="#享元模式应用场景" class="headerlink" title="享元模式应用场景"></a>享元模式应用场景</h2><p>如果一个应用程序使用了大量的对象，而大量的这些对象造成了很大的存储开销时，应该考虑使用享元模式。</p><p>此外，如果对象的大多数状态可以外部状态，如果删除对象的外部状态，那么可以用相对较少的共享对象取代很多组对象。</p><h1 id="游戏开发中的享元模式"><a href="#游戏开发中的享元模式" class="headerlink" title="游戏开发中的享元模式"></a>游戏开发中的享元模式</h1><p>享元模式用于在多个对象之间共享相同的数据。  </p><p>例如，游戏场景中的一些植被和重复得小物件，它们的贴图或是网格都是一样的，可以创建一个公共的对象来记录这些数据，我称之为共享数据，然后他们的位置，朝向可能都不一样，这些数据我称之为私有数据。  </p><p>如我们要在游戏场景中绘制1k棵树，在未使用享元模式之前：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">Tree</span><br>｛<br><span class="hljs-title">private</span>:<br>  <span class="hljs-title">Mesh</span> <span class="hljs-title">mesh_</span>;<br>  Texture bark_;<br>  Texture leaves_;<br>  Vector position_;<br>  <span class="hljs-built_in">double</span> height_;<br>  <span class="hljs-built_in">double</span> thickness_;<br>  Color barkTint_;<br>  Color leafTint_;<br>｝;<br></code></pre></td></tr></table></figure><p>使用享元模式之后：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">TreeModel</span><br>｛<br><span class="hljs-title">private</span>:<br>  <span class="hljs-title">Mesh</span> <span class="hljs-title">mesh_</span>;<br>  Texture bark_;<br>  Texture leaves_;<br>｝;<br><span class="hljs-keyword">class</span> <span class="hljs-title">Tree</span><br>｛<br><span class="hljs-title">private</span>:<br>  <span class="hljs-title">TreeModel</span>* <span class="hljs-title">model_</span>;<br>  Vector position_;<br>  <span class="hljs-built_in">double</span> height_;<br>  <span class="hljs-built_in">double</span> thickness_;<br>  Color barkTint_;<br>  Color leafTint_;<br>｝;<br></code></pre></td></tr></table></figure><p>这样我们就只需要创建一个Model对象，让所有的树都引用这份数据，而不是每棵树都拥有自己的网格数据，可以节约内存。以上例子来源于《游戏设计模式》。  </p><p>使用享元模式的前提是，他们的数据必须是可以共享的，即有相同的数据。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;享元模式（Flyweight）&quot;&gt;&lt;a href=&quot;#享元模式（Flyweight）&quot; class=&quot;headerlink&quot; title=&quot;享元模式（Flyweight）&quot;&gt;&lt;/a&gt;享元模式（Flyweight）&lt;/h1&gt;&lt;p&gt;享元模式（Flyweight），运用</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>责任链模式（Chain_Of_Responsibility）</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%EF%BC%88Chain-Of-Responsibility%EF%BC%89/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%EF%BC%88Chain-Of-Responsibility%EF%BC%89/</id>
+    <published>2023-04-12T06:49:43.000Z</published>
+    <updated>2023-04-12T07:02:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="责任链模式（Chain-Of-Responsibility）"><a href="#责任链模式（Chain-Of-Responsibility）" class="headerlink" title="责任链模式（Chain_Of_Responsibility）"></a>责任链模式（Chain_Of_Responsibility）</h1><p>职责链模式(Chain Of Responsibility),使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这个对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。 </p><p>类似于<strong>异常处理机制</strong>中定义的那样，代码抛出一个异常，在异常处理链当中，会有一个对象来处理该异常。</p><h2 id="职责链模式结构图"><a href="#职责链模式结构图" class="headerlink" title="职责链模式结构图"></a>职责链模式结构图</h2><p><img src="/imgs/assets/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E7%B1%BB%E5%9B%BE.png"></p><h2 id="责任链模式代码结构"><a href="#责任链模式代码结构" class="headerlink" title="责任链模式代码结构"></a>责任链模式代码结构</h2><p><img src="/imgs/assets/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BB%A3%E7%A0%81.png"></p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//客户端</span><br>Handler h1 = <span class="hljs-keyword">new</span> ConcreteHandler1();<br>Handler h2 = <span class="hljs-keyword">new</span> ConcreteHandler2();<br>Handler h3 = <span class="hljs-keyword">new</span> ConcreteHandler3();<br>h1.SetSuccessor(h2);<br>h2.SetSuccessor(h3);<br><span class="hljs-built_in">int</span>[] requests = &#123; <span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">32</span>,<span class="hljs-number">57</span>,<span class="hljs-number">5</span>,<span class="hljs-number">21</span> &#125;;<br><span class="hljs-keyword">foreach</span>(<span class="hljs-built_in">int</span> request <span class="hljs-keyword">in</span> requests)<br>&#123;<br>      h1.HandleRequest(request);<br>&#125;<br><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> Handler类，定义一个处理请示的接口</span><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Handler</span><br>    &#123;<br>        <span class="hljs-keyword">protected</span> Handler successor;<br>        <span class="hljs-comment">//设置继任者</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetSuccessor</span>(<span class="hljs-params">Handler successor</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">this</span>.successor = successor;<br>        &#125;<br>        <span class="hljs-comment">//处理请求的抽象方法</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">HandleRequest</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> request</span>)</span>;<br>    &#125;<br><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> ConcreteHandler类，具体处理者类，处理它所负责的请求，</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> 可访问它的后继者，如果可处理该请求，就处理之，否则就将该请求转发给它的后继者</span><br>    <span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteHandler1</span> : <span class="hljs-title">Handler</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">HandleRequest</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> request</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">if</span> (request &gt;= <span class="hljs-number">0</span> &amp;&amp; request &lt; <span class="hljs-number">10</span>)<br>            &#123;<br>                Console.WriteLine(<span class="hljs-string">&quot;处理请求&quot;</span>, <span class="hljs-keyword">this</span>.GetType().Name, request);<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(successor!=<span class="hljs-literal">null</span>)&#123;<br>                successor.HandleRequest(request);<span class="hljs-comment">//移给其他类处理</span><br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteHandler2</span> : <span class="hljs-title">Handler</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">HandleRequest</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> request</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">if</span> (request &gt;= <span class="hljs-number">10</span> &amp;&amp; request &lt; <span class="hljs-number">20</span>)<br>            &#123;<br>                Console.WriteLine(<span class="hljs-string">&quot;处理请求&quot;</span>, <span class="hljs-keyword">this</span>.GetType().Name, request);<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (successor != <span class="hljs-literal">null</span>)<br>            &#123;<br>                successor.HandleRequest(request);<span class="hljs-comment">//移给其他类处理</span><br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteHandler3</span> : <span class="hljs-title">Handler</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">HandleRequest</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> request</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">if</span> (request &gt;= <span class="hljs-number">20</span> &amp;&amp; request &lt; <span class="hljs-number">30</span>)<br>            &#123;<br>                Console.WriteLine(<span class="hljs-string">&quot;处理请求&quot;</span>, <span class="hljs-keyword">this</span>.GetType().Name, request);<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (successor != <span class="hljs-literal">null</span>)<br>            &#123;<br>                successor.HandleRequest(request);<span class="hljs-comment">//移给其他类处理</span><br>            &#125;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure><h1 id="责任链模式总结"><a href="#责任链模式总结" class="headerlink" title="责任链模式总结"></a>责任链模式总结</h1><ul><li>类有太多的责任，这违背了单一职责原则，增加新的管理类，又违背了开放-封闭原则。</li><li>将各种管理者类别分离开来，均作为管理者的子类，利用多态来化解分支判断的僵化。</li><li>用一些“关联”来将管理类中的责任传递，用于把用户的请求传递，直到遇到可以解决这个请求的管理类为止。</li></ul><h2 id="责任链的好处"><a href="#责任链的好处" class="headerlink" title="责任链的好处"></a>责任链的好处</h2><p>当客户提交一个请求时，请求是沿链传递直至有一个ConcreteHandler对象负责处理它。</p><p><strong>接收者和发送者都没有对方的明确信息，且链中对象自己也并不知道链的结构。结果是责任链可简化对象的相互连接，它们仅需保持一个指向其后继者的引用，而不需保持它所有的候选者的引用。大大降低了耦合度。</strong>  </p><p><strong>随时地增加或处理一个请求的结构。增强了给对象指派职责的灵活性。</strong></p><h2 id="潜在的问题"><a href="#潜在的问题" class="headerlink" title="潜在的问题"></a>潜在的问题</h2><p>一个请求极有可能到了链的末端都得不到处理，或者因为没有正确配置而得不到处理。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;责任链模式（Chain-Of-Responsibility）&quot;&gt;&lt;a href=&quot;#责任链模式（Chain-Of-Responsibility）&quot; class=&quot;headerlink&quot; title=&quot;责任链模式（Chain_Of_Responsibility）&quot;&gt;</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>命令模式（Command）</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F%EF%BC%88Command%EF%BC%89/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F%EF%BC%88Command%EF%BC%89/</id>
+    <published>2023-04-12T06:45:30.000Z</published>
+    <updated>2023-04-12T06:57:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="命令模式（Command）"><a href="#命令模式（Command）" class="headerlink" title="命令模式（Command）"></a>命令模式（Command）</h1><p>命令模式（Command），将一个请求封装为一个对象，从而使你可以用不同的请求对客户进行参数化；对请求排队或者记录日志，以及支持可撤销的操作。</p><h2 id="命令模式结构图"><a href="#命令模式结构图" class="headerlink" title="命令模式结构图"></a>命令模式结构图</h2><p>无，以后将会重构。</p><h2 id="命令模式代码结构"><a href="#命令模式代码结构" class="headerlink" title="命令模式代码结构"></a>命令模式代码结构</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//客户端</span><br>Receiver r = <span class="hljs-keyword">new</span> Receiver();<br>Command c = <span class="hljs-keyword">new</span> ConcreteCommand(r);<br>Invoker i = <span class="hljs-keyword">new</span> Invoker();<br>i.SetCommand(c);<br>i.ExecuteCommand();<br><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 命令类，用来声明执行操作的接口</span><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Command</span><br>&#123;<br>    <span class="hljs-keyword">protected</span> Receiver receiver;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Command</span>(<span class="hljs-params">Receiver receiver</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">this</span>.receiver = receiver;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>()</span>;<br>&#125;<br><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 具体的命令类，将一个接收者对象绑定于一个动作，调用接收者对应的操作，以实现execute</span><br><span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteCommand</span> : <span class="hljs-title">Command</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ConcreteCommand</span>(<span class="hljs-params">Receiver receiver</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">receiver</span>)</span><br>    &#123; &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NotImplementedException();<br>    &#125;<br>&#125;<br><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 要求该命令执行这个请求&gt;</span><br><span class="hljs-keyword">class</span> <span class="hljs-title">Invoker</span><br>&#123;<br>    <span class="hljs-keyword">private</span> Command command;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetCommand</span>(<span class="hljs-params">Command command</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">this</span>.command = command;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ExecuteCommand</span>()</span><br>    &#123;<br>        command.Execute();<br>    &#125;<br>&#125;<br><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 知道如何实施一个与执行一个请求有关的操作，任何类都可以成为接收者</span><br><span class="hljs-keyword">class</span> <span class="hljs-title">Receiver</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Action</span>()</span><br>    &#123; <br>        <span class="hljs-comment">//执行请求</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h1 id="命令模式总结"><a href="#命令模式总结" class="headerlink" title="命令模式总结"></a>命令模式总结</h1><h2 id="命令模式优点："><a href="#命令模式优点：" class="headerlink" title="命令模式优点："></a>命令模式优点：</h2><p>它能够较容易地设计一个命令队列；  </p><p>在需要的情况下，可以较容易地将命令计入日志；  </p><p>允许接收请求的一方决定是否要否决请求；  </p><p>容易地实现对请求的撤销和重做；  </p><p>由于加进新的具体命令类不影响其他的类，因此增加新的具体命令非常容易。  </p><p>命令模式把请求一个操作的对象和知道如何执行操作的对象分离开。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;命令模式（Command）&quot;&gt;&lt;a href=&quot;#命令模式（Command）&quot; class=&quot;headerlink&quot; title=&quot;命令模式（Command）&quot;&gt;&lt;/a&gt;命令模式（Command）&lt;/h1&gt;&lt;p&gt;命令模式（Command），将一个请求封装为一个对象</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>桥接模式（Bridge）</title>
+    <link href="http://example.com/2023/04/12/DesignPattern/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%88Bridge%EF%BC%89/"/>
+    <id>http://example.com/2023/04/12/DesignPattern/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%88Bridge%EF%BC%89/</id>
+    <published>2023-04-12T06:31:58.000Z</published>
+    <updated>2023-04-12T06:36:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="桥接模式（Bridge）"><a href="#桥接模式（Bridge）" class="headerlink" title="桥接模式（Bridge）"></a>桥接模式（Bridge）</h1><p>桥接模式（Bridge），将抽象部分与它的实现部分分离，使它们可以独立地变化。  </p><p>实现指的是抽象类和它的派生类用来实现自己的对象。  </p><p>实现的方式有多种，桥接模式的思想就是把这些实现独立出来，让它们各自的变化，这样就使得每种实现的变化不会影响其他实现，从而达到应对变化的目的。  </p><p>实现系统可能有多角度分类，每一种分类都有可能变化，那么就把这种多角度分离出来让它们独立变化，减少它们的耦合。  </p><p>桥接模式是合成/聚合原则的完美体现。</p><h2 id="桥接模式结构图"><a href="#桥接模式结构图" class="headerlink" title="桥接模式结构图"></a>桥接模式结构图</h2><p><img src="/imgs/assets/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E7%B1%BB%E5%9B%BE.png"></p><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p><img src="/imgs/assets/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E5%AE%9E%E4%BE%8B.png"></p><h2 id="桥接模式代码结构"><a href="#桥接模式代码结构" class="headerlink" title="桥接模式代码结构"></a>桥接模式代码结构</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//桥接模式代码结构</span><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Implementor</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span>()</span>;<br>    &#125;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteImplementorA</span> : <span class="hljs-title">Implementor</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span>()</span><br>        &#123;<br>            <span class="hljs-comment">//方法A的具体实现</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteImplementorB</span> : <span class="hljs-title">Implementor</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span>()</span><br>        &#123;<br>            <span class="hljs-comment">//方法B的具体实现</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title">Abstraction</span><br>    &#123;<br>        <span class="hljs-keyword">protected</span> Implementor implementor;<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetImplementor</span>(<span class="hljs-params">Implementor implementor</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">this</span>.implementor = implementor;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span>()</span><br>        &#123;<br>            implementor.Operation();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title">RefinedAbstraction</span> : <span class="hljs-title">Abstraction</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span>()</span><br>        &#123;<br>            implementor.Operation();<br>        &#125;<br>    &#125;<br><br><span class="hljs-comment">//客户端调用</span><br>Abstraction ab = <span class="hljs-keyword">new</span> RefinedAbstraction();<br><br>ab.SetImplementor(<span class="hljs-keyword">new</span> ConcreteImplementorA());<br>ab.Operation();<br><br>ab.SetImplementor(<span class="hljs-keyword">new</span> ConcreteImplementorB());<br>ab.Operation();<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;桥接模式（Bridge）&quot;&gt;&lt;a href=&quot;#桥接模式（Bridge）&quot; class=&quot;headerlink&quot; title=&quot;桥接模式（Bridge）&quot;&gt;&lt;/a&gt;桥接模式（Bridge）&lt;/h1&gt;&lt;p&gt;桥接模式（Bridge），将抽象部分与它的实现部分分离，使它</summary>
+      
+    
+    
+    
+    <category term="--[设计模式]" scheme="http://example.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="http://example.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+</feed>

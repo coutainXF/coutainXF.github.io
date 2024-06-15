@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>创建卡牌游戏原型 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>创建卡牌游戏原型</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-19T11:09:43.000Z" id="date"> 2023-04-19</time></div></span><br><span>Last Update: <div class="control"><time datetime="2024-06-13T12:38:45.202Z" id="updated"> 2024-06-13</time></div></span></div></div><hr><div id="post-content"><h1 id="创建卡牌游戏原型"><a href="#创建卡牌游戏原型" class="headerlink" title="创建卡牌游戏原型"></a>创建卡牌游戏原型</h1><h2 id="开发日志"><a href="#开发日志" class="headerlink" title="开发日志"></a>开发日志</h2><p>日志4.14</p>
+<p>没想到一个卡牌游戏项目的复杂程度能这么大，我感觉无从下手。</p>
+<p>日志4.15</p>
+<p>制作了简陋的UI界面，甚至几乎没有任何可以装载的图片。</p>
+<p>跑去制作了一个Python程序，用来批量处理md文件。</p>
+<p>日志4.16</p>
+<p>开始参考NueDeck代码模板进行开发。</p>
+<p>日志4.17</p>
+<p>创建卡牌行为枚举，创建了能够打出去并造成影响的卡牌。</p>
+<p>实现了卡牌行为中间间，并在GameApp中进行初始化。</p>
+<p>战斗的基本框架搭建完成。</p>
+<p>接下来的任务：</p>
+<p>1、制作抽牌、打牌动画，为卡牌添加特效、mana消耗</p>
+<p>2、制作玩家和关卡敌人的数据注入。</p>
+<p>日志4.18</p>
+<p>制作了卡牌、玩家、敌人的数据注入。</p>
+<p>并且对卡牌造成的影响能够正确做到。</p>
+<p>编写UI更新的逻辑。</p>
+<p>维护玩家卡组、抽牌堆、弃牌堆。</p>
+<p>4.19</p>
+<p>制作了敌人血条UI、敌人AI（固定行为模式和随机行为模式）</p>
+<p>尝试维护玩家抽牌堆、弃牌堆。</p>
+<p><img src="/imgs/misc/%E6%95%8C%E4%BA%BAai.png"></p>
+<p><img src="/imgs/misc/%E5%8D%A1%E7%89%8C_Ark_4_19%E8%BF%9B%E5%BA%A6.png"></p>
+<p>4.20</p>
+<p>教训：如果你在尝试运行时修改ScriptableObject数据，将会引起一场灾难。</p>
+<p>最好只用来做数据的初始化。</p>
+<p>问题来源ScriptableObject：在运行时修改meta文件并保存上一次Play的运行结果，当你退出编辑器后（大退），修改会重置；如果SetDirty的话，会将数据保存。 </p>
+<h2 id="开发过程中遇到的困难"><a href="#开发过程中遇到的困难" class="headerlink" title="开发过程中遇到的困难"></a>开发过程中遇到的困难</h2><p>1、种子seed是怎么做的？这使得我难以复现同一局游戏。</p>
+<p>肉鸽的随机：拿一个初始随机数种子，只要遇到需要用到随机数的地方，就使用这个种子通过某种去生成一个新的种子，然后再将这个新种子保存起来，然后后面再用到的时候就用这个生成的新种子去生成，重复上面的。</p>
+<p>2、怎么提供保存机制？使得我能够从上次的进度中加载并继续。</p>
+<p>3、没有开发资源（图片、icon、音效等</p>
+<p>4、反射相关的内容。</p>
+<p>5、如何搭建策划也能使用的框架？</p>
+<p>-&gt;CardData为CardBase注入数据，让自定义卡牌不再充满苦难（悲</p>
+<p>6、程序执行顺序总是有问题，报空指针是最难受的（悲</p>
+<p>7、UI的更新逻辑使我头疼。</p>
+<p>8、Debug</p>
+<p><font color=red><strong>highlight the text</strong></font></p>
+<h2 id="开发使用的版本-包-资源"><a href="#开发使用的版本-包-资源" class="headerlink" title="开发使用的版本/包/资源"></a>开发使用的版本/包/资源</h2><p>Universal RenderPine</p>
+<p>TextMeshPro</p>
+<p>Cinemachine</p>
+<p>DOTween</p>
+<p>TrueShadow</p>
+<p>Spine-Unity=&gt;创建小人动画</p>
+<p>参考项目：</p>
+<p>NueDeck(一个代码模板，提供了Roguelike卡牌类游戏的基础功能)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Arefnue/NueDeck">Arefnue/NueDeck: Open source, roguelike deck-building card game template (github.com)</a></p>
+<h2 id="导入开发使用的资源"><a href="#导入开发使用的资源" class="headerlink" title="导入开发使用的资源"></a>导入开发使用的资源</h2><p>Spine骨骼动画（构成了角色的所有动画）</p>
+<p>一些卡牌图片、UI、GUI</p>
+<p>特效、粒子效果等</p>
+<p>icon来自<a target="_blank" rel="noopener" href="https://www.fanatical.com/en/orders">Orders | Fanatical</a>的RPG Game Builder Assets Kit（$15）</p>
+<h2 id="创建并搭建场景"><a href="#创建并搭建场景" class="headerlink" title="创建并搭建场景"></a>创建并搭建场景</h2><p>1、主菜单场景</p>
+<p>2、GamePlay场景</p>
+<p>3、地图线路选择场景（Map）</p>
+<p>可以通过SceneLoader在场景中进行切换。</p>
+<h3 id="创建Menu场景"><a href="#创建Menu场景" class="headerlink" title="创建Menu场景"></a>创建Menu场景</h3><p>放置开始和退出按钮</p>
+<h3 id="创建GamePlay场景"><a href="#创建GamePlay场景" class="headerlink" title="创建GamePlay场景"></a>创建GamePlay场景</h3><p>搭建游玩时的UI界面</p>
+<p>包括顶部的通用设置界面</p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox">  血量</p>
+</li>
+<li><p><input disabled="" type="checkbox">  主动道具</p>
+</li>
+<li><p><input disabled="" type="checkbox">  coins，用于购买的硬币</p>
+</li>
+<li><p><input disabled="" type="checkbox">  settings，设置按钮</p>
+</li>
+<li><p><input disabled="" type="checkbox">  collections，收藏品背包</p>
+</li>
+</ul>
+<p>和底部的战斗界面</p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox">  mana，打出卡牌需要消耗能量</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  end turn按钮，进入下一回合的按钮</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  cardsCanvas，用于存放卡牌的位置</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  抽牌堆</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  弃牌堆</p>
+</li>
+</ul>
+<h3 id="创建地图线路选择场景"><a href="#创建地图线路选择场景" class="headerlink" title="创建地图线路选择场景"></a>创建地图线路选择场景</h3><p>提供一个能够选择随机行进路线的地图。</p>
+<h2 id="研究NueDeck框架内容"><a href="#研究NueDeck框架内容" class="headerlink" title="研究NueDeck框架内容"></a>研究NueDeck框架内容</h2><p>1、大量使用ScriptableObject作为数据文件存储，用以快捷地配置数据。</p>
+<p>2、可以了解，卡牌类的游戏UI交互是不可或缺的一部分，甚至说比重相当大。</p>
+<p>3、回合制战斗：</p>
+<p>枚举实现</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-built_in">enum</span> CombatType&#123;<br>    prepareCombat,-&gt;<span class="hljs-number">0</span>，代表战斗前<br>    playerTurn,-&gt;<span class="hljs-number">1</span>，代表玩家回合<br>    enemyTurn,-&gt;<span class="hljs-number">2</span>，代表敌人回合<br>    endCombat-&gt;<span class="hljs-number">3</span>，代表战斗结束<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> UnityAction <span class="hljs-title">OnPlayerTurnStart</span>()</span>;<span class="hljs-comment">//往里面添加监听</span><br><br><span class="hljs-function"><span class="hljs-keyword">public</span> UnityAction <span class="hljs-title">OnEnemyTurnStart</span>()</span>;<span class="hljs-comment">//往里面添加方法</span><br><br><br><span class="hljs-keyword">switch</span>(currentCombatType)&#123; <br>    <span class="hljs-keyword">case</span> CombatType.prepareCombat:<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> CombatType.playerTurn:<br>        <span class="hljs-comment">//监听玩家回合事件</span><br>        <span class="hljs-comment">//大概是抽卡drawCard、更新能量（打出手牌需要消耗能量）</span><br>    <span class="hljs-keyword">case</span> CombatType.enemyTurn:<br>        <span class="hljs-comment">//监听敌人回合事件</span><br>    <span class="hljs-comment">//case any other CombatType:</span><br>    <span class="hljs-comment">//在这里添加任何其他的战斗类型枚举</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//想必这里是其他的类，</span><br><br>获取OnPlayerTurnStart事件<br>为玩家订阅上述的方法：<br></code></pre></td></tr></table></figure>
+
+<h2 id="绘制框架图"><a href="#绘制框架图" class="headerlink" title="绘制框架图"></a>绘制框架图</h2><h2 id="完成回合制卡牌GameLoop"><a href="#完成回合制卡牌GameLoop" class="headerlink" title="完成回合制卡牌GameLoop"></a>完成回合制卡牌GameLoop</h2><h3 id="制作可以打出的卡牌UI"><a href="#制作可以打出的卡牌UI" class="headerlink" title="制作可以打出的卡牌UI"></a>制作可以打出的卡牌UI</h3><ul>
+<li><p><input checked="" disabled="" type="checkbox">  控制卡牌能够选中、缩放、拖拽</p>
+</li>
+<li><p><input disabled="" type="checkbox">  发牌动画以及打出卡牌后的动画</p>
+</li>
+</ul>
+<h3 id="卡牌管理"><a href="#卡牌管理" class="headerlink" title="卡牌管理"></a>卡牌管理</h3><ul>
+<li><p><input checked="" disabled="" type="checkbox">  管理玩家的牌组（想必是一个 List<Card> 结构来存储相应的数据）。</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  管理玩家的抽牌堆、弃牌堆，提供抽牌、弃牌等方法。</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  调用UIManager来实现上述方法。</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  提供使用UseCard方法，调用DoAction来使用卡牌。</p>
+</li>
+<li><p><input disabled="" type="checkbox">  查看抽牌堆，查看弃牌堆</p>
+</li>
+</ul>
+<h3 id="制作UI管理器UIManager"><a href="#制作UI管理器UIManager" class="headerlink" title="制作UI管理器UIManager"></a>制作UI管理器UIManager</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> 控制玩家UI的显示=&gt;获取UI的画布组件，通过enable/disable，显示/隐藏UI</li>
+<li><input checked="" disabled="" type="checkbox"> 绘制卡牌，提供动画。</li>
+<li><input checked="" disabled="" type="checkbox"> 编写UI更新逻辑。</li>
+</ul>
+<h3 id="制作回合制卡牌战斗系统CombatMananger"><a href="#制作回合制卡牌战斗系统CombatMananger" class="headerlink" title="制作回合制卡牌战斗系统CombatMananger"></a>制作回合制卡牌战斗系统CombatMananger</h3><ul>
+<li><p><input checked="" disabled="" type="checkbox">  依据CombatType控制进入不同的回合。</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  做战斗的初始化工作：</p>
+<ol>
+<li><p>生成敌人(√)</p>
+</li>
+<li><p>生成玩家（√）</p>
+</li>
+<li><p>显示战斗UI（√）</p>
+</li>
+<li><p>（待定）使用收藏品被动（）</p>
+</li>
+<li><p>初始化CombatType为玩家回合。（√）</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="有一个机制：存储和加载"><a href="#有一个机制：存储和加载" class="headerlink" title="有一个机制：存储和加载"></a>有一个机制：存储和加载</h2><p>某个类创建的ScriptableObject存放了玩家的所有信息。</p>
+<p>在每次战斗的时候重新从那里加载信息。包括剩余血量、存放的内容等。</p>
+<h2 id="创建一张能够打出去并造成影响的牌！"><a href="#创建一张能够打出去并造成影响的牌！" class="headerlink" title="创建一张能够打出去并造成影响的牌！"></a>创建一张能够打出去并造成影响的牌！</h2><ul>
+<li><p><input checked="" disabled="" type="checkbox">  定义卡牌的行为抽象类，包含parameters和可能用到的组件</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  一个行为枚举，代表不同的行为</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  定义基础的几个卡牌行为</p>
+<ol>
+<li><p>Attack</p>
+</li>
+<li><p>Defend</p>
+</li>
+<li><p>DrawCard</p>
+</li>
+<li><p>RestoreHealth</p>
+</li>
+<li><p>Strength</p>
+</li>
+<li><p>…other</p>
+</li>
+</ol>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  定义使用卡牌方法，依据行为枚举来指定打出的牌</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  1、指定目标（包括self和target）</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  2、需要一个中间件来打出卡牌</p>
+</li>
+</ul>
+<p>定义这个中间件：</p>
+<p>开始时自动初始化它。</p>
+<p>设置一个字典来存储所有的行为枚举-行为类实例。</p>
+<p>当打出卡牌时，给出字典[行为类型]即可获取行为类实例，执行DoAction来实现影响。</p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox">  实现这个中间件</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  为这个中间件Debug</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  当什么时候使用卡牌方法？鼠标OnDrag的时候选择目标！！！</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  动态地构建Params？</p>
+<p>使用输入检测检测在onDrag的时候开启检测协程。</p>
+<p>检测协程在射线检测到hit2D的目标时，为param设置卡牌作用目标target</p>
+<p>否则只设置其他的参数：</p>
+<p>CardBase（当前打出的卡），</p>
+<p>BaseCharacter Self（指玩家）；</p>
+<p>在endDrag的时候关闭该协程。并将params置为null</p>
+</li>
+</ul>
+<h2 id="创建角色BaseCharacter"><a href="#创建角色BaseCharacter" class="headerlink" title="创建角色BaseCharacter"></a>创建角色BaseCharacter</h2><h3 id="创建玩家Player"><a href="#创建玩家Player" class="headerlink" title="创建玩家Player"></a>创建玩家Player</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> 数据注入</li>
+</ul>
+<h3 id="创建敌人Enemy"><a href="#创建敌人Enemy" class="headerlink" title="创建敌人Enemy"></a>创建敌人Enemy</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> 同上</li>
+</ul>
+<h2 id="完善卡牌Action（数据交互方面的内容）"><a href="#完善卡牌Action（数据交互方面的内容）" class="headerlink" title="完善卡牌Action（数据交互方面的内容）"></a>完善卡牌Action（数据交互方面的内容）</h2><ul>
+<li><p><input checked="" disabled="" type="checkbox">  1、消耗mana</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  2、使用AudioManager播放音效，指定卡牌Params为其提供audio</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  3、使用EffectManager播放特效，并在打出卡牌时播放动画。</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  4、为卡片添加描述等参数内容。</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  5、实现抽牌效果。</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  6、抽牌堆、弃牌堆等内容</p>
+</li>
+</ul>
+<h2 id="创建敌人AI"><a href="#创建敌人AI" class="headerlink" title="创建敌人AI"></a>创建敌人AI</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 类似于创建卡牌的行为，创建敌人行为。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">![]()   ---&gt;  type this to add an image<br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/06/16/%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A326%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">← Next 快速了解26种设计模式和常见的设计思想</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/15/%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E5%AF%BC%E8%88%AA/">资源链接导航 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F%E5%8E%9F%E5%9E%8B"><span class="toc-text">创建卡牌游戏原型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97"><span class="toc-text">开发日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%9B%B0%E9%9A%BE"><span class="toc-text">开发过程中遇到的困难</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E7%9A%84%E7%89%88%E6%9C%AC-%E5%8C%85-%E8%B5%84%E6%BA%90"><span class="toc-text">开发使用的版本&#x2F;包&#x2F;资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E7%9A%84%E8%B5%84%E6%BA%90"><span class="toc-text">导入开发使用的资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E6%90%AD%E5%BB%BA%E5%9C%BA%E6%99%AF"><span class="toc-text">创建并搭建场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAMenu%E5%9C%BA%E6%99%AF"><span class="toc-text">创建Menu场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAGamePlay%E5%9C%BA%E6%99%AF"><span class="toc-text">创建GamePlay场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9C%B0%E5%9B%BE%E7%BA%BF%E8%B7%AF%E9%80%89%E6%8B%A9%E5%9C%BA%E6%99%AF"><span class="toc-text">创建地图线路选择场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6NueDeck%E6%A1%86%E6%9E%B6%E5%86%85%E5%AE%B9"><span class="toc-text">研究NueDeck框架内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E6%A1%86%E6%9E%B6%E5%9B%BE"><span class="toc-text">绘制框架图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%88%90%E5%9B%9E%E5%90%88%E5%88%B6%E5%8D%A1%E7%89%8CGameLoop"><span class="toc-text">完成回合制卡牌GameLoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E5%8F%AF%E4%BB%A5%E6%89%93%E5%87%BA%E7%9A%84%E5%8D%A1%E7%89%8CUI"><span class="toc-text">制作可以打出的卡牌UI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%A1%E7%89%8C%E7%AE%A1%E7%90%86"><span class="toc-text">卡牌管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9CUI%E7%AE%A1%E7%90%86%E5%99%A8UIManager"><span class="toc-text">制作UI管理器UIManager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E5%9B%9E%E5%90%88%E5%88%B6%E5%8D%A1%E7%89%8C%E6%88%98%E6%96%97%E7%B3%BB%E7%BB%9FCombatMananger"><span class="toc-text">制作回合制卡牌战斗系统CombatMananger</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E4%B8%80%E4%B8%AA%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%AD%98%E5%82%A8%E5%92%8C%E5%8A%A0%E8%BD%BD"><span class="toc-text">有一个机制：存储和加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E5%BC%A0%E8%83%BD%E5%A4%9F%E6%89%93%E5%87%BA%E5%8E%BB%E5%B9%B6%E9%80%A0%E6%88%90%E5%BD%B1%E5%93%8D%E7%9A%84%E7%89%8C%EF%BC%81"><span class="toc-text">创建一张能够打出去并造成影响的牌！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%92%E8%89%B2BaseCharacter"><span class="toc-text">创建角色BaseCharacter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%8E%A9%E5%AE%B6Player"><span class="toc-text">创建玩家Player</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%8C%E4%BA%BAEnemy"><span class="toc-text">创建敌人Enemy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E5%96%84%E5%8D%A1%E7%89%8CAction%EF%BC%88%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92%E6%96%B9%E9%9D%A2%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%89"><span class="toc-text">完善卡牌Action（数据交互方面的内容）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%8C%E4%BA%BAAI"><span class="toc-text">创建敌人AI</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

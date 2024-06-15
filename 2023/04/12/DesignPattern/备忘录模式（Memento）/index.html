@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>备忘录模式（Memento） | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>备忘录模式（Memento）</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-12T05:26:09.000Z" id="date"> 2023-04-12</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-12T05:53:14.000Z" id="updated"> 2023-04-12</time></div></span></div></div><hr><div id="post-content"><h1 id="备忘录模式的定义与特点"><a href="#备忘录模式的定义与特点" class="headerlink" title="备忘录模式的定义与特点"></a>备忘录模式的定义与特点</h1><p>备忘录（Memento）模式的定义：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便以后当需要时能将该对象恢复到原先保存的状态。该模式又叫快照模式。  </p>
+<p>备忘录模式能记录一个对象的内部状态，当用户后悔时能撤销当前操作，使数据恢复到它原先的状态。  </p>
+<p>备忘录模式减少了细节的暴露  </p>
+<p>例如，将许多实现细节写在了客户端当中，这是相当不可取的。</p>
+<h2 id="备忘录模式结构图"><a href="#备忘录模式结构图" class="headerlink" title="备忘录模式结构图"></a>备忘录模式结构图</h2><p><img src="/imgs/assets/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%E7%B1%BB%E5%9B%BE.png" alt="备忘录模式类图"></p>
+<h2 id="备忘录模式成员分析"><a href="#备忘录模式成员分析" class="headerlink" title="备忘录模式成员分析"></a>备忘录模式成员分析</h2><p><strong>Originator</strong>(发起人)：负责创建一个备忘录<strong>Memento</strong>，用以记录当前时刻它的内部状态，并可使用备忘录恢复状态。<strong>Originator</strong>可根据需求决定<strong>Memento</strong>存储<strong>Originator</strong>的哪些内部状态。  </p>
+<p><strong>Memento</strong>(备忘录)：负责存储<strong>Originator</strong>对象的内部状态，并可防止<strong>Originator</strong>以外的其他对象访问备忘录<strong>Memento</strong>。备忘录有两个接口，<strong>Caretaker</strong>只能看到备忘录的窄接口，它只能将备忘录传递给其他对象。<strong>Originator</strong>能够看到一个宽接口，允许它访问返回到先前状态所需的所有数据。  </p>
+<p><strong>Caretaker</strong>(管理者)：负责保存好备忘录<strong>Memento</strong>，不能对备忘录的内容进行操作或检查。</p>
+<h2 id="备忘录模式代码结构"><a href="#备忘录模式代码结构" class="headerlink" title="备忘录模式代码结构"></a>备忘录模式代码结构</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs csharp">发起者类（Originator）<br>Class Originator<br>&#123;<br>    <span class="hljs-comment">//需要保存的属性，可以有多个</span><br>    Private <span class="hljs-built_in">string</span> state;<br>    Public <span class="hljs-built_in">string</span> State<br>    &#123;<br>    <span class="hljs-keyword">get</span>&#123; <span class="hljs-keyword">return</span> state; &#125;<br>    <span class="hljs-keyword">set</span>&#123; state = <span class="hljs-keyword">value</span>; &#125;<br>    &#125;<br><br>    <span class="hljs-comment">//创建备忘录，将当前需要保存的信息导入并实例化出一个Memento对象</span><br>    <span class="hljs-function">Public Memento <span class="hljs-title">CreateMemento</span>()</span><br>    &#123;<br>        <span class="hljs-function">Retrun <span class="hljs-keyword">new</span> <span class="hljs-title">Memento</span>(<span class="hljs-params">state</span>)</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//恢复备忘录，将Memento导入并将相关数据恢复</span><br>    <span class="hljs-function">Public <span class="hljs-title">SetMemento</span>(<span class="hljs-params">Memento memento</span>)</span><br>    &#123;<br>        State = memento.state;<br>    &#125;<br>    <span class="hljs-comment">//public void show()</span><br>    <span class="hljs-comment">//&#123;</span><br>    <span class="hljs-comment">//展示数据</span><br>    <span class="hljs-comment">//&#125;</span><br>&#125;<br><br><span class="hljs-comment">//备忘录类</span><br>Class Memento<br>&#123;<br>    Private <span class="hljs-built_in">string</span> state;<br>    <span class="hljs-comment">//构造方法，将相关数据导入</span><br>    <span class="hljs-function">Public <span class="hljs-title">Memento</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> state</span>)</span><br>    &#123;<br>        This.state = state;<br>    &#125;<br>    <span class="hljs-comment">//需要保存的数据属性，可以有多个</span><br>    Public <span class="hljs-built_in">string</span> State<br>    &#123;<br>        <span class="hljs-keyword">get</span>&#123; <span class="hljs-keyword">return</span> state; &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//管理者类</span><br>Class Caretaker<br>&#123;<br>    Private Memento memento;<br>    <span class="hljs-comment">//设置或得到备忘录</span><br>    Public Memento Memento<br>    &#123;<br>        <span class="hljs-keyword">get</span>&#123; <span class="hljs-keyword">return</span> memento; &#125;<br>        <span class="hljs-keyword">set</span>&#123; memento = <span class="hljs-keyword">value</span>; &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//客户端代码</span><br>    Originator p = <span class="hljs-keyword">new</span> Originator( );<br>    p.State = <span class="hljs-string">&quot;On&quot;</span>;<br>    p.show();<br><br>    <span class="hljs-comment">//保存状态</span><br>    Caretaker c = <span class="hljs-keyword">new</span> Caretaker( );<br>    C.memento = o.CreateMemento( );<br>    <span class="hljs-comment">//这隐藏了Originator的实现细节</span><br><br>    <span class="hljs-comment">//改变了p的状态</span><br>    p.state = <span class="hljs-string">&quot;Off&quot;</span>;<br>    p.show( );<br><br>    <span class="hljs-comment">//恢复成之前的状态</span><br>    c.SetMemento(c.memento);<br>    p.show( );<br></code></pre></td></tr></table></figure>
+
+<h2 id="备忘录模式总结"><a href="#备忘录模式总结" class="headerlink" title="备忘录模式总结"></a>备忘录模式总结</h2><p>备忘录模式是一种对象行为型模式。</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>提供了一种可以恢复状态的机制。当用户需要时能够比较方便地将数据恢复到某个历史的状态。</li>
+<li>实现了内部状态的封装。除了创建它的发起人之外，其他对象都不能够访问这些状态信息。(备忘录模式将要保存的细节都封装在了Memento中，当要更改保存的细节时也不用再影响客户端了。)</li>
+<li>简化了 发起人 类。发起人不需要管理和保存其内部状态的各个备份，所有状态信息都保存在备忘录中，并由管理者进行管理，这符合单一职责原则。</li>
+</ul>
+<p><strong>缺点</strong>:</p>
+<ul>
+<li>资源消耗大。如果要保存的内部状态信息过多或者特别频繁，将会占用比较大的内存资源。</li>
+</ul>
+<p><strong>意图</strong>：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。  </p>
+<p><strong>主要解决</strong>：所谓备忘录模式就是在不破坏封装的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样可以在以后将对象恢复到原先保存的状态。  </p>
+<p><strong>何时使用</strong>：很多时候我们总是需要记录一个对象的内部状态，这样做的目的就是为了允许用户取消不确定或者错误的操作，能够恢复到他原先的状态，使得他有”后悔药”可吃。  </p>
+<p><strong>如何解决</strong>：通过一个备忘录类专门存储对象状态。<br><strong>关键代码</strong>：客户不与备忘录类耦合，与备忘录管理类耦合。<br><strong>应用实例</strong>： </p>
+<ol>
+<li><p>后悔药。 </p>
+</li>
+<li><p>打游戏时的存档。 </p>
+</li>
+<li><p>Windows 里的 ctrl + z。 </p>
+</li>
+<li><p>IE 中的后退。 </p>
+</li>
+<li><p>数据库的事务管理。</p>
+</li>
+</ol>
+<p><strong>使用场景：</strong> </p>
+<ul>
+<li><p>需要保存/恢复数据的相关状态场景。 </p>
+</li>
+<li><p>提供一个可回滚的操作。  </p>
+</li>
+</ul>
+<p><strong>注意事项：</strong> </p>
+<ul>
+<li><p>为了符合迪米特原则，还要增加一个管理备忘录的类。 </p>
+</li>
+<li><p>为了节约内存，可使用原型模式+备忘录模式。</p>
+</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%EF%BC%88Composite%EF%BC%89/">← Next 组合模式（Composite）</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%88Adaptor%EF%BC%89/">适配器模式（Adaptor） Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%89%B9%E7%82%B9"><span class="toc-text">备忘录模式的定义与特点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-text">备忘录模式结构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%E6%88%90%E5%91%98%E5%88%86%E6%9E%90"><span class="toc-text">备忘录模式成员分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="toc-text">备忘录模式代码结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93"><span class="toc-text">备忘录模式总结</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

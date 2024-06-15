@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>依赖倒置原则 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>依赖倒置原则</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-12T07:25:35.000Z" id="date"> 2023-04-12</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-12T07:47:34.000Z" id="updated"> 2023-04-12</time></div></span></div></div><hr><div id="post-content"><h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><p>依赖倒置原则说的是：</p>
+<ul>
+<li><p>高层模块不应该依赖低层模块，两个都应该依赖于抽象。</p>
+</li>
+<li><p>抽象不应该依赖细节，细节应该依赖于抽象。</p>
+</li>
+<li><p>就是说，要针对接口编程，不要对实现编程。</p>
+</li>
+</ul>
+<hr>
+<p>依赖倒置其实可以说是面向对象设计的标志，用哪种语言来编写程序不重要，如果编写时考虑的都是如何针对抽象编程而不是针对细节编程，<font color="red">即程序中的所有依赖关系都是终止于抽象类或者接口，那就是面向对象的设计，反之就是过程化的设计</font>。</p>
+<p><strong>只要接口是稳定的，那么任何一个的更改都不用担心受到影响，这就使得无论高层模块还是低层模块都可以很容易地被复用。</strong></p>
+<p>做项目的时候，通常需要访问数据库，为了使代码能够重用，可以用一个DatabaseUtil类来装关于数据库的各种操作，然后再根据业务逻辑调用其中的各种方法来操作数据库。可以想到，业务逻辑层依赖于数据库操作层（高层依赖于低层），如果要做新项目的时候，发现业务逻辑的高层模块基本是一样的，但却要使用另外的数据库，我们想要复用业务逻辑层，但是却发现了窘境：这些业务逻辑都和低层绑定在一起，没办法复用这些模块。</p>
+<p>如果想要复用这些模块，就需要类似实现像电脑cpu，内存，硬盘那样在主板上即插即用的接口*。主板坏了，会影响其他部件的使用，但是单一个内存坏了，不应该影响到其他部件的使用。<font color="red">提供统一的接口，才是让高层模块和低层模块都能复用的真理…</font></p>
+<p><strong>只要行为是一致的，就可以通过接口的引用（父）来装载子类（实现该接口的类）。只要实例化对应的子类，不需要修改接口方法的调用。这样就实现了对高层模块的复用。</strong></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/DesignPrinciples/%E5%BC%80%E6%94%BE%E5%B0%81%E9%97%AD%E5%8E%9F%E5%88%99/">← Next 开放封闭原则</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/DesignPrinciples/%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99/">里氏替换原则 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99"><span class="toc-text">依赖倒置原则</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

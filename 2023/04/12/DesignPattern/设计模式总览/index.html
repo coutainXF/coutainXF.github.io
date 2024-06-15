@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>设计模式总览 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>设计模式总览</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-12T01:19:15.000Z" id="date"> 2023-04-12</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-12T02:02:56.000Z" id="updated"> 2023-04-12</time></div></span></div></div><hr><div id="post-content"><h1 id="设计模式总览"><a href="#设计模式总览" class="headerlink" title="设计模式总览"></a>设计模式总览</h1><p>常见代码不规范之处：</p>
+<ul>
+<li>判断分支时总是只会使用多个if—else语句，增加无谓的操作（判断）</li>
+<li>命名规范</li>
+<li>总是忽略异常处理</li>
+</ul>
+<h2 id="面向对象编程和活字印刷的类比"><a href="#面向对象编程和活字印刷的类比" class="headerlink" title="面向对象编程和活字印刷的类比"></a>面向对象编程和活字印刷的类比</h2><p>活字印刷将每一个字单独拿出来制一个嵌，</p>
+<p>需要用到新的字的时候，再新刻一些——便于维护、可拓展性良好</p>
+<p>如果用不到新的字，就通过将旧的嵌组合在一起来印刷——可复用</p>
+<p>可以用多个字组成不同的句子、诗篇、文章去印刷——灵活性好</p>
+<ul>
+<li><p><strong>可维护</strong></p>
+</li>
+<li><p><strong>可复用</strong></p>
+</li>
+<li><p><strong>可拓展</strong></p>
+</li>
+<li><p><strong>灵活性好</strong></p>
+</li>
+</ul>
+<p>正是面向对象编程所需要达到的。</p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>-封装</p>
+<p>-继承</p>
+<p>-多态</p>
+<p>-设计模式</p>
+<p>封装、继承、多态——降低了程序的耦合度</p>
+<p>设计模式——使程序更加灵活、易于复用</p>
+<h2 id="复制vs复用"><a href="#复制vs复用" class="headerlink" title="复制vs复用"></a>复制vs复用</h2><p>复用——尽可能避免重复</p>
+<h2 id="业务的封装"><a href="#业务的封装" class="headerlink" title="业务的封装"></a>业务的封装</h2><p>业务逻辑与界面逻辑分开</p>
+<h2 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h2><p>—&gt;UML类图</p>
+<p>2022/4/1</p>
+<p>总是找抽象类或接口来解决问题，而不要找具体的实现类，强调了面向接口编程的思想。</p>
+<p>2022/4/17</p>
+<p>设计模式有很多，但实际上很多设计模式都在围绕着设计原则为核心进行结构设计，是一种实际运用，更加深入地理解设计原则才能真正运用好设计模式。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%EF%BC%88SimpleFactory%EF%BC%89/">← Next 简单工厂模式（SimpleFactory）</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/03/27/folder/%E6%B5%8B%E8%AF%95Tags%E5%92%8CCategories/">测试Tags和Categories Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88"><span class="toc-text">设计模式总览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%92%8C%E6%B4%BB%E5%AD%97%E5%8D%B0%E5%88%B7%E7%9A%84%E7%B1%BB%E6%AF%94"><span class="toc-text">面向对象编程和活字印刷的类比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="toc-text">面向对象编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6vs%E5%A4%8D%E7%94%A8"><span class="toc-text">复制vs复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E7%9A%84%E5%B0%81%E8%A3%85"><span class="toc-text">业务的封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UML%E7%B1%BB%E5%9B%BE"><span class="toc-text">UML类图</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

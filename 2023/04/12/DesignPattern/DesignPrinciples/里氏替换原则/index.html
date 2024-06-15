@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>里氏替换原则 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>里氏替换原则</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-12T07:25:16.000Z" id="date"> 2023-04-12</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-12T07:36:34.000Z" id="updated"> 2023-04-12</time></div></span></div></div><hr><div id="post-content"><h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>一个软件实体如果使用的是一个父类的话，那么一定适用于其子类，而且它察觉不出父类对象和子类对象的区别。  </p>
+<p>也就是说，在软件里面，把父类都替换成他的子类，程序的行为没有变化。  </p>
+<p>更加简单地：父类引用可以装载子类实例。</p>
+<p>当子类可以替换掉父类，软件单位的功能不受到影响时，父类才能被真正被复用，而子类也能在父类的基础上面增加新的行为。  </p>
+<p>由于子类型的可替换性才使得父类的模块在无需修改的情况下可以拓展。</p>
+<p>里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。</p>
+<h2 id="里氏替换原则的作用"><a href="#里氏替换原则的作用" class="headerlink" title="里氏替换原则的作用"></a>里氏替换原则的作用</h2><p>里氏替换原则的主要作用如下。</p>
+<ol>
+<li>里氏替换原则是实现开闭原则的重要方式之一。</li>
+<li>它克服了继承中重写父类造成的可复用性变差的缺点。</li>
+<li>它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性。</li>
+<li>加强程序的健壮性，同时变更时可以做到非常好的兼容性，提高程序的维护性、可扩展性，降低需求变更时引入的风险。</li>
+</ol>
+<h2 id="里氏替换原则的实现方法"><a href="#里氏替换原则的实现方法" class="headerlink" title="里氏替换原则的实现方法"></a>里氏替换原则的实现方法</h2><p>里氏替换原则通俗来讲就是：子类可以扩展父类的功能，但不能改变父类原有的功能。也就是说：子类继承父类时，除添加新的方法完成新增功能外，尽量不要重写父类的方法。</p>
+<p>根据上述理解，对里氏替换原则的定义可以总结如下：</p>
+<ul>
+<li>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法</li>
+<li>子类中可以增加自己特有的方法</li>
+<li>当子类的方法重载父类的方法时，方法的前置条件（即方法的输入参数）要比父类的方法更宽松</li>
+<li>当子类的方法实现父类的方法时（重写/重载或实现抽象方法），方法的后置条件（即方法的的输出/返回值）要比父类的方法更严格或相等</li>
+</ul>
+<p>通过重写父类的方法来完成新的功能写起来虽然简单，但是整个继承体系的可复用性会比较差，特别是运用多态比较频繁时，程序运行出错的概率会非常大。</p>
+<p>如果程序违背了里氏替换原则，则继承类的对象在基类出现的地方会出现运行错误。这时其修正方法是：取消原来的继承关系，重新设计它们之间的关系。</p>
+<p>关于里氏替换原则的例子，最有名的是“正方形不是长方形”。当然，生活中也有很多类似的例子，例如，企鹅、鸵鸟和几维鸟从生物学的角度来划分，它们属于鸟类；但从类的继承关系来看，由于它们不能继承“鸟”会飞的功能，所以它们不能定义成“鸟”的子类。同样，由于“气球鱼”不会游泳，所以不能定义成“鱼”的子类；“玩具炮”炸不了敌人，所以不能定义成“炮”的子类等。</p>
+<h3 id="什么是替换？"><a href="#什么是替换？" class="headerlink" title="什么是替换？"></a>什么是替换？</h3><p>替换的前提是面向对象语言所支持的多态特性，同一个行为具有多个不同表现形式或形态的能力。以JDK的集合框架为例，List接口的定义为有序集合，List接口有多个派生类，比如大家耳熟能详的ArrayList, LinkedList。那当某个方法参数或变量是List接口类型时，既可以是ArrayList的实现, 也可以是LinkedList的实现，这就是替换。</p>
+<p>举个简单的例子：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getFirst</span>(<span class="hljs-params">List&lt;String&gt; values</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> values.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>); <br>&#125;<br><span class="hljs-comment">//对于getFirst方法，接受一个List接口类型的参数，</span><br><span class="hljs-comment">//那既可以传递一个ArrayList类型的参数：</span><br>List&lt;String&gt; values = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>values.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;a&quot;</span>);<br>values.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;b&quot;</span>);<br>String firstValue = getFirst(values);<br><br><span class="hljs-comment">//也可以接收一个LinkedList参数：</span><br>List&lt;String&gt; values = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();<br>values.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;a&quot;</span>);<br>values.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;b&quot;</span>);<br>String firstValue = getFirst(values);<br></code></pre></td></tr></table></figure>
+
+<h3 id="什么是与期望行为一致的替换？"><a href="#什么是与期望行为一致的替换？" class="headerlink" title="什么是与期望行为一致的替换？"></a>什么是与期望行为一致的替换？</h3><p>在不了解派生类的情况下，仅通过接口或基类的方法，即可清楚的知道方法的行为，而不管哪种派生类的实现，都与接口或基类方法的期望行为一致。或者说接口或基类的方法是一种契约，使用方按照这个契约来使用，派生类也按照这个契约来实现。这就是与期望行为一致的替换。继续以上节中的例子说明： </p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getFirst</span>(<span class="hljs-params">List&lt;String&gt; values</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> values.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于getFirst方法，接收List类型的参数，而List类型的get方法返回特定位置的元素，对于本例即为第一个元素。这些是不依赖派生类的知识的。所以对于上节中的示例，不管是ArrayList类型的实现，还是LinkedList的实现，getFirst方法最终的返回值是一样的。这就是与期望行为一致的替换。  </p>
+<p>违反里氏替换原则的场景：  </p>
+<ol>
+<li><p>子类种抛出了基类中未定义的异常。</p>
+</li>
+<li><p>子类改变了基类定义的方法的语义（引入了副作用）。</p>
+</li>
+</ol>
+<h3 id="违反里氏替换原则的危害"><a href="#违反里氏替换原则的危害" class="headerlink" title="违反里氏替换原则的危害"></a>违反里氏替换原则的危害</h3><p>反直觉。期望所有的子类行为均一致，但若非一致则需要文档记录。  </p>
+<p>不可读。如果子类行为不一致，可能需要不同的逻辑分支来适配不同的行为，徒增代码复杂度。  </p>
+<p>不可用。可能出错的地方终将出错。</p>
+<h2 id="如何避免违反里氏替换原则"><a href="#如何避免违反里氏替换原则" class="headerlink" title="如何避免违反里氏替换原则"></a>如何避免违反里氏替换原则</h2><p>谈到如何避免，当然要基于里氏替换原则的定义，与期望行为一致的替换。</p>
+<ul>
+<li>从行为出发来设计。在做抽象或设计时，不只是要从模型概念出发，还要从行为出发，比如一个经典的例子，正方形和长方形，从现实的概念中正方形是一个长方形，但是在计算其面积的行为上是不一致的。</li>
+<li>基于契约设计。这个契约即是基类方法签名、功能描述、参数类型、返回值等。在派生类的实现时，时刻保持派生类与基类的契约不被破坏。</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/DesignPrinciples/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99/">← Next 依赖倒置原则</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/DesignPrinciples/%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99/">单一职责原则 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="toc-text">里氏替换原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">里氏替换原则的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-text">里氏替换原则的实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9B%BF%E6%8D%A2%EF%BC%9F"><span class="toc-text">什么是替换？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8E%E6%9C%9F%E6%9C%9B%E8%A1%8C%E4%B8%BA%E4%B8%80%E8%87%B4%E7%9A%84%E6%9B%BF%E6%8D%A2%EF%BC%9F"><span class="toc-text">什么是与期望行为一致的替换？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9D%E5%8F%8D%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-text">违反里氏替换原则的危害</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E8%BF%9D%E5%8F%8D%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="toc-text">如何避免违反里氏替换原则</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

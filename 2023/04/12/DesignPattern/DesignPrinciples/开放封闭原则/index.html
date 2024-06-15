@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>开放封闭原则 | 晓枫的博客</title><script>var config = {"root":"/","search":{"preload":true,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓枫的博客" type="application/atom+xml">
+</head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>开放封闭原则</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-12T07:25:53.000Z" id="date"> 2023-04-12</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-04-12T07:51:06.000Z" id="updated"> 2023-04-12</time></div></span></div></div><hr><div id="post-content"><h1 id="开放封闭原则"><a href="#开放封闭原则" class="headerlink" title="开放封闭原则"></a>开放封闭原则</h1><h2 id="The-Open-Closed-Principle开闭原则"><a href="#The-Open-Closed-Principle开闭原则" class="headerlink" title="The Open-Closed Principle开闭原则"></a>The Open-Closed Principle开闭原则</h2><p>说的是软件实体（类、模块、函数等）应该是可以拓展，但是不可修改的。</p>
+<p>两个特征:</p>
+<p><strong>对于拓展是开放的（Open for Extension）</strong></p>
+<p><strong>对于修改是封闭的（Closed for modification）</strong></p>
+<p>在做任何系统时，不必指望系统需求一开始就是确定的，因为需求一定会更改，要设计出容易维护又不容易出问题的软件系统，最好就是多拓展，少修改。怎么样的设计才能面对需求的改变而保持相对稳定呢？</p>
+<h2 id="拓展性问题"><a href="#拓展性问题" class="headerlink" title="拓展性问题"></a>拓展性问题</h2><ul>
+<li>保留拓展点</li>
+<li>要时刻具备拓展意识、抽象意识和封装意识</li>
+</ul>
+<h2 id="修改问题"><a href="#修改问题" class="headerlink" title="修改问题"></a>修改问题</h2><ul>
+<li>添加了新类、新模块，但仍需要对高层模块作些许修改以适应新业务。</li>
+<li>尽量让修改更集中、更少、更上层，尽量让最核心、最复杂的那部分逻辑代码满足开闭原则。</li>
+<li>绝对的对修改关闭是不存在的、不可能的。</li>
+<li>无论模块多么“封闭”，都存在无法对之封闭的变化，设计人员必须对他设计的模块应该对哪种变化封闭做出选择，他必须猜测最有可能发生的变化种类，然后抽象隔离出那些变化。</li>
+<li>等到变化发生时立即采取行动</li>
+<li>在最开始编写时，假设变化不会发生，当变化发生时，我们就创建抽象来隔离发生的同类变化。</li>
+</ul>
+<h2 id="例子：运算类——添加一个新的运算"><a href="#例子：运算类——添加一个新的运算" class="headerlink" title="例子：运算类——添加一个新的运算"></a>例子：运算类——添加一个新的运算</h2><p>刚开始的时候，这个运算整个写在控制台，如果要添加一个新的运算操作，需要修改整个程序结构。</p>
+<p>后面通过抽象，继承的方式，将不同的运算操作分离开来，如果要添加一个新的运算操作，就直接新建一个类继承运算类重写虚方法。</p>
+<p>面对需求，对程序的改动是通过增加新代码实现的（拓展），而不是修改原来的代码做出来的（减少修改）。</p>
+<p>并非对于应用程序的每个部分都刻意进行抽象，<strong>拒绝这样的过度抽象，拒绝不成熟的抽象</strong>和学会使用抽象一样重要。</p>
+<h2 id="如何做到“对扩展开放、修改关闭”？"><a href="#如何做到“对扩展开放、修改关闭”？" class="headerlink" title="如何做到“对扩展开放、修改关闭”？"></a>如何做到“对扩展开放、修改关闭”？</h2><p>实际上，开闭原则讲的就是<strong>代码****的扩展性问题</strong>，是判断一段代码是否易扩展的“金标准”。</p>
+<p>在讲具体的方法论之前，我们先来看一些更加偏向顶层的指导思想。为了尽量写出扩展性好的代码，我们要时刻具备<strong>扩展意识、抽象意识、封装意识</strong>。这些“潜意识”可能比任何开发技巧都重要。</p>
+<h3 id="扩展意识"><a href="#扩展意识" class="headerlink" title="扩展意识"></a>扩展意识</h3><p>在写代码的时候，我们要多花点时间往前多思考一下，这段代码未来可能有哪些需求变更、如何设计代码结构，事先留好扩展点，以便在未来需求变更的时候，不需要改动代码整体结构、做到最小代码改动的情况下，新的代码能够灵活地插入到扩展点上，做到“对扩展开放、对修改关闭”。</p>
+<h3 id="抽象意识"><a href="#抽象意识" class="headerlink" title="抽象意识"></a>抽象意识</h3><p>提供抽象化的不可变接口，给上层系统使用。当具体的实现发生变化的时候，我们只需要基于相同的抽象接口，扩展一个新的实现，替换老的实现即可，上游系统的代码几乎不需要修改。</p>
+<h3 id="封装意识"><a href="#封装意识" class="headerlink" title="封装意识"></a>封装意识</h3><p>在识别出代码可变部分和不可变部分之后，我们要将可变部分封装起来，隔离变化。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>在众多的设计原则、思想、模式中，最常用来提高代码扩展性的方法有：多态、依赖注入、基于接口而非实现编程，以及大部分的设计模式（比如：装饰、策略、模板、职责链、状态等）。</p>
+<h3 id="预留扩展点"><a href="#预留扩展点" class="headerlink" title="预留扩展点"></a>预留扩展点</h3><p>前面我们提到，写出支持“对扩展开放、对修改关闭”的代码的关键是预留扩展点，那么问题是，应该如何才能识别出所有可能的扩展点呢？</p>
+<p>如果开发业务导向的系统，比如电商系统、物流系统、金融系统等，要想识别尽可能多的扩展点，就需要对业务本身有足够多的了解。</p>
+<p>如果开发通用、偏底层的框架、类库、组件等，就需要了解它们会被如何使用，日后可能会添加什么功能。</p>
+<h2 id="过度设计的问题"><a href="#过度设计的问题" class="headerlink" title="过度设计的问题"></a>过度设计的问题</h2><p>“唯一不变的就是变化本身”，尽管我们对业务系统、框架功能有足够多的了解，也不能识别出所有的扩展点。即便我们能够识别出所有的扩展点，为这些地方做预留扩展点的设计，成本都是很大的，这就叫做“过度设计”。</p>
+<h2 id="合理的做法"><a href="#合理的做法" class="headerlink" title="合理的做法"></a>合理的做法</h2><p>应该是对于一些比较确定的，短期内可能就会扩展，或者需要改动对代码结构影响比较大的情况，或者实现成本不高的扩展点，在编写代码的时候，我们就可以事先做预留扩展点设计。但是对于一些不确定未来是否要支持的需求，或者实现起来比较复杂的扩展点，可以通过重构代码的方式来支持扩展的需求。</p>
+<p>设计原则是否应用得当，应该根据具体的业务场景，具体分析。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li><p>对扩展开放，是为了应付变化（需求）；</p>
+</li>
+<li><p>对修改封闭，是为了保证已有代码的稳定性；</p>
+</li>
+<li><p>最终结果是为了让系统更有弹性！</p>
+</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/DesignPrinciples/%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99/">← Next 迪米特法则</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/04/12/DesignPattern/DesignPrinciples/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99/">依赖倒置原则 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">晓枫</a></h1><div id="description"><p>想要壮志凌云<br>干要脚踏实地</p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E5%B0%81%E9%97%AD%E5%8E%9F%E5%88%99"><span class="toc-text">开放封闭原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Open-Closed-Principle%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="toc-text">The Open-Closed Principle开闭原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-text">拓展性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98"><span class="toc-text">修改问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E8%BF%90%E7%AE%97%E7%B1%BB%E2%80%94%E2%80%94%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E8%BF%90%E7%AE%97"><span class="toc-text">例子：运算类——添加一个新的运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E2%80%9C%E5%AF%B9%E6%89%A9%E5%B1%95%E5%BC%80%E6%94%BE%E3%80%81%E4%BF%AE%E6%94%B9%E5%85%B3%E9%97%AD%E2%80%9D%EF%BC%9F"><span class="toc-text">如何做到“对扩展开放、修改关闭”？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%84%8F%E8%AF%86"><span class="toc-text">扩展意识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E6%84%8F%E8%AF%86"><span class="toc-text">抽象意识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%84%8F%E8%AF%86"><span class="toc-text">封装意识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E7%95%99%E6%89%A9%E5%B1%95%E7%82%B9"><span class="toc-text">预留扩展点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">过度设计的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E7%90%86%E7%9A%84%E5%81%9A%E6%B3%95"><span class="toc-text">合理的做法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script class="pjax-js">reset=_=>{code.findCode();}</script><script src="/js/arknights.js"></script><script src="/js/pjax.js"></script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
